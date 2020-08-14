@@ -48,37 +48,37 @@ jquery:
     two: https://libs.baidu.com/jquery/2.1.4/jquery.min.js 
 # bootstrap
 bootstrap:
-  css: /hexo/css/bootstrap-3.3.4.css
-  js: /hexo/js/bootstrap-3.3.4.js
+  css: /css/bootstrap-3.3.4.css
+  js: /js/bootstrap-3.3.4.js
 # 头像 css 把这删除头像就不动了
 title_qiaoba: /hexo/css/avatar_user.css
 # slimscroll 滚动条
-slimscroll: /hexo/js/jquery.slimscroll.min.js
+slimscroll: /js/jquery.slimscroll.min.js
 # dearmsdan-post-Statistics样式
-Statistics: /hexo/css/post_content.css
+Statistics: /css/post_content.css
 # dearmsdan-post-Statistics样式
 social:
-  css: /hexo/css/social/social.css
-  fontcss: /hexo/css/social/waesome.css
+  css: /css/social/social.css
+  fontcss: /css/social/waesome.css
 # 网站加载条
 loadingBar:
-  pace: /hexo/resources/loadingBar/pace.min.js
-  pink: /hexo/resources/loadingBar/flash.css
-  band: /hexo/js/headBand.min.js
+  pace: /resources/loadingBar/pace.min.js
+  pink: /resources/loadingBar/flash.css
+  band: /js/headBand.min.js
   #pace: https://cdn.bootcss.com/pace/1.0.2/pace.min.js
   #pink: https://cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css
 # pjax配置
 jquerypjax:
-  pjax: /hexo/js/pjax/jquery.pjax.js
+  pjax: /js/pjax/jquery.pjax.js
 toc:
-  css: /hexo/resources/toc/toc.css
-  pageslide: /hexo/resources/toc/jquery.pageslide.js
+  css: /resources/toc/toc.css
+  pageslide: /resources/toc/jquery.pageslide.js
 # 图片放大
 zoom:
-  js: /hexo/resources/zoom/zoom.js
+  js: /resources/zoom/zoom.js
 #  
 copycode: 
-  lib: /hexo/js/copycode/clipboard.min.js
+  lib: /js/copycode/clipboard.min.js
 # 工具库
 jQtools:
   # 缓存
@@ -188,11 +188,11 @@ sides:
 # 音乐播放器
 player:
   audio:
-    css: /hexo/resources/meuplayer/css/player.css
+    css: /resources/meuplayer/css/player.css
     js: 
-      index: /hexo/resources/meuplayer/player/index.js
-      player: /hexo/resources/meuplayer/player/player.js
-      playlist: /hexo/resources/meuplayer/player/playlist.js
+      index: /resources/meuplayer/player/index.js
+      player: /resources/meuplayer/player/player.js
+      playlist: /resources/meuplayer/player/playlist.js
 # 返回顶部
 top:
   js: /hexo/js/top/jquery.toTop.min.js
@@ -205,12 +205,12 @@ top:
 
 # footer 时间统计
 jscex:
-  jsq: /hexo/resources/jscex/jscex.min.js             # 必须
-  jsa: /hexo/resources/jscex/jscex-parser.js          # 必须
-  jsz: /hexo/resources/jscex/jscex-jit.js             # 必须
-  jsw: /hexo/resources/jscex/jscex-builderbase.min.js # 必须
-  jss: /hexo/resources/jscex/jscex-async.min.js       # 必须
-  jsx: /hexo/resources/jscex/jscex-async-powerpack.min.js
+  jsq: /resources/jscex/jscex.min.js             # 必须
+  jsa: /resources/jscex/jscex-parser.js          # 必须
+  jsz: /resources/jscex/jscex-jit.js             # 必须
+  jsw: /resources/jscex/jscex-builderbase.min.js # 必须
+  jss: /resources/jscex/jscex-async.min.js       # 必须
+  jsx: /resources/jscex/jscex-async-powerpack.min.js
 
 # footer 版权和一些信息
 footer:
@@ -251,7 +251,7 @@ copyright:
 
 # 友情链接 配置信息
 link:
-  css: /hexo/resources/dearmsdan_link/link.css
+  css: /resources/dearmsdan_link/link.css
   
   
 links: 		 # 被遍历的所有网站信息
