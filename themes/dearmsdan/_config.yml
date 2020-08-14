@@ -48,37 +48,37 @@ jquery:
     two: https://libs.baidu.com/jquery/2.1.4/jquery.min.js 
 # bootstrap
 bootstrap:
-  css: /css/bootstrap-3.3.4.css
-  js: /js/bootstrap-3.3.4.js
+  css: /hexo/css/bootstrap-3.3.4.css
+  js: /hexo/js/bootstrap-3.3.4.js
 # 头像 css 把这删除头像就不动了
-title_qiaoba: /css/avatar_user.css
+title_qiaoba: /hexo/css/avatar_user.css
 # slimscroll 滚动条
-slimscroll: /js/jquery.slimscroll.min.js
+slimscroll: /hexo/js/jquery.slimscroll.min.js
 # dearmsdan-post-Statistics样式
-Statistics: /css/post_content.css
+Statistics: /hexo/css/post_content.css
 # dearmsdan-post-Statistics样式
 social:
-  css: /css/social/social.css
-  fontcss: /css/social/waesome.css
+  css: /hexo/css/social/social.css
+  fontcss: /hexo/css/social/waesome.css
 # 网站加载条
 loadingBar:
-  pace: /resources/loadingBar/pace.min.js
-  pink: /resources/loadingBar/flash.css
-  band: /js/headBand.min.js
+  pace: /hexo/resources/loadingBar/pace.min.js
+  pink: /hexo/resources/loadingBar/flash.css
+  band: /hexo/js/headBand.min.js
   #pace: https://cdn.bootcss.com/pace/1.0.2/pace.min.js
   #pink: https://cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css
 # pjax配置
 jquerypjax:
-  pjax: /js/pjax/jquery.pjax.js
+  pjax: /hexo/js/pjax/jquery.pjax.js
 toc:
-  css: /resources/toc/toc.css
-  pageslide: /resources/toc/jquery.pageslide.js
+  css: /hexo/resources/toc/toc.css
+  pageslide: /hexo/resources/toc/jquery.pageslide.js
 # 图片放大
 zoom:
-  js: /resources/zoom/zoom.js
+  js: /hexo/resources/zoom/zoom.js
 #  
 copycode: 
-  lib: /js/copycode/clipboard.min.js
+  lib: /hexo/js/copycode/clipboard.min.js
 # 工具库
 jQtools:
   # 缓存
@@ -119,9 +119,9 @@ menu:
 # 设置图片不动的配置在 title_qiaoba 中
 # 填写一个即可，另一个备用(第二个有抖动特效)   任意一个都可以为空
 # 尽可能选择正比例图片！！！，比例差距大可以修改 ejs 模板源文件 sidebar.ejs 5~ 10行左右
-dearHead: /1.gif # 初始头像
-dearHeadlogo: /logo.png # 遮罩 logo
-PhotoHead: /resources/qiaoba.png  # 备用头像 
+dearHead: /hexo/1.gif # 初始头像
+dearHeadlogo: /hexo/logo.png # 遮罩 logo
+PhotoHead: /hexo/resources/qiaoba.png  # 备用头像
 
 
 # 社交按钮配置
@@ -188,14 +188,14 @@ sides:
 # 音乐播放器
 player:
   audio:
-    css: /resources/meuplayer/css/player.css
+    css: /hexo/resources/meuplayer/css/player.css
     js: 
-      index: /resources/meuplayer/player/index.js
-      player: /resources/meuplayer/player/player.js
-      playlist: /resources/meuplayer/player/playlist.js
+      index: /hexo/resources/meuplayer/player/index.js
+      player: /hexo/resources/meuplayer/player/player.js
+      playlist: /hexo/resources/meuplayer/player/playlist.js
 # 返回顶部
 top:
-  js: /js/top/jquery.toTop.min.js
+  js: /hexo/js/top/jquery.toTop.min.js
 
 
 # ---------------------------------------------------------------
@@ -205,12 +205,12 @@ top:
 
 # footer 时间统计
 jscex:
-  jsq: /resources/jscex/jscex.min.js             # 必须
-  jsa: /resources/jscex/jscex-parser.js          # 必须
-  jsz: /resources/jscex/jscex-jit.js             # 必须
-  jsw: /resources/jscex/jscex-builderbase.min.js # 必须
-  jss: /resources/jscex/jscex-async.min.js       # 必须
-  jsx: /resources/jscex/jscex-async-powerpack.min.js
+  jsq: /hexo/resources/jscex/jscex.min.js             # 必须
+  jsa: /hexo/resources/jscex/jscex-parser.js          # 必须
+  jsz: /hexo/resources/jscex/jscex-jit.js             # 必须
+  jsw: /hexo/resources/jscex/jscex-builderbase.min.js # 必须
+  jss: /hexo/resources/jscex/jscex-async.min.js       # 必须
+  jsx: /hexo/resources/jscex/jscex-async-powerpack.min.js
 
 # footer 版权和一些信息
 footer:
@@ -251,7 +251,7 @@ copyright:
 
 # 友情链接 配置信息
 link:
-  css: /resources/dearmsdan_link/link.css
+  css: /hexo/resources/dearmsdan_link/link.css
   
   
 links: 		 # 被遍历的所有网站信息
@@ -262,7 +262,7 @@ links: 		 # 被遍历的所有网站信息
   #  link: https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral # 网址
   #  description: "一个良心服务商、国内知名企业级云服务商  又拍云是专注 CDN、云存储、小程序开发方案 短视频开发方案、DDoS高防等产品的国内知名企业级云服务商"  # 描述
   莲梦青语 - 软件技巧分享博客:
-    img: /logo.png
+    img: /hexo/logo.png
     link: https://lmqyu.cn/
     description: "心之所爱，便一往无前。时间：搭建于2019年12月12号  <br/>定位：软件技巧分享、系统装机、常用软件的学习交流以及分享博主的建站历程"
 
