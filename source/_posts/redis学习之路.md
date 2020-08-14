@@ -1,7 +1,7 @@
 ---
 title: redis学习之路
 date: 2020-08-14 15:21:33
-tags:redis
+tags: redis
 excerpt: redis的数据结构
 ---
 ##一、介绍一下Redis
