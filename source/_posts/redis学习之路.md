@@ -4,7 +4,9 @@ date: 2020-08-14 15:21:33
 tags: redis
 excerpt: redis的数据结构
 ---
+
 ##一、介绍一下Redis
+
 Redis是一个开源的，基于内存的数据结构存储，可用作于数据库、缓存、消息中间件。
 
 * 从官方的解释上，我们可以知道：Redis是基于内存，支持多种数据结构。
@@ -14,6 +16,7 @@ Redis是一个开源的，基于内存的数据结构存储，可用作于数据
 就我个人认为：学习一种新技术，先把握该技术整体的知识(思想)，再扣细节，这样学习起来会比较轻松一些。所以我们先以“内存”、“数据结构”、“缓存”来对Redis入门。
 
 ### 1.1为什么要用Redis？
+
 我们可以发现这不就是Java的Map容器所拥有的特性吗，那为什么还需要Redis呢？
 
 * Java实现的Map是本地缓存，如果有多台实例(机器)的话，每个实例都需要各自保存一份缓存，缓存不具有一致性
@@ -23,10 +26,13 @@ Redis是一个开源的，基于内存的数据结构存储，可用作于数据
 * Java实现的Map不是专业做缓存的，JVM内存太大容易挂掉的。一般用做于容器来存储临时数据，缓存的数据随着JVM销毁而结束。Map所存储的数据结构，缓存过期机制等等是需要程序员自己手写的。
 
 * Redis是专业做缓存的，可以用几十个G内存来做缓存。Redis一般用作于缓存，可以将缓存数据保存在硬盘中，Redis重启了后可以将其恢复。原生提供丰富的数据结构、缓存过期机制等等简单好用的功能。
+
 ###1.2为什么要用缓存？
+
 如果我们的网站出现了性能问题(访问时间慢)，按经验来说，一般是由于数据库撑不住了。因为一般数据库的读写都是要经过磁盘的，而磁盘的速度可以说是相当慢的(相对内存来说)
 
 ##二、Redis的数据结构
+
 * Redis 命令参考：http://doc.redisfans.com/
 
 * try Redis(不用安装Redis即可体验Redis命令)：http://try.redis.io/
@@ -42,6 +48,7 @@ Redis支持丰富的数据结构，常用的有string、list、hash、set、sort
 * 简单来说：Redis使用对象来表示数据库中的键和值。每次我们在Redis数据库中新创建一个键值对时，至少会创建出两个对象。一个是键对象，一个是值对象。
 
 Redis中的每个对象都由一个redisObject结构来表示：
+
 ```
 typedef struct redisObject{
 
@@ -54,17 +61,20 @@ typedef struct redisObject{
     // 指向底层实现数据结构的指针
     void * ptr;
 
-    //.....
+    //
 
 
 }robj;
 ```
+
 简单来说就是Redis对key-value封装成对象，key是一个对象，value也是一个对象。每个对象都有type(类型)、encoding(编码)、ptr(指向底层数据结构的指针)来表示。
 
 ###2.1SDS简单动态字符串
+
 Redis中的字符串跟C语言中的字符串，是有点差距的。
 
 Redis使用sdshdr结构来表示一个SDS值：
+
 ```
 struct sdshdr{
 
@@ -78,7 +88,9 @@ struct sdshdr{
     int free;
 }
 ```
+
 * ###使用SDS的好处
+
 1.sdshdr数据结构中用len属性记录了字符串的长度。那么获取字符串的长度时，时间复杂度只需要O(1)。
 
 2.SDS不会发生溢出的问题，如果修改SDS时，空间不足。先会扩展空间，再进行修改！(内部实现了动态扩展机制)。
@@ -86,8 +98,11 @@ struct sdshdr{
 3.SDS可以减少内存分配的次数(空间预分配机制)。在扩展空间时，除了分配修改时所必要的空间，还会分配额外的空闲空间(free 属性)。
 
 4.SDS是二进制安全的，所有SDS API都会以处理二进制的方式来处理SDS存放在buf数组里的数据。
+
 ###2.2链表
+
 使用listNode结构来表示每个节点：
+
 ```
 typedef strcut listNode{
 
@@ -102,7 +117,9 @@ typedef strcut listNode{
 
 }listNode
 ```
+
 使用listNode是可以组成链表了，Redis中使用list结构来持有链表：
+
 ```
 typedef struct list{
 
@@ -126,7 +143,9 @@ typedef struct list{
 
 }list
 ```
+
 ####2.2.1Redis链表的特性
+
    Redis的链表有以下特性：
    
    * 无环双向链表
@@ -137,9 +156,11 @@ typedef struct list{
    
 
 ###2.3哈希表
+
 在Redis中，key-value的数据结构底层就是哈希表来实现的。对于哈希表来说，我们也并不陌生。在Java中，哈希表实际上就是数组+链表的形式来构建的。下面我们来看看Redis的哈希表是怎么构建的吧。
 
 在Redis里边，哈希表使用dictht结构来定义：
+
 ```
     typedef struct dictht{
 
@@ -158,7 +179,9 @@ typedef struct list{
 
     }dictht
 ```
+
 我们下面继续写看看哈希表的节点是怎么实现的吧：
+
 ```
     typedef struct dictEntry {
 
@@ -177,9 +200,11 @@ typedef struct list{
 
     }dictEntry;
 ```
+
 从结构上看，我们可以发现：Redis实现的哈希表和Java中实现的是类似的。只不过Redis多了几个属性来记录常用的值：sizemark(掩码)、used(已有的节点数量)、size(大小)。
 
 同样地，Redis为了更好的操作，对哈希表往上再封装了一层(参考上面的Redis实现链表)，使用dict结构来表示：
+
 ```
 typedef struct dict {
 
@@ -223,6 +248,7 @@ typedef struct dictType{
 
 }dictType
 ```
+
 从代码实现和示例图上我们可以发现，Redis中有两个哈希表：
 
 * ht[0]：用于存放真实的key-vlaue数据
@@ -234,7 +260,9 @@ Redis中哈希算法和哈希冲突跟Java实现的差不多，它俩差异就�
 * Redis哈希冲突时：是将新节点添加在链表的表头。
 
 * JDK1.8后，Java在哈希冲突时：是将新的节点添加到链表的表尾。
+
 ####2.3.1rehash的过程
+
 下面来具体讲讲Redis是怎么rehash的，因为我们从上面可以明显地看到，Redis是专门使用一个哈希表来做rehash的。这跟Java一次性直接rehash是有区别的。
 
 在对哈希表进行扩展或者收缩操作时，reash过程并不是一次性地完成的，而是渐进式地完成的。
@@ -251,14 +279,17 @@ Redis具体是rehash时这么干的：
 * (4:在渐进式rehash过程中，字典会同时使用两个哈希表ht[0]和ht[1]，所有的更新、删除、查找操作也会在两个哈希表进行。例如要查找一个键的话，服务器会优先查找ht[0]，如果不存在，再查找ht[1]，诸如此类。此外当执行新增操作时，新的键值对一律保存到ht[1]，不再对ht[0]进行任何操作，以保证ht[0]的键值对数量只减不增，直至变为空表。
 
 ###2.4跳跃表(shiplist)
+
 跳跃表(shiplist)是实现sortset(有序集合)的底层数据结构之一！
 
 跳跃表可能对于大部分人来说不太常见，之前我在学习的时候发现了一篇不错的文章讲跳跃表的，建议大家先去看完下文再继续回来阅读：
+
 * 漫画算法：什么是跳跃表？http://blog.jobbole.com/111731/
 
 Redis的跳跃表实现由zskiplist和zskiplistNode两个结构组成。其中zskiplist保存跳跃表的信息(表头，表尾节点，长度)，zskiplistNode则表示跳跃表的节点。
 
 按照惯例，我们来看看zskiplistNode跳跃表节点的结构是怎么样的：
+
 ```
 typeof struct zskiplistNode {
         // 后退指针
@@ -276,7 +307,9 @@ typeof struct zskiplistNode {
         } level[];
 } zskiplistNode;
 ```
+
 zskiplist的结构如下：
+
 ```
 typeof struct zskiplist {
         // 表头节点，表尾节点
@@ -289,9 +322,11 @@ typeof struct zskiplist {
 ```
 
 ###2.5整数集合(intset)
+
 整数集合是set(集合)的底层数据结构之一。当一个set(集合)只包含整数值元素，并且元素的数量不多时，Redis就会采用整数集合(intset)作为set(集合)的底层实现。
 
 整数集合(intset)保证了元素是不会出现重复的，并且是有序的(从小到大排序)，intset的结构是这样子的：
+
 ```
 typeof struct intset {
         // 编码方式
@@ -302,6 +337,7 @@ typeof struct intset {
         int8_t contents[];
 } intset;
 ```
+
 说明：虽然intset结构将contents属性声明为int8_t类型的数组，但实际上contents数组并不保存任何int8_t类型的值，contents数组的真正类型取决于encoding属性的值：
 
 INTSET_ENC_INT16
@@ -322,6 +358,7 @@ INTSET_ENC_INT64
 另外一提：只支持升级操作，并不支持降级操作。
 
 ###2.6压缩列表(ziplist)
+
 压缩列表(ziplist)是list和hash的底层实现之一。如果list的每个都是小整数值，或者是比较短的字符串，压缩列表(ziplist)作为list的底层实现。
 
 压缩列表(ziplist)是Redis为了节约内存而开发的，是由一系列的特殊编码的连续内存块组成的顺序性数据结构。
@@ -329,7 +366,9 @@ INTSET_ENC_INT64
 压缩列表从表尾节点倒序遍历，首先指针通过zltail偏移量指向表尾节点，然后通过指向节点记录的前一个节点的长度依次向前遍历访问整个压缩列表。
 
 ##三、Redis中数据结构的对象
+
 ###3.1字符串(stirng)对象
+
 在上面的图我们知道string类型有三种编码格式：
 
 * int：整数值，这个整数值可以使用long类型来表示
@@ -351,11 +390,14 @@ embstr和raw的区别：
 * embstr是只读的，在修改的时候回从embstr转成raw
 
 ###3.2列表(list)对象
+
 在上面的图我们知道list类型有两种编码格式：
 * ziplist：字符串元素的长度都小于64个字节&amp;&amp;总数量少于512个
 
 * linkedlist：字符串元素的长度大于64个字节||总数量大于512个
+
 ###3.3哈希(hash)对象
+
 在上面的图我们知道hash类型有两种编码格式：
 
 * ziplist：key和value的字符串长度都小于64字节&amp;&amp;键值对总数量小于512
@@ -369,7 +411,9 @@ embstr和raw的区别：
 * intset：保存的元素全都是整数&amp;&amp;总数量小于512
 
 * hashtable：保存的元素不是整数||总数量大于512
+
 ##3.5有序集合(sortset)对象
+
 在上面的图我们知道set类型有两种编码格式：
 
 * ziplist：元素长度小于64&amp;&amp;总数量小于128
@@ -385,6 +429,7 @@ embstr和raw的区别：
 * 原本是ziplist编码的，如果保存的数据长度大于64或者元素数量大于128，会转换成skiplist编码的。
 
 ###3.6Redis对象一些细节
+
 * (1：服务器在执行某些命令的时候，会先检查给定的键的类型能否执行指定的命令。
 
 比如我们的数据结构是sortset，但你使用了list的命令。这是不对的，服务器会检查一下我们的数据结构是什么才会进一步执行命令
@@ -398,6 +443,7 @@ embstr和raw的区别：
 * (4：对象会记录自己的最后一次被访问时间，这个时间可以用于计算对象的空转时间。
 
 ##最后
+
 本文主要讲了一下Redis常用的数据结构，以及这些数据结构的底层设计是怎么样的。
 
 至于我们在使用的时候挑选哪些数据结构作为存储，可以简单看看：
