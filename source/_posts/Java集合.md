@@ -4,7 +4,9 @@ date: 2020-08-13 15:04:46
 tags: Java基础
 excerpt: Java集合 List,Set,Map...
 ---
+
 ## List集合
+
 List集合下最常见的集合类有两个：ArrayList和LinkedList
 众所周知，ArrayList底层是数组，LinkedList底层是链表。数组遍历速度快，LinkedList增删元素快。
 
@@ -21,6 +23,7 @@ ArrayList增删没有想象中慢，ArrayList的增删底层调用的copyOf()被
 如果考虑线程安全的问题，可以看看CopyOnWriteArrayList，实际开发用得不多，但我觉得可以了解一下它的思想（CopyOnWrite），这个思想在Linux/文件系统都有用到。
  
 ##Set集合
+
 Set集合下最常见的集合类有三个：HashSet、TreeSet、LinkedHashSet
 
 List和Set都是集合，一般来说：如果我们需要保证集合的元素是唯一的，就应该想到用Set集合
@@ -36,6 +39,7 @@ List和Set都是集合，一般来说：如果我们需要保证集合的元素�
 TreeSet和LinkedHashSet更多的可能用在刷算法的时候。
 
 ##Map集合
+
 Map集合最常见的子类也有三个：HashMap、LinkedHashMap、TreeMap
 
 如果考虑线程安全问题，应该想到的是ConcurrentHashMap，当然了Hashtable也要有一定的了解，因为面试实在是问得太多太多了。
