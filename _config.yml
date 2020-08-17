@@ -98,7 +98,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: dearmsdan
+theme: smackdown
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -109,7 +109,7 @@ live2d:
   pluginModelPath: assets/
   model:
     #模板目录，在node_modules里
-    use: live2d-widget-model-hijiki
+    use: live2d-widget-model-tororo
   display:
     position: right
     width: 150

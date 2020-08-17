@@ -22,7 +22,7 @@ ArrayList增删没有想象中慢，ArrayList的增删底层调用的copyOf()被
 
 如果考虑线程安全的问题，可以看看CopyOnWriteArrayList，实际开发用得不多，但我觉得可以了解一下它的思想（CopyOnWrite），这个思想在Linux/文件系统都有用到。
  
-##Set集合
+## Set集合
 
 Set集合下最常见的集合类有三个：HashSet、TreeSet、LinkedHashSet
 
@@ -38,7 +38,7 @@ List和Set都是集合，一般来说：如果我们需要保证集合的元素�
 
 TreeSet和LinkedHashSet更多的可能用在刷算法的时候。
 
-##Map集合
+## Map集合
 
 Map集合最常见的子类也有三个：HashMap、LinkedHashMap、TreeMap
 
