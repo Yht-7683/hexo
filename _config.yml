@@ -118,5 +118,5 @@ live2d:
     # 在手机端显示
     show: true
   rect:
-    opacity:0.6
+    opacity:0.8
 
