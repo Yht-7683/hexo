@@ -465,10 +465,6 @@ var index = Math.floor((Math.random()*arr.length));
       <ul>
         
           <li>
-            <a href="/2020/08/17/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
             <a href="/2020/08/14/redis%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/">redis学习之路</a>
           </li>
         
@@ -478,6 +474,10 @@ var index = Math.floor((Math.random()*arr.length));
         
           <li>
             <a href="/2020/08/13/Java%E9%9B%86%E5%90%88/">Java集合</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/11/hello-world/">Hello World</a>
           </li>
         
       </ul>
@@ -609,7 +609,8 @@ var index = Math.floor((Math.random()*arr.length));
 	<script src="/resources/toc/jquery.pageslide.js"></script>
 		<div>
 			  <article>
-				<p>##1.什么是泛型<br>Java泛型设计原则：只要在编译时期没有出现警告，那么运行时期就不会出现ClassCastException异常.</p>
+				<p>##1.什么是泛型</p>
+<p>Java泛型设计原则：只要在编译时期没有出现警告，那么运行时期就不会出现ClassCastException异常.</p>
 <p>泛型：把类型明确的工作推迟到创建对象或调用方法的时候才去明确的特殊的类型</p>
 <p>参数化类型:</p>
 <ul>
@@ -636,16 +637,21 @@ var index = Math.floor((Math.random()*arr.length));
 <li>在类上定义的泛型，在类的方法中也可以使用！</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;*</span><br><span class="line">    1:把泛型定义在类上</span><br><span class="line">    2:类型变量定义在类上,方法中也可以使用</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class ObjectTool&lt;T&gt; &#123;</span><br><span class="line">    private T obj;</span><br><span class="line"></span><br><span class="line">    public T getObj() &#123;</span><br><span class="line">        return obj;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setObj(T obj) &#123;</span><br><span class="line">        this.obj &#x3D; obj;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>用户想要使用哪种类型，就在创建的时候指定类型。使用的时候，该类就会自动转换成用户想要使用的类型了。<br>###2.2泛型方法<br>前面已经介绍了泛型类了，在类上定义的泛型，在方法中也可以使用…..</p>
+
+<p>用户想要使用哪种类型，就在创建的时候指定类型。使用的时候，该类就会自动转换成用户想要使用的类型了。</p>
+<p>###2.2泛型方法</p>
+<p>前面已经介绍了泛型类了，在类上定义的泛型，在方法中也可以使用…..</p>
 <p>现在呢，我们可能就仅仅在某一个方法上需要使用泛型….外界仅仅是关心该方法，不关心类其他的属性…这样的话，我们在整个类上定义泛型，未免就有些大题小作了。</p>
 <ul>
 <li>定义泛型方法….泛型是先定义后使用的</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;定义泛型方法..</span><br><span class="line">  public &lt;T&gt; void show(T t) &#123;</span><br><span class="line">      System.out.println(t);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
 <p>用户传递进来的是什么类型，返回值就是什么类型了</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    &#x2F;&#x2F;创建对象</span><br><span class="line">    ObjectTool tool &#x3D; new ObjectTool();</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;调用方法,传入的参数是什么类型,返回值就是什么类型</span><br><span class="line">    tool.show(&quot;hello&quot;);</span><br><span class="line">    tool.show(12);</span><br><span class="line">    tool.show(12.5);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>###2.3泛型类派生出的子类<br>前面我们已经定义了泛型类，泛型类是拥有泛型这个特性的类，它本质上还是一个Java类，那么它就可以被继承</p>
+<p>###2.3泛型类派生出的子类</p>
+<p>前面我们已经定义了泛型类，泛型类是拥有泛型这个特性的类，它本质上还是一个Java类，那么它就可以被继承</p>
 <p>那它是怎么被继承的呢？？这里分两种情况</p>
 <ul>
 <li><p>子类明确泛型类的类型参数变量</p>
@@ -655,10 +661,14 @@ var index = Math.floor((Math.random()*arr.length));
 </ul>
 <p>####2.3.1子类明确泛型类的类型参数变量</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;*</span><br><span class="line">    把泛型定义在接口上</span><br><span class="line"> *&#x2F;</span><br><span class="line">public interface Inter&lt;T&gt; &#123;</span><br><span class="line">    public abstract void show(T t);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 子类明确泛型类的类型参数变量:</span><br><span class="line"> *&#x2F;</span><br><span class="line"></span><br><span class="line">public class InterImpl implements Inter&lt;String&gt; &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void show(String s) &#123;</span><br><span class="line">        System.out.println(s);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h4 id="2-3-2子类不明确泛型类的类型参数变量"><a href="#2-3-2子类不明确泛型类的类型参数变量" class="headerlink" title="2.3.2子类不明确泛型类的类型参数变量"></a>2.3.2子类不明确泛型类的类型参数变量</h4><p>当子类不明确泛型类的类型参数变量时，外界使用子类的时候，也需要传递类型参数变量进来，在实现类上需要定义出类型参数变量</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 子类不明确泛型类的类型参数变量:</span><br><span class="line"> *      实现类也要定义出&lt;T&gt;类型的</span><br><span class="line"> *</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class InterImpl&lt;T&gt; implements Inter&lt;T&gt; &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void show(T t) &#123;</span><br><span class="line">        System.out.println(t);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    &#x2F;&#x2F;测试第一种情况</span><br><span class="line">    &#x2F;&#x2F;Inter&lt;String&gt; i &#x3D; new InterImpl();</span><br><span class="line">    &#x2F;&#x2F;i.show(&quot;hello&quot;);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;第二种情况测试</span><br><span class="line">    Inter&lt;String&gt; ii &#x3D; new InterImpl&lt;&gt;();</span><br><span class="line">    ii.show(&quot;100&quot;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>值得注意的是：</p>
 <ul>
 <li><p>实现类的要是重写父类的方法，返回值的类型是要和父类一样的！</p>
@@ -669,15 +679,22 @@ var index = Math.floor((Math.random()*arr.length));
 <h3 id="2-4类型通配符"><a href="#2-4类型通配符" class="headerlink" title="2.4类型通配符"></a>2.4类型通配符</h3><p>为什么需要类型通配符？？？？我们来看一个需求…….</p>
 <p>现在有个需求：方法接收一个集合参数，遍历集合并把集合元素打印出来，怎么办？</p>
 <ul>
-<li>按照我们没有学习泛型之前，我们可能会这样做：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public void test(List list)&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    for(int i&#x3D;0;i&lt;list.size();i++)&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(list.get(i));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-上面的代码是正确的，只不过在编译的时候会出现警告，说没有确定集合元素的类型….这样是不优雅的…</li>
-<li>那我们学习了泛型了，现在要怎么做呢？？有的人可能会这样做：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public void test(List&lt;Object&gt; list)&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    for(int i&#x3D;0;i&lt;list.size();i++)&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(list.get(i));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-这样做语法是没毛病的，但是这里十分值得注意的是：该test()方法只能遍历装载着Object的集合！！！</li>
+<li>按照我们没有学习泛型之前，我们可能会这样做：</li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public void test(List list)&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    for(int i&#x3D;0;i&lt;list.size();i++)&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(list.get(i));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码是正确的，只不过在编译的时候会出现警告，说没有确定集合元素的类型….这样是不优雅的…</p>
+<ul>
+<li>那我们学习了泛型了，现在要怎么做呢？？有的人可能会这样做：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public void test(List&lt;Object&gt; list)&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    for(int i&#x3D;0;i&lt;list.size();i++)&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(list.get(i));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这样做语法是没毛病的，但是这里十分值得注意的是：该test()方法只能遍历装载着Object的集合！！！</p>
 <p>强调：泛型中的<Object>并不是像以前那样有继承关系的，也就是说List<Object>和List<String>是毫无关系的！！！！</p>
 <p>那现在咋办？？？我们是不清楚List集合装载的元素是什么类型的，List<Objcet>这样是行不通的……..于是Java泛型提供了类型通配符  ?</p>
 <p>所以代码应该改成这样：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public void test(List&lt;?&gt; list)&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    for(int i&#x3D;0;i&lt;list.size();i++)&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(list.get(i));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>?号通配符表示可以匹配任意类型，任意的Java类都可以匹配…..</p>
 <p>现在非常值得注意的是，当我们使用?号通配符的时候：就只能调对象与类型无关的方法，不能调用对象与类型有关的方法。</p>
 <p>记住，只能调用与对象无关的方法，不能调用对象与类型有关的方法。因为直到外界使用才知道具体的类型是什么。也就是说，在上面的List集合，我是不能使用add()方法的。因为add()方法是把对象丢进集合中，而现在我是不知道对象的类型是什么。</p>
@@ -685,44 +702,66 @@ var index = Math.floor((Math.random()*arr.length));
 <p>现在，我想接收一个List集合，它只能操作数字类型的元素【Float、Integer、Double、Byte等数字类型都行】，怎么做？？？</p>
 <p>我们学习了通配符，但是如果直接使用通配符的话，该集合就不是只能操作数字了。因此我们需要用到设定通配符上限</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;? extends Number&gt;</span><br></pre></td></tr></table></figure>
+
 <p>上面的代码表示的是：List集合装载的元素只能是Number的子类或自身</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;List集合装载的是Integer，可以调用该方法</span><br><span class="line">    List&lt;Integer&gt; integer &#x3D; new ArrayList&lt;&gt;();</span><br><span class="line">    test(integer);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;List集合装载的是String，在编译时期就报错了</span><br><span class="line">    List&lt;String&gt; strings &#x3D; new ArrayList&lt;&gt;();</span><br><span class="line">    test(strings);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public static void test(List&lt;? extends Number&gt; list) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>####2.4.2设定通配符下限<br>既然上面我们已经说了如何设定通配符的上限，那么设定通配符的下限也不是陌生的事了。直接来看语法吧</p>
+
+<p>####2.4.2设定通配符下限</p>
+<p>既然上面我们已经说了如何设定通配符的上限，那么设定通配符的下限也不是陌生的事了。直接来看语法吧</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;传递进来的只能是Type或Type的父类</span><br><span class="line">       &lt;? super Type&gt;</span><br></pre></td></tr></table></figure>
+
 <p>设定通配符的下限这并不少见，在TreeSet集合中就有….我们来看一下</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public TreeSet(Comparator&lt;? super E&gt; comparator) &#123;</span><br><span class="line">          this(new TreeMap&lt;&gt;(comparator));</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+
 <p>那它有什么用呢？？我们来想一下，当我们想要创建一个TreeSet<String>类型的变量的时候，并传入一个可以比较String大小的Comparator。</p>
 <p>那么这个Comparator的选择就有很多了，它可以是Comparator<String>，还可以是类型参数是String的父类，比如说Comparator<Objcet>….</p>
 <p>这样做，就非常灵活了。也就是说，只要它能够比较字符串大小，就行了</p>
 <p>值得注意的是：无论是设定通配符上限还是下限，都是不能操作与对象有关的方法，只要涉及到了通配符，它的类型都是不确定的！</p>
-<p>###2.5通配符和泛型方法<br>大多时候，我们都可以使用泛型方法来代替通配符的…..</p>
+<p>###2.5通配符和泛型方法</p>
+<p>大多时候，我们都可以使用泛型方法来代替通配符的…..</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;使用通配符</span><br><span class="line">public static void test(List&lt;?&gt; list) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;使用泛型方法</span><br><span class="line">public &lt;T&gt; void  test2(List&lt;T&gt; t) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>上面这两个方法都是可以的…..那么现在问题来了，我们使用通配符还是使用泛型方法呢？？</p>
 <p>原则：</p>
 <ul>
 <li><p>如果参数之间的类型有依赖关系，或者返回值是与参数之间有依赖关系的。那么就使用泛型方法</p>
 </li>
-<li><p>如果没有依赖关系的，就使用通配符，通配符会灵活一些.<br>###2.6泛型擦除<br>泛型是提供给javac编译器使用的，它用于限定集合的输入类型，让编译器在源代码级别上，即挡住向集合中插入非法数据。但编译器编译完带有泛形的java程序后，生成的class文件中将不再带有泛形信息，以此使程序运行效率不受到影响，这个过程称之为“擦除”。</p>
+<li><p>如果没有依赖关系的，就使用通配符，通配符会灵活一些.</p>
 </li>
 </ul>
+<p>###2.6泛型擦除</p>
+<p>泛型是提供给javac编译器使用的，它用于限定集合的输入类型，让编译器在源代码级别上，即挡住向集合中插入非法数据。但编译器编译完带有泛形的java程序后，生成的class文件中将不再带有泛形信息，以此使程序运行效率不受到影响，这个过程称之为“擦除”。</p>
 <ul>
-<li>兼容性<br>JDK5提出了泛型这个概念，但是JDK5以前是没有泛型的。也就是泛型是需要兼容JDK5以下的集合的。</li>
+<li>兼容性</li>
 </ul>
+<p>JDK5提出了泛型这个概念，但是JDK5以前是没有泛型的。也就是泛型是需要兼容JDK5以下的集合的。</p>
 <p>当把带有泛型特性的集合赋值给老版本的集合时候，会把泛型给擦除了。</p>
 <p>值得注意的是：它保留的就类型参数的上限。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list &#x3D; new ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;类型被擦除了，保留的是类型的上限，String的上限就是Object</span><br><span class="line">List list1 &#x3D; list;</span><br></pre></td></tr></table></figure>
+
 <p>如果我把没有类型参数的集合赋值给带有类型参数的集合赋值，这又会怎么样？？</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">List list &#x3D; new ArrayList();</span><br><span class="line">List&lt;String&gt; list2 &#x3D; list;</span><br></pre></td></tr></table></figure>
+
 <p>它也不会报错，仅仅是提示“未经检查的转换”</p>
 <h2 id="3-泛型的应用"><a href="#3-泛型的应用" class="headerlink" title="3.泛型的应用"></a>3.泛型的应用</h2><p>当我们写网页的时候，常常会有多个DAO，我们要写每次都要写好几个DAO，这样会有点麻烦。</p>
 <p>那么我们想要的效果是什么呢？？只写一个抽象DAO，别的DAO只要继承该抽象DAO，就有对应的方法了。</p>
 <p>要实现这样的效果，肯定是要用到泛型的。因为在抽象DAO中，是不可能知道哪一个DAO会继承它自己，所以是不知道其具体的类型的。而泛型就是在创建的时候才指定其具体的类型。</p>
 <ul>
-<li>抽象DAO<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">public abstract class BaseDao&lt;T&gt; &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;模拟hibernate....</span><br><span class="line">    private Session session;</span><br><span class="line">    private Class clazz;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;哪个子类调的这个方法，得到的class就是子类处理的类型（非常重要）</span><br><span class="line">    public BaseDao()&#123;</span><br><span class="line">        Class clazz &#x3D; this.getClass();  &#x2F;&#x2F;拿到的是子类</span><br><span class="line">        ParameterizedType  pt &#x3D; (ParameterizedType) clazz.getGenericSuperclass();  &#x2F;&#x2F;BaseDao&lt;Category&gt;</span><br><span class="line">        clazz &#x3D; (Class) pt.getActualTypeArguments()[0];</span><br><span class="line">        System.out.println(clazz);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public void add(T t)&#123;</span><br><span class="line">        session.save(t);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public T find(String id)&#123;</span><br><span class="line">        return (T) session.get(clazz, id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void update(T t)&#123;</span><br><span class="line">        session.update(t);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void delete(String id)&#123;</span><br><span class="line">        T t &#x3D; (T) session.get(clazz, id);</span><br><span class="line">        session.delete(t);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>继承抽象DAO，该实现类就有对应的增删改查的方法了。<br>CategoryDao<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public class CategoryDao extends BaseDao&lt;Category&gt; &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-BookDao<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public class BookDao extends BaseDao&lt;Book&gt; &#123;</span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-##4.最后<br>文章转载自Java3y</li>
+<li>抽象DAO</li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">public abstract class BaseDao&lt;T&gt; &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;模拟hibernate....</span><br><span class="line">    private Session session;</span><br><span class="line">    private Class clazz;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;哪个子类调的这个方法，得到的class就是子类处理的类型（非常重要）</span><br><span class="line">    public BaseDao()&#123;</span><br><span class="line">        Class clazz &#x3D; this.getClass();  &#x2F;&#x2F;拿到的是子类</span><br><span class="line">        ParameterizedType  pt &#x3D; (ParameterizedType) clazz.getGenericSuperclass();  &#x2F;&#x2F;BaseDao&lt;Category&gt;</span><br><span class="line">        clazz &#x3D; (Class) pt.getActualTypeArguments()[0];</span><br><span class="line">        System.out.println(clazz);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public void add(T t)&#123;</span><br><span class="line">        session.save(t);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public T find(String id)&#123;</span><br><span class="line">        return (T) session.get(clazz, id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void update(T t)&#123;</span><br><span class="line">        session.update(t);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void delete(String id)&#123;</span><br><span class="line">        T t &#x3D; (T) session.get(clazz, id);</span><br><span class="line">        session.delete(t);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>继承抽象DAO，该实现类就有对应的增删改查的方法了。</li>
+</ul>
+<p>CategoryDao</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public class CategoryDao extends BaseDao&lt;Category&gt; &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>BookDao</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public class BookDao extends BaseDao&lt;Book&gt; &#123;</span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>##4.最后</p>
+<p>文章转载自Java3y</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/ZhongFuCheng3y/3y#%E5%85%AC%E4%BC%97%E5%8F%B7">https://github.com/ZhongFuCheng3y/3y#%E5%85%AC%E4%BC%97%E5%8F%B7</a></p>
 
 			  </article>
