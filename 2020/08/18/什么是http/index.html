@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>什么是http | Hexo</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="http的基本概念，什么是https">
+<meta property="og:type" content="article">
+<meta property="og:title" content="什么是http">
+<meta property="og:url" content="http://www.2333nmsl.ml/2020/08/18/%E4%BB%80%E4%B9%88%E6%98%AFhttp/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="http的基本概念，什么是https">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-08-18T14:03:40.000Z">
+<meta property="article:modified_time" content="2020-08-18T07:52:06.349Z">
+<meta property="article:author" content="yht">
+<meta property="article:tag" content="计算机网络">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 5.0.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/1.gif" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/"></a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Yht-7683/" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="#" title="mail">mail</a>
+					        
+								<a class="qq" target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=434807683&site=qq&menu=yes" title="qq">qq</a>
+					        
+								<a class="weibo" target="_blank" href="https://weibo.com/" title="weibo">weibo</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ASCII%E7%A0%81%E5%9B%BE/" style="font-size: 10px;">ASCII码图</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 20px;">Java基础</a> <a href="/tags/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 10px;">Java多线程</a> <a href="/tags/Redis/" style="font-size: 15px;">Redis</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">计算机网络</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="/false">aboutme</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/1.gif" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Yht-7683/" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="#" title="mail">mail</a>
+			        
+						<a class="qq" target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=434807683&site=qq&menu=yes" title="qq">qq</a>
+			        
+						<a class="weibo" target="_blank" href="https://weibo.com/" title="weibo">weibo</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-什么是http" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/08/18/%E4%BB%80%E4%B9%88%E6%98%AFhttp/" class="article-date">
+  	<time datetime="2020-08-18T14:03:40.000Z" itemprop="datePublished">2020-08-18</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      什么是http
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>简单来说，HTTP协议就是客户端和服务器交互的一种通迅的格式。</p>
+<h2 id="HTTP基础概念"><a href="#HTTP基础概念" class="headerlink" title="HTTP基础概念"></a>HTTP基础概念</h2><p>我们学计算机网络的时候就知道，我们把计算机网络分层了5层，一般我们现在用的都是TCP/IP这么一个分层结构。</p>
+<p>为什么我们要在计算机网络中分层次？？？</p>
+<p>因为如果两台计算机能够相互通信的话，实际实现起来是非常困难操作的…我们分层的目的就是为了将困难的问题简单化，并且如果我们分层了，我们在使用的时候就可以仅仅关注我们需要关注的层次，而不用理会其他层。</p>
+<p>如果需要改动设计的时候，我们只需要把变动的层替换即可，并不用涉及到其他的层次。这与我们程序设计中的低耦合是一个概念。</p>
+<p>而我们的HTTP协议是在最上层，也就是应用层。这是最贴近我们的程序员的层次。</p>
+<h2 id="网站通信粗略过程"><a href="#网站通信粗略过程" class="headerlink" title="网站通信粗略过程"></a>网站通信粗略过程</h2><p>DNS：负责解析域名</p>
+<ul>
+<li>我们访问一个网页的时候，往往是通过域名来访问的，而计算机通信只认的是我们的主机地址，因此，当我们输入域名的时候，需要DNS把域名解析成主机来进行访问。</li>
+</ul>
+<p>HTTP：产生请求报文数据</p>
+<ul>
+<li>当我们对Web页面进行操作的时候，就会产生HTTP报文数据，请求对应的服务端进行响应。</li>
+</ul>
+<p>TCP协议：分割HTTP数据，保证数据运输</p>
+<ul>
+<li>TCP协议采用了三次握手的方式来保证数据的准确运输，在运输的数据的时候，发送标识过去给服务器，服务器也返回标识给客户端，而客户端收到消息后再次返回标识给服务器。这样一来就保证了数据运输是可靠的。</li>
+</ul>
+<p>IP协议：传输数据包，找到通信目的地地址。</p>
+<ul>
+<li><p>IP协议把我们的产生的数据包发送给对方，IP地址指明了节点被分配的地址，但IP地址可能会变换，我们可以使用ARP协议来将IP地址反射为MAC地址。MAC地址是不会更改的，是网卡所属的固定地址。</p>
+</li>
+<li><p>在找到通信目的地之前，我们是需要不断的中转的，这过程我们称作为：“路由中转”，我们并不知道路由中转了多少次的。因此是不能全面了解到互联网中的传输状况的。</p>
+</li>
+</ul>
+<p>我们网页上请求数据就是上边这么一个流程。</p>
+<h3 id="告知服务器请求的意图"><a href="#告知服务器请求的意图" class="headerlink" title="告知服务器请求的意图"></a>告知服务器请求的意图</h3><p>我们如果开发过Web程序的话，我们知道常用的提交方式有POST和GET方法</p>
+<p>我们也知道GET是用来获取数据的，POST是用来提交数据的。</p>
+<p>其实HTTP协议中还支持着其他的方法，比如：Input、Delete、OPTIONS很多这样的方法。而由于常用，于是我们也可能仅仅知道GET和POST方法了。</p>
+<p>HTTP提供方法的目的就是为了告知服务器该客户端想进行什么操作。当HTTP是OPTIONS方法的时候，服务器端就会返回它支持什么HTTP方法。</p>
+<p>当然了，现在RESTful盛行，也就是充分利用了HTTP协议的这些方法。</p>
+<h2 id="HTTP是不保存状态的协议"><a href="#HTTP是不保存状态的协议" class="headerlink" title="HTTP是不保存状态的协议"></a>HTTP是不保存状态的协议</h2><p>HTTP是无状态的，也就是说，它是不对通信状态进行保存的。它并不知道之前通信的对方是谁。这样设计的目的就是为了让HTTP简单化，能够快速处理大量的事务！</p>
+<p>但是，我们经常是需要知道访问的人是谁，于是就有了Cookie技术了。</p>
+<p>要是服务器端想要记住客户端是谁，那么就颁发一个cookie给客户端</p>
+<p>客户端把Cookie保存在硬盘中，当下次访问服务器的时候，浏览器会自动把客户端的cookie带过去。</p>
+<p>就这样，服务器就能够知道这家伙是谁了。</p>
+<h2 id="持久连接"><a href="#持久连接" class="headerlink" title="持久连接"></a>持久连接</h2><p>在HTTP1.0的时候，每一次进行HTTP通信就会断开一次连接。如果容量很少的文本传输是没有问题的。但是如果我们访问一个网页，该网页有非常多的图片。一个图片就算上一个HTTP请求了。那么在中途中就不断地建立TCP连接、获取图片、断开TCP连接。</p>
+<p>这样是非常浪费资源的，因此在HTTP1.1版本，就是持久连接了。一次HTTP连接能够处理多个请求。</p>
+<p>持久连接为“管线化”方式发送成为了可能：在一次HTTP连接里面，不需要等待服务器响应请求，就能够继续发送第二次请求。</p>
+<h2 id="常用的状态码简述"><a href="#常用的状态码简述" class="headerlink" title="常用的状态码简述"></a>常用的状态码简述</h2><h4 id="2XX"><a href="#2XX" class="headerlink" title="2XX"></a>2XX</h4><p>一般是请求成功</p>
+<p>200 正常处理</p>
+<p>204 成功处理，但服务器没有新数据返回，显示页面不更新</p>
+<p>206 对服务器进行范围请求，只返回一部分数据</p>
+<h4 id="3XX"><a href="#3XX" class="headerlink" title="3XX"></a>3XX</h4><p>一般表示重定向</p>
+<p>301 请求的资源已分配了新的URI中，URL地址改变了。【永久重定向】</p>
+<p>302 请求的资源临时分配了新的URI中，URL地址没变【转发】</p>
+<p>303 与302相同的功能，但明确客户端应该采用GET方式来获取资源</p>
+<p>304 发送了附带请求，但不符合条件【返回未过期的缓存数据】</p>
+<p>307 与302相同，但不会把POST请求变成GET</p>
+<h4 id="4XX"><a href="#4XX" class="headerlink" title="4XX"></a>4XX</h4><p>表示客户端出错了。</p>
+<p>400 请求报文语法错误了</p>
+<p>401 需要认证身份</p>
+<p>403 没有权限访问</p>
+<p>404 服务器没有这个资源</p>
+<h4 id="5XX"><a href="#5XX" class="headerlink" title="5XX"></a>5XX</h4><p>服务器出错了</p>
+<p>500 内部资源出错了</p>
+<p>503 服务器正忙</p>
+<h2 id="HTTPS简述"><a href="#HTTPS简述" class="headerlink" title="HTTPS简述"></a>HTTPS简述</h2><p>HTTP在安全上是不足的</p>
+<ul>
+<li><p>通信使用明文【没有加密过内容的】</p>
+</li>
+<li><p>不验证通信方身份，无论是客户端和服务器，都是随意通信的</p>
+</li>
+<li><p>无法证明报文的完整性【别人监听后，可以篡改】</p>
+</li>
+</ul>
+<p>其实HTTPS就是披着SSL的HTTP…</p>
+<p>HTTPS使用的是共享密钥和公开私有密钥混合来进行加密的。由于公开私有密钥需要太多的资源，不可能一直以公开私有密钥进行通信。因此，HTTP在建立通信线路的时候使用公开私有密钥，当建立完连接后，随后就使用共享密钥进行加密和解密了</p>
+<p>对于认证方面，HTTPS是基于第三方的认证机构来获取认受认可的证书、因此，可以从中认证该服务器是否是合法的。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/08/18/%E6%9C%80%E7%9F%AD%E7%9A%84%E6%96%87%E7%AB%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">最短的文章</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="什么是http" data-title="什么是http" data-url="http://www.2333nmsl.ml/2020/08/18/%E4%BB%80%E4%B9%88%E6%98%AFhttp/"  data-images="/img/1.gif" data-content="什么是http">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2020 yht
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"rect":"opacity:0.8","log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
