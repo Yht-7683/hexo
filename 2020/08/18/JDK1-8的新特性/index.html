@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>JDK1.8的新特性 | Hexo</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Lambda表达式、函数式接口、Optional类的用法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JDK1.8的新特性">
+<meta property="og:url" content="http://www.2333nmsl.ml/2020/08/18/JDK1-8%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Lambda表达式、函数式接口、Optional类的用法">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-08-18T09:43:28.000Z">
+<meta property="article:modified_time" content="2020-08-18T03:42:16.252Z">
+<meta property="article:author" content="yht">
+<meta property="article:tag" content="Java基础">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 5.0.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/1.gif" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/"></a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Yht-7683/" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="#" title="mail">mail</a>
+					        
+								<a class="qq" target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=434807683&site=qq&menu=yes" title="qq">qq</a>
+					        
+								<a class="weibo" target="_blank" href="https://weibo.com/" title="weibo">weibo</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 20px;">Java基础</a> <a href="/tags/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 10px;">Java多线程</a> <a href="/tags/Redis/" style="font-size: 15px;">Redis</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="/false">aboutme</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/1.gif" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Yht-7683/" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="#" title="mail">mail</a>
+			        
+						<a class="qq" target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=434807683&site=qq&menu=yes" title="qq">qq</a>
+			        
+						<a class="weibo" target="_blank" href="https://weibo.com/" title="weibo">weibo</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-JDK1-8的新特性" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/08/18/JDK1-8%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7/" class="article-date">
+  	<time datetime="2020-08-18T09:43:28.000Z" itemprop="datePublished">2020-08-18</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JDK1.8的新特性
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java%E5%9F%BA%E7%A1%80/" rel="tag">Java基础</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、Lambda表达式"><a href="#一、Lambda表达式" class="headerlink" title="一、Lambda表达式"></a>一、Lambda表达式</h2><h3 id="1-1Lambda简化代码例子"><a href="#1-1Lambda简化代码例子" class="headerlink" title="1.1Lambda简化代码例子"></a>1.1Lambda简化代码例子</h3><p>下面就以几个例子来看看Lambda表达式是怎么简化我们代码的编写的。</p>
+<p>首先我们来看看创建线程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    &#x2F;&#x2F; 用匿名内部类的方式来创建线程</span><br><span class="line">    new Thread(new Runnable() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void run() &#123;</span><br><span class="line">            System.out.println(&quot;公众号：Java3y---回复1进群交流&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 使用Lambda来创建线程</span><br><span class="line">    new Thread(() -&gt; System.out.println(&quot;公众号：Java3y---回复1进群交流&quot;));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>再来看看遍历Map集合：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    Map&lt;String, String&gt; hashMap &#x3D; new HashMap&lt;&gt;();</span><br><span class="line">    hashMap.put(&quot;公众号&quot;, &quot;Java3y&quot;);</span><br><span class="line">    hashMap.put(&quot;交流群&quot;, &quot;回复1&quot;);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 使用增强for的方式来遍历hashMap</span><br><span class="line">    for (Map.Entry&lt;String, String&gt; entry : hashMap.entrySet()) &#123;</span><br><span class="line">        System.out.println(entry.getKey()+&quot;:&quot;+entry.getValue());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 使用Lambda表达式的方式来遍历hashMap</span><br><span class="line">    hashMap.forEach((s, s2) -&gt; System.out.println(s + &quot;:&quot; + s2));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在List中删除某个元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">    List&lt;String&gt; list &#x3D; new ArrayList&lt;&gt;();</span><br><span class="line">    list.add(&quot;Java3y&quot;);</span><br><span class="line">    list.add(&quot;3y&quot;);</span><br><span class="line">    list.add(&quot;光头&quot;);</span><br><span class="line">    list.add(&quot;帅哥&quot;);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 传统的方式删除&quot;光头&quot;的元素</span><br><span class="line">    ListIterator&lt;String&gt; iterator &#x3D; list.listIterator();</span><br><span class="line">    while (iterator.hasNext()) &#123;</span><br><span class="line">        if (&quot;光头&quot;.equals(iterator.next())) &#123;</span><br><span class="line">            iterator.remove();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Lambda方式删除&quot;光头&quot;的元素</span><br><span class="line">    list.removeIf(s -&gt; &quot;光头&quot;.equals(s));</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 使用Lambda遍历List集合</span><br><span class="line">    list.forEach(s -&gt; System.out.println(s));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>从上面的例子我们可以看出，Lambda表达式的确是可以帮我们简化代码的。</p>
+<h3 id="1-2Lambda简单讲解"><a href="#1-2Lambda简单讲解" class="headerlink" title="1.2Lambda简单讲解"></a>1.2Lambda简单讲解</h3><p>语法形式为 () -&gt; {}，其中 () 用来描述参数列表，{} 用来描述方法体，-&gt; 为 lambda运算符 ，读作(goes to)。</p>
+<h2 id="二、接口"><a href="#二、接口" class="headerlink" title="二、接口"></a>二、接口</h2><p>接口新增默认方法与静态方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public interface Interface1 &#123;</span><br><span class="line"> </span><br><span class="line">    void method1(String str);</span><br><span class="line">    &#x2F;&#x2F;a default method</span><br><span class="line">    default void log(String str)&#123;</span><br><span class="line">        System.out.println(&quot;I1 logging::&quot;+str);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>类继承多个Interface接口同名方法(如show())时，必须在子类中@Override重写父类show()方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public interface MyData &#123;</span><br><span class="line">           static boolean isNull(String str) &#123;</span><br><span class="line">        System.out.println(&quot;Interface Null Check&quot;);</span><br><span class="line">        return str &#x3D;&#x3D; null ? true : &quot;&quot;.equals(str) ? true : false;</span><br><span class="line">           &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-1-函数式接口"><a href="#2-1-函数式接口" class="headerlink" title="2.1 函数式接口"></a>2.1 函数式接口</h3><ul>
+<li>函数式接口的特点：由@FunctionalInterface注解标识，接口有且仅有一个抽象方法,但是可以有多个非抽象方法的接口。</li>
+</ul>
+<p>java.lang.Runnable接口 java.util.concurrent.Callable接口是两个最典型的函数式接口。</p>
+<p>函数式接口可以被隐式转换为 lambda 表达式。</p>
+<p>使用Lambda表达式，其实都是建立在函数式接口上的。我们看看上面的代码的接口：</p>
+<p>创建多线程的Runnable接口：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@FunctionalInterface</span><br><span class="line">   public interface Runnable &#123;</span><br><span class="line">       public abstract void run();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>遍历HashMap的BiConsumer接口：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@FunctionalInterface</span><br><span class="line">public interface BiConsumer&lt;T, U&gt; &#123;</span><br><span class="line">    void accept(T t, U u);</span><br><span class="line">    default BiConsumer&lt;T, U&gt; andThen(BiConsumer&lt;? super T, ? super U&gt; after) &#123;</span><br><span class="line">        Objects.requireNonNull(after);</span><br><span class="line">        return (l, r) -&gt; &#123;</span><br><span class="line">            accept(l, r);</span><br><span class="line">            after.accept(l, r);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在List中删除元素的Predicate接口：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">@FunctionalInterface</span><br><span class="line">public interface Predicate&lt;T&gt; &#123;</span><br><span class="line"></span><br><span class="line">    boolean test(T t);</span><br><span class="line"></span><br><span class="line">    default Predicate&lt;T&gt; and(Predicate&lt;? super T&gt; other) &#123;</span><br><span class="line">        Objects.requireNonNull(other);</span><br><span class="line">        return (t) -&gt; test(t) &amp;&amp; other.test(t);</span><br><span class="line">    &#125;</span><br><span class="line">    default Predicate&lt;T&gt; negate() &#123;</span><br><span class="line">        return (t) -&gt; !test(t);</span><br><span class="line">    &#125;</span><br><span class="line">    default Predicate&lt;T&gt; or(Predicate&lt;? super T&gt; other) &#123;</span><br><span class="line">        Objects.requireNonNull(other);</span><br><span class="line">        return (t) -&gt; test(t) || other.test(t);</span><br><span class="line">    &#125;</span><br><span class="line">    static &lt;T&gt; Predicate&lt;T&gt; isEqual(Object targetRef) &#123;</span><br><span class="line">        return (null &#x3D;&#x3D; targetRef)</span><br><span class="line">                ? Objects::isNull</span><br><span class="line">                : object -&gt; targetRef.equals(object);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Java 内置四大核心函数式接口</p>
+<table>
+<thead>
+<tr>
+<th><font color=gray>函数式接口</font></th>
+<th><font color=gray>参数类型</font></th>
+<th><font color=gray>返回类型</font></th>
+<th><font color=gray>用途</font></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Consumer<T>消费型接口</td>
+<td>T</td>
+<td>void</td>
+<td>对类型为T的对象应用操作，包含方法：void accept(T t)</td>
+</tr>
+<tr>
+<td>Supplier<T>供给型接口</td>
+<td>无</td>
+<td>T</td>
+<td>返回类型为T的对象，包含方法：T get();</td>
+</tr>
+<tr>
+<td>Function&lt;T,R&gt;函数型接口</td>
+<td>T</td>
+<td>R</td>
+<td>对类型为T的对象应用操作，并返回结果。 结果是R类型的对象。包含方法：R apply(T t);</td>
+</tr>
+<tr>
+<td>Predicate<T>断定型接口</td>
+<td>T</td>
+<td>boolean</td>
+<td>确定类型为T的对象是否满足某约束，并返回boolean 值。包含方法boolean test(T t);</td>
+</tr>
+</tbody></table>
+<h2 id="三、注解"><a href="#三、注解" class="headerlink" title="三、注解"></a>三、注解</h2><p> Java 5引入了注解机制，这一特性就变得非常流行并且广为使用。然而，使用注解的一个限制是相同的注解在同一位置只能声明一次，不能声明多次。Java 8打破了这条规则，引入了重复注解机制，这样相同的注解可以在同一地方声明多次。重复注解机制本身必须用@Repeatable注解.</p>
+<p> jdk 8扩展了注解的上下文。现在几乎可以为任何东西添加注解：局部变量、泛型类、父类与接口的实现，就连方法的异常也能添加注解。</p>
+<h2 id="四、底层数据结构改变"><a href="#四、底层数据结构改变" class="headerlink" title="四、底层数据结构改变"></a>四、底层数据结构改变</h2><p>jdk1.8 中对集合的底层结构做了调整。</p>
+<p>如HashMap从1.7的数据+链表的形式调整为数据+链表+红黑树。</p>
+<p>ConcurrentHashMap从分段机制+数组+链表+红黑树到CAS+数组+链表+红黑树。</p>
+<h2 id="五、-Optional类"><a href="#五、-Optional类" class="headerlink" title="五、 Optional类"></a>五、 Optional类</h2><p>它是一个容器，装载的对象不能是null，，可以是非null，提供了一系列的方法供我们判断该容器里的对象是否存在(以及后续的操作)。</p>
+<h3 id="5-1创建Optional容器"><a href="#5-1创建Optional容器" class="headerlink" title="5.1创建Optional容器"></a>5.1创建Optional容器</h3><p>我们先来看看Optional的属性以及创建Optional容器的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; 1、创建出一个Optional容器，容器里边并没有装载着对象</span><br><span class="line">   private static final Optional&lt;?&gt; EMPTY &#x3D; new Optional&lt;&gt;();</span><br><span class="line"></span><br><span class="line">   &#x2F;&#x2F; 2、代表着容器中的对象</span><br><span class="line">   private final T value;</span><br><span class="line"></span><br><span class="line">   &#x2F;&#x2F; 3、私有构造方法</span><br><span class="line">   private Optional() &#123;</span><br><span class="line">       this.value &#x3D; null;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;&#x2F; 4、得到一个Optional容器，Optional没有装载着对象</span><br><span class="line">   public static&lt;T&gt; Optional&lt;T&gt; empty() &#123;</span><br><span class="line">       @SuppressWarnings(&quot;unchecked&quot;)</span><br><span class="line">       Optional&lt;T&gt; t &#x3D; (Optional&lt;T&gt;) EMPTY;</span><br><span class="line">       return t;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;&#x2F; 5、私有构造方法(带参数)，参数就是具体的要装载的对象，如果传进来的对象为null，抛出异常</span><br><span class="line">   private Optional(T value) &#123;</span><br><span class="line">       this.value &#x3D; Objects.requireNonNull(value);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;&#x2F; 5.1、如果传进来的对象为null，抛出异常</span><br><span class="line">   public static &lt;T&gt; T requireNonNull(T obj) &#123;</span><br><span class="line">       if (obj &#x3D;&#x3D; null)</span><br><span class="line">           throw new NullPointerException();</span><br><span class="line">       return obj;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   &#x2F;&#x2F; 6、创建出Optional容器，并将对象(value)装载到Optional容器中。</span><br><span class="line">   &#x2F;&#x2F; 传入的value如果为null，抛出异常(调用的是Optional(T value)方法)</span><br><span class="line">   public static &lt;T&gt; Optional&lt;T&gt; of(T value) &#123;</span><br><span class="line">       return new Optional&lt;&gt;(value);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#x2F;&#x2F; 创建出Optional容器，并将对象(value)装载到Optional容器中。</span><br><span class="line">   &#x2F;&#x2F; 传入的value可以为null，如果为null，返回一个没有装载对象的Optional对象</span><br><span class="line">   public static &lt;T&gt; Optional&lt;T&gt; ofNullable(T value) &#123;</span><br><span class="line">       return value &#x3D;&#x3D; null ? empty() : of(value);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>所以可以得出创建Optional容器有两种方式：</p>
+<ul>
+<li><p>调用ofNullable()方法，传入的对象可以为null</p>
+</li>
+<li><p>调用of()方法，传入的对象不可以为null，否则抛出NullPointerException</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import lombok.Data;</span><br><span class="line">@Data</span><br><span class="line">public class User &#123;</span><br><span class="line"></span><br><span class="line">    private Integer id;</span><br><span class="line">    private String name;</span><br><span class="line">    private Short age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">    User user &#x3D; new User();</span><br><span class="line">    User user1 &#x3D; null;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 传递进去的对象不可以为null，如果为null则抛出异常</span><br><span class="line">    Optional&lt;User&gt; op1 &#x3D; Optional.of(user1);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 传递进去的对象可以为null，如果为null则返回一个没有装载对象的Optional容器</span><br><span class="line">    Optional&lt;User&gt; op2 &#x3D; Optional.ofNullable(user);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2Optional容器简单的方法"><a href="#5-2Optional容器简单的方法" class="headerlink" title="5.2Optional容器简单的方法"></a>5.2Optional容器简单的方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 得到容器中的对象，如果为null就抛出异常</span><br><span class="line">public T get() &#123;</span><br><span class="line">    if (value &#x3D;&#x3D; null) &#123;</span><br><span class="line">        throw new NoSuchElementException(&quot;No value present&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    return value;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 判断容器中的对象是否为null</span><br><span class="line">public boolean isPresent() &#123;</span><br><span class="line">    return value !&#x3D; null;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 如果容器中的对象存在，则返回。否则返回传递进来的参数</span><br><span class="line">public T orElse(T other) &#123;</span><br><span class="line">    return value !&#x3D; null ? value : other;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这三个方法是Optional类比较常用的方法，并且是最简单的。(因为参数不是函数式接口)</p>
+<p>下面我们继续看看用法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">        User user &#x3D; new User();</span><br><span class="line">        User user1 &#x3D; null;</span><br><span class="line"></span><br><span class="line">        Optional&lt;User&gt; op1 &#x3D; Optional.ofNullable(user);</span><br><span class="line">        System.out.println(op1.isPresent());   &#x2F;&#x2F;teue</span><br><span class="line">        System.out.println(op1.get());          &#x2F;&#x2F; user(id&#x3D;null, name&#x3D;null, age&#x3D;null)</span><br><span class="line">        System.out.println(op1.orElse(user1));   &#x2F;&#x2F; user(id&#x3D;null, name&#x3D;null, age&#x3D;null)</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们调换一下顺序看看：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">    User user &#x3D; new User();</span><br><span class="line">    User user1 &#x3D; null;</span><br><span class="line"></span><br><span class="line">    Optional&lt;User&gt; op1 &#x3D; Optional.ofNullable(user1);</span><br><span class="line">    System.out.println(op1.isPresent());  &#x2F;&#x2F;false</span><br><span class="line">    System.out.println(op1.orElse(user));  &#x2F;&#x2F; user(id&#x3D;null, name&#x3D;null, age&#x3D;null)</span><br><span class="line">    System.out.println(op1.get());    &#x2F;&#x2F;NoSuchElementException</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-3Optional容器进阶用法"><a href="#5-3Optional容器进阶用法" class="headerlink" title="5.3Optional容器进阶用法"></a>5.3Optional容器进阶用法</h3><h4 id="5-3-1-ifPresent方法"><a href="#5-3-1-ifPresent方法" class="headerlink" title="5.3.1 ifPresent方法"></a>5.3.1 ifPresent方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">    User user &#x3D; new User();</span><br><span class="line">    user.setName(&quot;Java3y&quot;);</span><br><span class="line">    test(user);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void test(User user) &#123;</span><br><span class="line"></span><br><span class="line">    Optional&lt;User&gt; optional &#x3D; Optional.ofNullable(user);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 如果存在user，则打印user的name</span><br><span class="line">    optional.ifPresent((value) -&gt; System.out.println(value.getName()));</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 旧写法</span><br><span class="line">    if (user !&#x3D; null) &#123;</span><br><span class="line">        System.out.println(user.getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-3-2-orElseGet和orElseThrow方法"><a href="#5-3-2-orElseGet和orElseThrow方法" class="headerlink" title="5.3.2 orElseGet和orElseThrow方法"></a>5.3.2 orElseGet和orElseThrow方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">    User user &#x3D; new User();</span><br><span class="line">    user.setName(&quot;Java3y&quot;);</span><br><span class="line">    test(user);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void test(User user) &#123;</span><br><span class="line"></span><br><span class="line">    Optional&lt;User&gt; optional &#x3D; Optional.ofNullable(user);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 如果存在user，则直接返回，否则创建出一个新的User对象</span><br><span class="line">    User user1 &#x3D; optional.orElseGet(() -&gt; new User());</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 旧写法</span><br><span class="line">    if (user !&#x3D; null) &#123;</span><br><span class="line">        user &#x3D; new User();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-3-3filter方法"><a href="#5-3-3filter方法" class="headerlink" title="5.3.3filter方法"></a>5.3.3filter方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public static void test(User user) &#123;</span><br><span class="line"></span><br><span class="line">    Optional&lt;User&gt; optional &#x3D; Optional.ofNullable(user);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 如果容器中的对象存在，并且符合过滤条件，返回装载对象的Optional容器，否则返回一个空的Optional容器</span><br><span class="line">    optional.filter((value) -&gt; &quot;Java3y&quot;.equals(value.getName()));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-3-4map方法"><a href="#5-3-4map方法" class="headerlink" title="5.3.4map方法"></a>5.3.4map方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public static void test(User user) &#123;</span><br><span class="line"></span><br><span class="line">    Optional&lt;User&gt; optional &#x3D; Optional.ofNullable(user);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 如果容器的对象存在，则对其执行调用mapping函数得到返回值。然后创建包含mapping返回值的Optional，否则返回空Optional。</span><br><span class="line">    optional.map(user1 -&gt; user1.getName()).orElse(&quot;Unknown&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 上面一句代码对应着最开始的老写法：</span><br><span class="line"></span><br><span class="line">public String tradition(User user) &#123;</span><br><span class="line">    if (user !&#x3D; null) &#123;</span><br><span class="line">        return user.getName();</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        return &quot;Unknown&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-3-5flatMap方法"><a href="#5-3-5flatMap方法" class="headerlink" title="5.3.5flatMap方法"></a>5.3.5flatMap方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; flatMap方法与map方法类似，区别在于apply函数的返回值不同。map方法的apply函数返回值是? extends U，而flatMap方法的apply函数返回值必须是Optional</span><br><span class="line">public&lt;U&gt; Optional&lt;U&gt; flatMap(Function&lt;? super T, Optional&lt;U&gt;&gt; mapper) &#123;</span><br><span class="line">    Objects.requireNonNull(mapper);</span><br><span class="line">    if (!isPresent())</span><br><span class="line">        return empty();</span><br><span class="line">    else &#123;</span><br><span class="line">        return Objects.requireNonNull(mapper.apply(value));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-3-6总结"><a href="#5-3-6总结" class="headerlink" title="5.3.6总结"></a>5.3.6总结</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    User user &#x3D; new User();</span><br><span class="line">    user.setName(&quot;Java3y&quot;);</span><br><span class="line">    System.out.println(test(user));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 以前的代码v1</span><br><span class="line">public static String test2(User user) &#123;</span><br><span class="line">    if (user !&#x3D; null) &#123;</span><br><span class="line">        String name &#x3D; user.getName();</span><br><span class="line">        if (name !&#x3D; null) &#123;</span><br><span class="line">            return name.toUpperCase();</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 以前的代码v2</span><br><span class="line">public static String test3(User user) &#123;</span><br><span class="line">    if (user !&#x3D; null &amp;&amp; user.getName() !&#x3D; null) &#123;</span><br><span class="line">        return user.getName().toUpperCase();</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 现在的代码</span><br><span class="line">public static String test(User user) &#123;</span><br><span class="line">    return Optional.ofNullable(user)</span><br><span class="line">            .map(user1 -&gt; user1.getName())</span><br><span class="line">            .map(s -&gt; s.toUpperCase()).orElse(null);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>filter，map或flatMap一个函数，函数的参数拿到的值一定不是null。所以我们通过filter，map 和 flatMap之类的函数可以将其安全的进行变换，最后通过orElse系列，get，isPresent 和 ifPresent将其中的值提取出来。</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>本文转载自Java3y,部分有本人自己整理</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/08/18/%E6%9C%80%E7%9F%AD%E7%9A%84%E6%96%87%E7%AB%A0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          最短的文章
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/08/17/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%85%A5%E9%97%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">多线程入门</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="JDK1-8的新特性" data-title="JDK1.8的新特性" data-url="http://www.2333nmsl.ml/2020/08/18/JDK1-8%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7/"  data-images="/img/1.gif" data-content="JDK1.8的新特性">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2020 yht
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"rect":"opacity:0.8","log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
