@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>网络编程框架t-io | Hexo</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="转载 16、网络编程框架t-io">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络编程框架t-io">
+<meta property="og:url" content="http://www.2333nmsl.ml/2020/09/14/%E8%BD%AC%E8%BD%BD%2016%E3%80%81%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E6%A1%86%E6%9E%B6t-io/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="转载 16、网络编程框架t-io">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://images-cdn.shimo.im/Tw3bLi4pOR8bSM7W/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/65B2axTnX3kFyV3c/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/pBsf85g1uj05F8Lu/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/iDYMMY4vCg8IeFuj/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/kENWz1jWbeQe8CbC/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/qrWTMXfeZC01dgll/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/rIdwLOTRwCgnbqJE/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/OMayDEX45DcnSLbd/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/yaB4Ezz9JEMaC6Bn/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/oNdIg15oi3sw58WA/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/BLrbVsdNvPg719v7/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/wyHKOJjA4LY5x4Jl/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/G2W3fERzQLAMRNvZ/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/GwpqDOvqBHkYpBMo/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/JmJxBpZYWF8CMGxV/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/DcgHQBSvsA8yr1Do/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/gXRfryi52x0t2J1h/image.png!thumbnail">
+<meta property="article:published_time" content="2020-09-14T15:06:04.000Z">
+<meta property="article:modified_time" content="2020-09-14T07:07:17.956Z">
+<meta property="article:author" content="yht">
+<meta property="article:tag" content="io">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images-cdn.shimo.im/Tw3bLi4pOR8bSM7W/image.png!thumbnail">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 5.0.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/1.gif" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/"></a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Yht-7683/" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="#" title="mail">mail</a>
+					        
+								<a class="qq" target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=434807683&site=qq&menu=yes" title="qq">qq</a>
+					        
+								<a class="weibo" target="_blank" href="https://weibo.com/" title="weibo">weibo</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ASCII%E7%A0%81%E5%9B%BE/" style="font-size: 10px;">ASCII码图</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 20px;">Java基础</a> <a href="/tags/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 10px;">Java多线程</a> <a href="/tags/Redis/" style="font-size: 20px;">Redis</a> <a href="/tags/Websocket/" style="font-size: 10px;">Websocket</a> <a href="/tags/io/" style="font-size: 10px;">io</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/mybatis%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">mybatis框架</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/renren-fast/" style="font-size: 15px;">renren-fast</a> <a href="/tags/spring-data/" style="font-size: 10px;">spring data</a> <a href="/tags/spring-security/" style="font-size: 10px;">spring security</a> <a href="/tags/springboot%E6%A1%86%E6%9E%B6/" style="font-size: 15px;">springboot框架</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 10px;">消息队列</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">计算机网络</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://a-cai.gitee.io/blog/">前端资料</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/1.gif" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Yht-7683/" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="#" title="mail">mail</a>
+			        
+						<a class="qq" target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=434807683&site=qq&menu=yes" title="qq">qq</a>
+			        
+						<a class="weibo" target="_blank" href="https://weibo.com/" title="weibo">weibo</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-转载 16、网络编程框架t-io" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/09/14/%E8%BD%AC%E8%BD%BD%2016%E3%80%81%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E6%A1%86%E6%9E%B6t-io/" class="article-date">
+  	<time datetime="2020-09-14T15:06:04.000Z" itemprop="datePublished">2020-09-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      网络编程框架t-io
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/io/" rel="tag">io</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="课程16、百万即时通讯t-io（预习）-xmind1-t-io简介-xmind2-两个官方例子-xmind课程16-百万即时通讯t-io-预习-xmindt-io是什么"><a href="#课程16、百万即时通讯t-io（预习）-xmind1-t-io简介-xmind2-两个官方例子-xmind课程16-百万即时通讯t-io-预习-xmindt-io是什么" class="headerlink" title="课程16、百万即时通讯t-io（预习）.xmind1_t-io简介.xmind2_两个官方例子.xmind课程16_百万即时通讯t-io_预习_.xmindt-io是什么"></a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/npkshxRrSBccEKXM.xmind">课程16、百万即时通讯t-io（预习）.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/PnfxSILbFNkD2WeU.xmind">1_t-io简介.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/mDqvLHxxEGoZZwiY.xmind">2_两个官方例子.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/H086RZs57eYQNtHs.xmind">课程16_百万即时通讯t-io_预习_.xmind</a>t-io是什么</h2><p><img src="https://images-cdn.shimo.im/Tw3bLi4pOR8bSM7W/image.png!thumbnail" alt="图片"></p>
+<h3 id="官网相关"><a href="#官网相关" class="headerlink" title="官网相关"></a>官网相关</h3><p>官网：<a target="_blank" rel="noopener" href="https://t-io.org/">https://t-io.org/</a></p>
+<p>宣传：不仅仅是百万级网络通信框架，让天下没有难开发的网络通信</p>
+<p>git地址：<a target="_blank" rel="noopener" href="https://gitee.com/tywo45/t-io">https://gitee.com/tywo45/t-io</a></p>
+<p>t-io手册：<a target="_blank" rel="noopener" href="https://t-io.org/doc/index.html">https://t-io.org/doc/index.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://attachments-cdn.shimo.im/6QSDGHEJpxkcJCwl/t_io.pdf">t-io.pdf</a></p>
+<h2 id="t-io与websocket"><a href="#t-io与websocket" class="headerlink" title="t-io与websocket"></a>t-io与websocket</h2><p><strong>t-io：</strong>是一个网络框架，从这一点来说是有点像 netty 的，但 t-io 为常见和网络相关的业务（如 IM、消息推送、RPC、监控）提供了近乎于现成的解决方案，即丰富的编程 API，极大减少业务层的编程难度。</p>
+<p><strong>websocket</strong>：    WebSocket协议是基于TCP的一种新的网络协议。它实现了浏览器与服务器全双工(full-duplex)通信——允许服务器主动发送信息给客户端。</p>
+<p>t-io详细介绍：<a target="_blank" rel="noopener" href="https://blog.csdn.net/ningjiebing/article/details/90207332">https://blog.csdn.net/ningjiebing/article/details/90207332</a></p>
+<p>对半包和粘包的处理：源码分析见：<a target="_blank" rel="noopener" href="https://my.oschina.net/talenttan/blog/1610690">https://my.oschina.net/talenttan/blog/1610690</a></p>
+<h2 id="t-io框架"><a href="#t-io框架" class="headerlink" title="t-io框架"></a>t-io框架</h2><h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p><img src="https://images-cdn.shimo.im/65B2axTnX3kFyV3c/image.png!thumbnail" alt="图片"></p>
+<h3 id="常用关键类"><a href="#常用关键类" class="headerlink" title="常用关键类"></a>常用关键类</h3><ul>
+<li><strong>ChannelContext(通道上下文)</strong><ul>
+<li>每一个 tcp 连接的建立都会产生一个 ChannelContext 对象</li>
+<li>（1）<em>ServerChannelContext</em><ul>
+<li>ChannelContext 的子类，当用 tio 作 tcp 服务器时，业务层接触的是这个类的实例。</li>
+</ul>
+</li>
+<li>（2）<em>ClientChannelContext</em><ul>
+<li>ChannelContext 的子类，当用 tio 作 tcp 客户端时，业务层接触的是这个类的实例</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://images-cdn.shimo.im/pBsf85g1uj05F8Lu/image.png!thumbnail" alt="图片"></p>
+<ul>
+<li><strong>GroupContext(服务配置与维护)</strong><ul>
+<li>GroupContext 就是用来配置线程池、确定监听端口，维护客户端各种数据等的</li>
+<li>ClientGroupContext</li>
+<li>ServerGroupContext</li>
+</ul>
+</li>
+</ul>
+<p>我们在写 TCP Server 时，都会先选好一个端口以监听客户端连接，再创建 N 组线程池来执行相关的任 务，譬如发送消息、解码数据包、处理数据包等任务，还要维护客户端连接的各种数据，为了和业务互动， 还要把这些客户端连接和各种业务数据绑定起来，譬如把某个客户端绑定到一个群组，绑定到一个 userid， 绑定到一个 token 等。GroupContext 就是用来配置线程池、确定监听端口，维护客户端各种数据等的。</p>
+<p>GroupContext 是个抽象类，如果你是用 tio 作 tcp 客户端，那么你需要创建 ClientGroupContext，如 果你是用 tio 作 tcp 服务器，那么你需要创建 ServerGroupContext</p>
+<ul>
+<li><strong>AioHandler(消息处理接口)</strong><ul>
+<li>处理消息的核心接口，它有两个子接口</li>
+<li>ClientAioHandler</li>
+<li>ServerAioHandler</li>
+</ul>
+</li>
+<li><strong>AioListener(通道监听者)</strong><ul>
+<li>处理事件监听的核心接口，它有两个子接口，</li>
+<li>ClientAioListener</li>
+<li>ServerAioListener</li>
+</ul>
+</li>
+<li><strong>Packet(应用层数据包)</strong><ul>
+<li>TCP 层过来的数据，都会被 tio 要求解码成 Packet 对象，应用都需要继承这个类，从而实现自己的业务 数据包。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://images-cdn.shimo.im/iDYMMY4vCg8IeFuj/image.png!thumbnail" alt="图片"></p>
+<p>用于应用层与传输层的数据传递</p>
+<p><img src="https://images-cdn.shimo.im/kENWz1jWbeQe8CbC/image.png!thumbnail" alt="图片"></p>
+<p>传输层在往应用层传递数据时，并不保证每次传递的数据是一个完整的应用层数据包（以 http 协议为 例，就是并不保证应用层收到的数据刚好可以组成一个 http 包），这就是我们经常提到的<strong>半包</strong>和<strong>粘包</strong>。传输层只负责传递 byte[]数据，应用层需要自己对 byte[]数据进行解码，以 http 协议为例，就是把 byte[] 解码成 http 协议格式的字符串。</p>
+<ul>
+<li>AioServer（tio 服务端入口类）</li>
+</ul>
+<p><img src="https://images-cdn.shimo.im/qrWTMXfeZC01dgll/image.png!thumbnail" alt="图片"></p>
+<ul>
+<li>AioClient（tio 客户端入口类）</li>
+</ul>
+<p><img src="https://images-cdn.shimo.im/rIdwLOTRwCgnbqJE/image.png!thumbnail" alt="图片"></p>
+<ul>
+<li><strong>ObjWithLock（自带读写锁的对象）</strong><ul>
+<li>是一个自带了一把（读写）锁的普通对象（一般是集合对象），每当要对 这个对象进行同步安全操作（并发下对集合进行遍历或对集合对象进行元素修改删除增加）时，就得用这个 锁。</li>
+</ul>
+</li>
+</ul>
+<p><strong><em>t-io是基于tcp层协议的一个网络框架，所以在应用层与tcp传输层之间设计到一个数据的编码与解码问题，t-io让我们能自定义数据协议，所以需要我们自己手动去编码解码过程。</em></strong></p>
+<h2 id="入门例子HelloWord"><a href="#入门例子HelloWord" class="headerlink" title="入门例子HelloWord"></a>入门例子HelloWord</h2><ul>
+<li>git项目地址</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/tywo45/tio-showcase">https://gitee.com/tywo45/tio-showcase</a></p>
+<p>git里面有个几个例子，首先我们看helloword的例子：</p>
+<h3 id="业务逻辑"><a href="#业务逻辑" class="headerlink" title="业务逻辑"></a>业务逻辑</h3><p>本例子演示的是一个典型的TCP长连接应用，大体业务简介如下。</p>
+<ul>
+<li>分为server和client工程，server和client共用common工程</li>
+<li>服务端和客户端的消息协议比较简单，消息头为4个字节，用以表示消息体的长度，消息体为一个字符串的byte[]</li>
+<li>服务端先启动，监听6789端口</li>
+<li>客户端连接到服务端后，会主动向服务器发送一条消息</li>
+<li>服务器收到消息后会回应一条消息</li>
+<li>之后，框架层会自动从客户端发心跳到服务器，服务器也会检测心跳有没有超时（这些事都是框架做的，业务层只需要配一个心跳超时参数即可）</li>
+<li>框架层会在断链后自动重连（这些事都是框架做的，业务层只需要配一个重连配置对象即可）</li>
+</ul>
+<p>具体类说明：</p>
+<h3 id="server端"><a href="#server端" class="headerlink" title="server端"></a>server端</h3><ul>
+<li><strong>导入核心包</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">   &lt;groupId&gt;org.t-io&lt;&#x2F;groupId&gt;</span><br><span class="line">   &lt;artifactId&gt;tio-core&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure></li>
+<li><strong>HelloServerStarter</strong></li>
+</ul>
+<p>构造ServerGroupContext，main方法启动服务</p>
+<ul>
+<li><strong>HelloServerAioHandler</strong></li>
+</ul>
+<p>实现ServerAioHandler接口，重写decode，encode，handler方法。</p>
+<h3 id="common端"><a href="#common端" class="headerlink" title="common端"></a>common<strong>端</strong></h3><ul>
+<li><strong>HelloPacket</strong></li>
+</ul>
+<p>继承Packet类。自定义数据包的内容</p>
+<ul>
+<li><strong>Const</strong></li>
+</ul>
+<p>常量类，配置ip，端口等信息</p>
+<h3 id="client端"><a href="#client端" class="headerlink" title="client端"></a>client端</h3><ul>
+<li><strong>HelloClientStarter</strong></li>
+</ul>
+<p>构造clientGroupContext，连接节点，使用信息发送消息</p>
+<ul>
+<li><strong>HelloClientAioHandler</strong></li>
+</ul>
+<p>实现ClientAioHandler接口，重写decode，encode，handler方法。</p>
+<h3 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h3><ul>
+<li><em>idea请安装**<strong>PlantUML intergration**</strong>插件</em></li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://attachments-cdn.shimo.im/eexjhhIVSuENPmSO/%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%B8%8E%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B2%9F%E9%80%9A%E6%97%B6%E5%BA%8F%E5%9B%BE.puml">客户端与服务端沟通时序图.puml</a><a target="_blank" rel="noopener" href="https://attachments-cdn.shimo.im/jXf6fJfb4FgTS94e/Server%E7%AB%AF%E5%88%9D%E5%A7%8B%E5%8C%96%E6%97%B6%E5%BA%8F%E5%9B%BE.puml">Server端初始化时序图.puml</a></p>
+<p><img src="https://images-cdn.shimo.im/OMayDEX45DcnSLbd/image.png!thumbnail" alt="图片"></p>
+<p><strong>（初始化服务器）</strong></p>
+<p><img src="https://images-cdn.shimo.im/yaB4Ezz9JEMaC6Bn/image.png!thumbnail" alt="图片"></p>
+<p><strong>（客户端与服务端通讯流程）</strong></p>
+<h2 id="入门例子showcase"><a href="#入门例子showcase" class="headerlink" title="入门例子showcase"></a>入门例子showcase</h2><ul>
+<li>git项目地址</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/tywo45/tio-showcase">https://gitee.com/tywo45/tio-showcase</a></p>
+<p>上面讲的是helloword的例子，比较简单，接下来的是showcase的例子，结合实际场景的一个例子。</p>
+<h3 id="业务逻辑-1"><a href="#业务逻辑-1" class="headerlink" title="业务逻辑"></a>业务逻辑</h3><p>tio的框架初始化使用过程是一样的。不过因为showcase中涉及到的交互越来越多，因此不能像helloword例子中的HelloPacket只有body这么简单了，我们至少要加上一个type参数（消息类型），这样的话服务器获取到数据包之后再更加type来选择消息处理类，从而拓展系统可用性。</p>
+<p><img src="https://images-cdn.shimo.im/oNdIg15oi3sw58WA/image.png!thumbnail" alt="图片"></p>
+<p>（客户端与服务器沟通流程）</p>
+<p><a target="_blank" rel="noopener" href="https://attachments-cdn.shimo.im/drAAqMvA9akpRi85/%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%B8%8E%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B2%9F%E9%80%9A%E6%97%B6%E5%BA%8F%E5%9B%BE.puml">客户端与服务端沟通时序图.puml</a></p>
+<p>客户端发起登录操作</p>
+<ul>
+<li>org.tio.examples.showcase.client.<strong>ShowcaseClientStarter</strong>#processCommand<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">LoginReqBody loginReqBody &#x3D; new LoginReqBody();</span><br><span class="line">loginReqBody.setLoginname(loginname);</span><br><span class="line">loginReqBody.setPassword(password);</span><br><span class="line">ShowcasePacket reqPacket &#x3D; new ShowcasePacket();</span><br><span class="line">#这里指定消息类型</span><br><span class="line">reqPacket.setType(Type.LOGIN_REQ);</span><br><span class="line">reqPacket.setBody(Json.toJson(loginReqBody).getBytes(ShowcasePacket.CHARSET));</span><br><span class="line">Tio.send(clientChannelContext, reqPacket);</span><br></pre></td></tr></table></figure></li>
+<li><strong>LoginReqBody</strong>：登录请求参数封装类，继承BaseBody</li>
+<li><strong>ShowcasePacket</strong>：数据包，继承Packet，和ByteBuffer相互转换</li>
+<li><strong>clientChannelContext</strong>：连接上下文通道</li>
+</ul>
+<p>服务端接受请求操作</p>
+<ul>
+<li>org.tio.examples.showcase.server.<strong>ShowcaseServerAioHandler</strong>#handler<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ShowcasePacket showcasePacket &#x3D; (ShowcasePacket) packet;</span><br><span class="line">#获取消息类型</span><br><span class="line">Byte type &#x3D; showcasePacket.getType();</span><br><span class="line">#根据消息类型找到对应的消息处理类</span><br><span class="line">AbsShowcaseBsHandler&lt;?&gt; showcaseBsHandler &#x3D; handlerMap.get(type);</span><br><span class="line">if (showcaseBsHandler &#x3D;&#x3D; null) &#123;</span><br><span class="line">   log.error(&quot;&#123;&#125;, 找不到处理类，type:&#123;&#125;&quot;, channelContext, type);</span><br><span class="line">   return;</span><br><span class="line">&#125;</span><br><span class="line">#执行消息处理。消息处理类必须继承AbsShowcaseBsHandler</span><br><span class="line">showcaseBsHandler.handler(showcasePacket, channelContext);</span><br></pre></td></tr></table></figure></li>
+<li><strong>handlerMap</strong>：存有当前所有消息处理类的map。数据包中包含消息类型，会根据消息类型获取对应的消息处理类，而这个消息处理类会调用handler（）方法处理数据。</li>
+<li><strong>AbsShowcaseBsHandler</strong>：消息处理抽象类，继承这个类的处理类会对一种消息类型进行处理，并且一般专门处理一种消息封装类（继承BaseBody的封装类）。</li>
+</ul>
+<p>消息类型对应消息处理类的初始化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">private static Map&lt;Byte, AbsShowcaseBsHandler&lt;?&gt;&gt; handlerMap &#x3D; new HashMap&lt;&gt;();</span><br><span class="line">static &#123;</span><br><span class="line">   #把消息类型与消息处理类映射起来 </span><br><span class="line">   handlerMap.put(Type.GROUP_MSG_REQ, new GroupMsgReqHandler());</span><br><span class="line">   handlerMap.put(Type.HEART_BEAT_REQ, new HeartbeatReqHandler());</span><br><span class="line">   handlerMap.put(Type.JOIN_GROUP_REQ, new JoinGroupReqHandler());</span><br><span class="line">   handlerMap.put(Type.LOGIN_REQ, new LoginReqHandler());</span><br><span class="line">   handlerMap.put(Type.P2P_REQ, new P2PReqHandler());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果接收到的消息类型是P2P_REQ，那么处理类就是P2PReqHandler：</p>
+<ul>
+<li>org.tio.examples.showcase.server.handler.<strong>P2PReqHandler</strong>#handler<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">log.info(&quot;收到点对点请求消息:&#123;&#125;&quot;, Json.toJson(bsBody));</span><br><span class="line">ShowcaseSessionContext showcaseSessionContext &#x3D; (ShowcaseSessionContext) channelContext.getAttribute();</span><br><span class="line">P2PRespBody p2pRespBody &#x3D; new P2PRespBody();</span><br><span class="line">p2pRespBody.setFromUserid(showcaseSessionContext.getUserid());</span><br><span class="line">p2pRespBody.setText(bsBody.getText());</span><br><span class="line">ShowcasePacket respPacket &#x3D; new ShowcasePacket();</span><br><span class="line">respPacket.setType(Type.P2P_RESP);</span><br><span class="line">respPacket.setBody(Json.toJson(p2pRespBody).getBytes(ShowcasePacket.CHARSET));</span><br><span class="line">Tio.sendToUser(channelContext.groupContext, bsBody.getToUserid(), respPacket);</span><br></pre></td></tr></table></figure>
+<h2 id="springboot集成t-io"><a href="#springboot集成t-io" class="headerlink" title="springboot集成t-io"></a>springboot集成t-io</h2></li>
+</ul>
+<p>项目运行：<a target="_blank" rel="noopener" href="https://github.com/fanpan26/SpringBootLayIM.git">https://github.com/fanpan26/SpringBootLayIM.git</a></p>
+<p>由于layim是付费产品，所以在网络上找了一个。（仅供学习哈）</p>
+<p>需要放到项目目录下面</p>
+<p>static/js/layui/lay/modules/layim.js</p>
+<p><a target="_blank" rel="noopener" href="https://attachments-cdn.shimo.im/1CrKWGWmd3k6AVQ3/layim.js">layim.js</a></p>
+<h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><p><em>项目集成：</em></p>
+<p>因为这里需要和浏览器之间进行通讯，所以需要用到websocket机制。tio有集成websocket的框架，所以直接导入即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.t-io&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;tio-websocket-server&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;version&gt;0.0.5-tio-websocket&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+<p><em>代码结构</em><br><img src="https://images-cdn.shimo.im/BLrbVsdNvPg719v7/image.png!thumbnail" alt="图片"></p>
+<h3 id="Guava-EventBus-事件总线"><a href="#Guava-EventBus-事件总线" class="headerlink" title="Guava - EventBus(事件总线)"></a>Guava - EventBus(事件总线)</h3><p>项目使用Guava的EventBus替代了Spring的ApplicationEvent事件机制。</p>
+<p>Guava的EventBus使用介绍如下：</p>
+<p><strong>事件定义</strong></p>
+<p>EventBus为我们提供了register方法来订阅事件，不需要实现任何的额外接口或者base类，只需要在订阅方法上标注上**@Subscribe<strong>和保证</strong>只有一个输入参数**的方法就可以搞定。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">new Object() &#123;</span><br><span class="line">    @Subscribe</span><br><span class="line">    public void lister(Integer integer) &#123;</span><br><span class="line">        System.out.printf(&quot;%d from int%n&quot;, integer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>事件发布</strong></p>
+<p>对于事件源，则可以通过post方法发布事件。 正在这里对于Guava对于事件的发布，是依据上例中订阅方法的方法参数类型决定的，换而言之就是post传入的类型和其基类类型可以收到此事件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;定义事件</span><br><span class="line">final EventBus eventBus &#x3D; new EventBus();</span><br><span class="line">&#x2F;&#x2F;注册事件</span><br><span class="line">eventBus.register(new Object() &#123;</span><br><span class="line">    &#x2F;&#x2F;使用@Subscribe说明订阅事件处理方法</span><br><span class="line">    @Subscribe</span><br><span class="line">    public void lister(Integer integer) &#123;</span><br><span class="line">        System.out.printf(&quot;%s from int%n&quot;, integer);</span><br><span class="line">    &#125;</span><br><span class="line">    @Subscribe</span><br><span class="line">    public void lister(Number integer) &#123;</span><br><span class="line">        System.out.printf(&quot;%s from Number%n&quot;, integer);</span><br><span class="line">    &#125;</span><br><span class="line">    @Subscribe</span><br><span class="line">    public void lister(Long integer) &#123;</span><br><span class="line">        System.out.printf(&quot;%s from long%n&quot;, integer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">&#x2F;&#x2F;发布事件</span><br><span class="line">eventBus.post(1);</span><br><span class="line">eventBus.post(1L);</span><br></pre></td></tr></table></figure>
+<p><strong><em>项目的而运用</em></strong></p>
+<p><strong>主要处理事件</strong>：包含了申请通知，添加好友成功通知</p>
+<p><strong>关键类：</strong></p>
+<ul>
+<li>com.fyp.layim.common.event.bus.<strong>EventUtil</strong>：封装了事件的监听注册，以及发布动作</li>
+<li>com.fyp.layim.common.event.bus.body.<strong>EventBody</strong>：发布的内容封装类，包含消息类型和消息内容字段</li>
+<li>com.fyp.layim.common.event.bus.handler.<strong>AbsEventHandler：</strong>事件处理抽象类，具体处理器需要继承这个重写handler（）方法</li>
+<li>com.fyp.layim.common.event.bus.handler.<strong>AddFriendEventHandler：</strong>添加好友成功通知处理类。</li>
+<li>com.fyp.layim.common.event.bus.<strong>LayimEventType：</strong>消息类型常量</li>
+</ul>
+<p><strong>调用：</strong></p>
+<ul>
+<li>com.fyp.layim.web.biz.<strong>UserController</strong>#handleFriendApply：好友同意好友请求之后发布事件</li>
+</ul>
+<p><strong>逻辑：</strong></p>
+<p>事件的处理其实是给申请人发起好友同意通知</p>
+<ul>
+<li><p>com.fyp.layim.im.common.util.<strong>PushUtil</strong>#pushAddFriendMessage</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 添加好友成功之后向对方推送消息</span><br><span class="line"> * *&#x2F;</span><br><span class="line">public static void pushAddFriendMessage(long applyid)&#123;</span><br><span class="line">    if(applyid&#x3D;&#x3D;0)&#123;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    Apply apply &#x3D; applyService.getApply(applyid);</span><br><span class="line">    ChannelContext channelContext &#x3D; getChannelContext(&quot;&quot;+apply.getUid());</span><br><span class="line">    &#x2F;&#x2F;先判断是否在线，再去查询数据库，减少查询次数</span><br><span class="line">    if (channelContext !&#x3D; null &amp;&amp; !channelContext.isClosed()) &#123;</span><br><span class="line">        LayimToClientAddFriendMsgBody body &#x3D; new LayimToClientAddFriendMsgBody();</span><br><span class="line">        User user &#x3D; getUserService().getUser(apply.getToid());</span><br><span class="line">        if (user&#x3D;&#x3D;null)&#123;return;&#125;</span><br><span class="line">        &#x2F;&#x2F;对方分组ID</span><br><span class="line">        body.setGroupid(apply.getGroup());</span><br><span class="line">        &#x2F;&#x2F;当前用户的基本信息，用于调用layim.addList</span><br><span class="line">        body.setAvatar(user.getAvatar());</span><br><span class="line">        body.setId(user.getId());</span><br><span class="line">        body.setSign(user.getSign());</span><br><span class="line">        body.setType(&quot;friend&quot;);</span><br><span class="line">        body.setUsername(user.getUserName());</span><br><span class="line">        push(channelContext, body);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后是通过Aio.send发送消息。</p>
+</li>
+<li><p>com.fyp.layim.im.common.util.<strong>PushUtil</strong>#push</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 服务端主动推送消息</span><br><span class="line"> * *&#x2F;</span><br><span class="line">private static void push(ChannelContext channelContext,Object msg) &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        WsResponse response &#x3D; BodyConvert.getInstance().convertToTextResponse(msg);</span><br><span class="line">        Aio.send(channelContext, response);</span><br><span class="line">    &#125;catch (IOException ex)&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="功能结构"><a href="#功能结构" class="headerlink" title="功能结构"></a>功能结构</h2></li>
+</ul>
+<ul>
+<li><strong>登录功能</strong></li>
+<li><strong>单聊功能</strong></li>
+<li><strong>群聊功能</strong></li>
+<li><strong>其他自定义消息提醒功能</strong></li>
+<li><strong>等等。。。。</strong></li>
+</ul>
+<p>登录的目的是过滤非法请求，如果有一个非法用户请求websocket服务，直接返回403或者401即可。</p>
+<p>单聊，群聊这个就不用解释了</p>
+<p>其他自定义消息提醒，比如：时时加好友消息，广播消息，审核消息等。</p>
+<h2 id="项目设计-前端"><a href="#项目设计-前端" class="headerlink" title="项目设计-前端"></a>项目设计-前端</h2><p>前端的框架用到是layim，layim已经帮我们做好了界面和封装了接口，所以我们的工作只需要按照layim来写好接口提供结果就可以了。</p>
+<p>首先看初始化：</p>
+<ul>
+<li>templates/index.html</li>
+</ul>
+<p><img src="https://images-cdn.shimo.im/wyHKOJjA4LY5x4Jl/image.png!thumbnail" alt="图片"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">layim.config(&#123;</span><br><span class="line">    &#x2F;&#x2F;初始化接口</span><br><span class="line">    init: &#123;</span><br><span class="line">        url: &#39;&#x2F;layim&#x2F;base&#39;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;查看群员接口</span><br><span class="line">    ,members: &#123;</span><br><span class="line">        url: &#39;&#x2F;layim&#x2F;members&#39;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;上传图片接口</span><br><span class="line">    ,uploadImage: &#123;url: &#39;&#x2F;upload&#x2F;file&#39;&#125;</span><br><span class="line">    &#x2F;&#x2F;上传文件接口</span><br><span class="line">    ,uploadFile: &#123;url: &#39;&#x2F;upload&#x2F;file&#39;&#125;</span><br><span class="line">    ,isAudio: true &#x2F;&#x2F;开启聊天工具栏音频</span><br><span class="line">    ,isVideo: true &#x2F;&#x2F;开启聊天工具栏视频</span><br><span class="line">    ,initSkin: &#39;5.jpg&#39; &#x2F;&#x2F;1-5 设置初始背景</span><br><span class="line">    ,notice: true &#x2F;&#x2F;是否开启桌面消息提醒，默认false</span><br><span class="line">    ,msgbox: &#39;&#x2F;layim&#x2F;msgbox&#39;</span><br><span class="line">    ,find: layui.cache.dir + &#39;css&#x2F;modules&#x2F;layim&#x2F;html&#x2F;find.html&#39; &#x2F;&#x2F;发现页面地址，若不开启，剔除该项即可</span><br><span class="line">    ,chatLog: layui.cache.dir + &#39;css&#x2F;modules&#x2F;layim&#x2F;html&#x2F;chatLog.html&#39; &#x2F;&#x2F;聊天记录页面地址，若不开启，剔除该项即可</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>因为需要进行通讯，所以websocket的信息也需要初始化。都是在layim里面一起初始化的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">socket.config(&#123;</span><br><span class="line">    log:true,</span><br><span class="line">    token:&#39;&#x2F;layim&#x2F;token&#39;,</span><br><span class="line">    server:&#39;ws:&#x2F;&#x2F;127.0.0.1:8888&#39;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>templates/layim/msgbox.html<h2 id="项目设计-后端"><a href="#项目设计-后端" class="headerlink" title="项目设计-后端"></a>项目设计-后端</h2></li>
+</ul>
+<h3 id="基本相关类"><a href="#基本相关类" class="headerlink" title="基本相关类"></a>基本相关类</h3><p>控制器：</p>
+<p>com.fyp.layim.web.api.<strong>GroupController：</strong>群组相关</p>
+<p>com.fyp.layim.web.biz.AccountController：账户相关，登录注册</p>
+<p>com.fyp.layim.web.biz.UploadController：上传文件、图片</p>
+<p>com.fyp.layim.web.biz.UserController：用户基础数据</p>
+<p>拦截器：</p>
+<p>com.fyp.layim.web.filter.TokenVerifyInterceptor：校验token，与userid转换</p>
+<p>com.fyp.layim.web.filter.LayimAspect：给所有请求设置当前用户的值，放session当中</p>
+<p>全局异常处理：</p>
+<p>com.fyp.layim.web.filter.GlobalExceptionHandler：异常处理</p>
+<h3 id="网络编程主要代码"><a href="#网络编程主要代码" class="headerlink" title="网络编程主要代码"></a>网络编程主要代码</h3><p>com.fyp.layim.im.common.*：定义消息类型，消息处理类的公共包。</p>
+<p>com.fyp.layim.im.packet.*：这是数据包，因为协议是websocket，所以返回的不是packet，最后要返回的其实是符合websocket定义的org.tio.websocket.common.WsResponse。而这些数据是放在body中。</p>
+<p>com.fyp.layim.im.server.*：t-io的服务配置相关，包括t-io服务的启动，启动之前需要ServerAioHandler、ServerAioListener、ServerGroupContext等参数。</p>
+<p>所以总体逻辑是这样的：</p>
+<p>步骤一、配置了springboot的模块自动加载机制。</p>
+<ul>
+<li>META-INF/spring.factories<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org.springframework.boot.autoconfigure.EnableAutoConfiguration&#x3D; com.fyp.layim.im.server.LayimServerAutoConfig</span><br></pre></td></tr></table></figure>
+LayimServerAutoConfig配置将会被自动装载。</li>
+</ul>
+<ul>
+<li><p>com.fyp.layim.im.server.LayimServerAutoConfig：自动装载的配置类</p>
+</li>
+<li><p>com.fyp.layim.im.server.config.LayimServerConfig：服务的ip、端口、心跳时间等基本配置</p>
+</li>
+<li><p>com.fyp.layim.im.server.LayimWebsocketStarter：初始化配置，启动t-io服务，其中配置初始化和启动都是委托给com.fyp.layim.im.server.LayimServerStarter完成。</p>
+</li>
+<li><p>com.fyp.layim.im.server.LayimServerStarter：根据配置初始化serverGroupContext、初始化消息处理器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;初始化t-io的serverGroupContext</span><br><span class="line">&#x2F;&#x2F;还有消息处理器与消息类型的映射关系</span><br><span class="line">public LayimServerStarter(LayimServerConfig wsServerConfig, IWsMsgHandler wsMsgHandler, TioUuid tioUuid, SynThreadPoolExecutor tioExecutor, ThreadPoolExecutor groupExecutor) throws Exception &#123;</span><br><span class="line">    this.layimServerConfig &#x3D; wsServerConfig;</span><br><span class="line">    this.wsMsgHandler &#x3D; wsMsgHandler;</span><br><span class="line">    layimServerAioHandler &#x3D; new LayimServerAioHandler(wsServerConfig, wsMsgHandler);</span><br><span class="line">    layimServerAioListener &#x3D; new LayimServerAioListener();</span><br><span class="line">    serverGroupContext &#x3D; new ServerGroupContext(layimServerAioHandler, layimServerAioListener, tioExecutor, groupExecutor);</span><br><span class="line">    &#x2F;&#x2F;心跳时间，暂时设置为0</span><br><span class="line">    serverGroupContext.setHeartbeatTimeout(wsServerConfig.getHeartBeatTimeout());</span><br><span class="line">    serverGroupContext.setName(&quot;Tio Websocket Server for LayIM&quot;);</span><br><span class="line">    aioServer &#x3D; new AioServer(serverGroupContext);</span><br><span class="line">    serverGroupContext.setTioUuid(tioUuid);</span><br><span class="line">    &#x2F;&#x2F;initSsl(serverGroupContext);</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;初始化消息处理器</span><br><span class="line">    LayimMsgProcessorManager.init();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来看下与serverGroupContext相关的消息处理咧、事件监听类</p>
+</li>
+<li><p>com.fyp.layim.im.server.handler.LayimServerAioHandler：继承ServerAioHandler，完成消息的解码、编码、消息处理过程</p>
+</li>
+<li><p>com.fyp.layim.im.server.listener.LayimServerAioListener：继承ServerAioListener，完成事件监听</p>
+</li>
+</ul>
+<p>绑定用户信息</p>
+<ul>
+<li>com.fyp.layim.im.common.processor.<strong>ClientCheckOnlineMsgProcessor</strong>#process<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SetWithLock&lt;ChannelContext&gt; checkChannelContexts &#x3D;</span><br><span class="line">      Aio.getChannelContextsByUserid(channelContext.getGroupContext(),body.getId());</span><br></pre></td></tr></table></figure>
+绑定用户上线信息。</li>
+</ul>
+<ul>
+<li>com.fyp.layim.im.server.handler.<strong>LayimMsgHandler</strong>#handleHandshakeUserInfo<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">private HttpResponse handleHandshakeUserInfo(HttpRequest httpRequest, HttpResponse httpResponse, ChannelContext channelContext) throws  Exception &#123;</span><br><span class="line">    UserService userService &#x3D; getUserService();</span><br><span class="line">    &#x2F;&#x2F;增加token验证方法</span><br><span class="line">    String path &#x3D; httpRequest.getRequestLine().getPath();</span><br><span class="line">    String token &#x3D; URLDecoder.decode(path.substring(1),&quot;utf-8&quot;);</span><br><span class="line">    String userId &#x3D; TokenVerify.IsValid(token);</span><br><span class="line">    if (userId &#x3D;&#x3D; null) &#123;</span><br><span class="line">        &#x2F;&#x2F;没有token 未授权</span><br><span class="line">        httpResponse.setStatus(HttpResponseStatus.C401);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        long uid &#x3D; Long.parseLong(userId);</span><br><span class="line">        &#x2F;&#x2F;解析token</span><br><span class="line">        LayimContextUserInfo userInfo &#x3D; userService.getContextUserInfo(uid);</span><br><span class="line">        if (userInfo &#x3D;&#x3D; null) &#123;</span><br><span class="line">            &#x2F;&#x2F;没有找到用户</span><br><span class="line">            httpResponse.setStatus(HttpResponseStatus.C404);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            channelContext.setAttribute(userId, userInfo.getContextUser());</span><br><span class="line">            &#x2F;&#x2F;绑定用户ID</span><br><span class="line">            Aio.bindUser(channelContext, userId);</span><br><span class="line">            &#x2F;&#x2F;绑定用户群组</span><br><span class="line">            List&lt;String&gt; groupIds &#x3D; userInfo.getGroupIds();</span><br><span class="line">            &#x2F;&#x2F;绑定用户群信息</span><br><span class="line">            if (groupIds !&#x3D; null) &#123;</span><br><span class="line">                groupIds.forEach(groupId -&gt; Aio.bindGroup(channelContext, groupId));</span><br><span class="line">            &#125;</span><br><span class="line">            &#x2F;&#x2F;通知所有好友本人上线了</span><br><span class="line">            notify(channelContext,true);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return httpResponse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>Aio.java的api：</p>
+<p><img src="https://images-cdn.shimo.im/G2W3fERzQLAMRNvZ/image.png!thumbnail" alt="图片"></p>
+<p>实现<strong>IWsMsgHandler</strong>接口：用于websocket握手，响应，关闭通道等过程的业务处理。</p>
+<p><img src="https://images-cdn.shimo.im/GwpqDOvqBHkYpBMo/image.png!thumbnail" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/JmJxBpZYWF8CMGxV/image.png!thumbnail" alt="图片"></p>
+<p>握手逻辑首先是在：com.fyp.layim.im.server.handler.LayimServerAioHandler中。</p>
+<p>wsMsgHandler.handshake 方法，这里一般直接返回默认的 httpReponse即可，代表（框架层）握手成功。但是我们可以在接口中自定义一些业务逻辑，比如用户判断之类的逻辑，然后决定是否同意握手流程。</p>
+<p><img src="https://images-cdn.shimo.im/DcgHQBSvsA8yr1Do/image.png!thumbnail" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/gXRfryi52x0t2J1h/image.png!thumbnail" alt="图片"></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/09/14/%E8%BD%AC%E8%BD%BD%2017%E3%80%81%E5%BC%80%E6%BA%90%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AEmiaosha%E8%A7%A3%E8%AF%BB/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          开源秒杀项目miaosha解读
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/09/14/%E8%BD%AC%E8%BD%BD%2015%E3%80%81%E5%85%A8%E5%8F%8C%E5%B7%A5%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AEWebsocket/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">全双工通信协议Websocket</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="转载 16、网络编程框架t-io" data-title="网络编程框架t-io" data-url="http://www.2333nmsl.ml/2020/09/14/%E8%BD%AC%E8%BD%BD%2016%E3%80%81%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E6%A1%86%E6%9E%B6t-io/"  data-images="/img/1.gif" data-content="网络编程框架t-io">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2020 yht
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"rect":"opacity:0.8","log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>spring security与oauth2 | Hexo</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="转载 12、spring security与oauth2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spring security与oauth2">
+<meta property="og:url" content="http://www.2333nmsl.ml/2020/09/14/%E8%BD%AC%E8%BD%BD%2012%E3%80%81spring%20security%E4%B8%8Eoauth2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="转载 12、spring security与oauth2">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://uploader.shimo.im/f/imk68veuNAAENP0x.png!thumbnail">
+<meta property="og:image" content="https://uploader.shimo.im/f/AuAUAzYEJZYVEGT6.png!thumbnail">
+<meta property="og:image" content="https://uploader.shimo.im/f/OdEP9mKmcK4J2mQO.png!thumbnail">
+<meta property="og:image" content="https://uploader.shimo.im/f/8dgm2nQMlrQZez2B.png!thumbnail">
+<meta property="og:image" content="https://uploader.shimo.im/f/ThP9QSbx8eIOpq1P.png!thumbnail">
+<meta property="article:published_time" content="2020-09-14T14:58:04.000Z">
+<meta property="article:modified_time" content="2020-09-14T07:07:17.956Z">
+<meta property="article:author" content="yht">
+<meta property="article:tag" content="spring security">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://uploader.shimo.im/f/imk68veuNAAENP0x.png!thumbnail">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 5.0.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/1.gif" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/"></a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Yht-7683/" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="#" title="mail">mail</a>
+					        
+								<a class="qq" target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=434807683&site=qq&menu=yes" title="qq">qq</a>
+					        
+								<a class="weibo" target="_blank" href="https://weibo.com/" title="weibo">weibo</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ASCII%E7%A0%81%E5%9B%BE/" style="font-size: 10px;">ASCII码图</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 20px;">Java基础</a> <a href="/tags/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 10px;">Java多线程</a> <a href="/tags/Redis/" style="font-size: 20px;">Redis</a> <a href="/tags/Websocket/" style="font-size: 10px;">Websocket</a> <a href="/tags/io/" style="font-size: 10px;">io</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/mybatis%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">mybatis框架</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/renren-fast/" style="font-size: 15px;">renren-fast</a> <a href="/tags/spring-data/" style="font-size: 10px;">spring data</a> <a href="/tags/spring-security/" style="font-size: 10px;">spring security</a> <a href="/tags/springboot%E6%A1%86%E6%9E%B6/" style="font-size: 15px;">springboot框架</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 10px;">消息队列</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">计算机网络</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://a-cai.gitee.io/blog/">前端资料</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/1.gif" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Yht-7683/" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="#" title="mail">mail</a>
+			        
+						<a class="qq" target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=434807683&site=qq&menu=yes" title="qq">qq</a>
+			        
+						<a class="weibo" target="_blank" href="https://weibo.com/" title="weibo">weibo</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-转载 12、spring security与oauth2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/09/14/%E8%BD%AC%E8%BD%BD%2012%E3%80%81spring%20security%E4%B8%8Eoauth2/" class="article-date">
+  	<time datetime="2020-09-14T14:58:04.000Z" itemprop="datePublished">2020-09-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      spring security与oauth2
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-security/" rel="tag">spring security</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="3-权限鉴定-xmind4-oauth2-xmind5-spring-oauth-xmind1-spring-security简介-xmind2-认证过程-xmindspring-security"><a href="#3-权限鉴定-xmind4-oauth2-xmind5-spring-oauth-xmind1-spring-security简介-xmind2-认证过程-xmindspring-security" class="headerlink" title="3_权限鉴定.xmind4_oauth2.xmind5_spring_oauth.xmind1_spring_security简介.xmind2_认证过程.xmindspring security"></a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/ZDVYpP2VmN4MbAwt.xmind">3_权限鉴定.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/WN68E4gDAWIhXIOY.xmind">4_oauth2.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/97HO6FoRi9ADwr9M.xmind">5_spring_oauth.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/BoS2yNBL0O8iwerV.xmind">1_spring_security简介.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/EZyYunOY0dQPaMqk.xmind">2_认证过程.xmind</a>spring security</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>一个能够为基于Spring的企业应用系统提供声明式的安全訪问控制解决方式的安全框架（简单说是对访问权限进行控制嘛），应用的安全性包括用户认证（Authentication）和用户授权（Authorization）两个部分。</p>
+<p>用户认证指的是验证某个用户是否为系统中的合法主体，也就是说用户能否访问该系统。用户认证一般要求用户提供用户名和密码。系统通过校验用户名和密码来完成认证过程。</p>
+<p>用户授权指的是验证某个用户是否有权限执行某个操作。</p>
+<p>在一个系统中，不同用户所具有的权限是不同的。比如对一个文件来说，有的用户只能进行读取，而有的用户可以进行修改。一般来说，系统会为不同的用户分配不同的角色，而每个角色则对应一系列的权限。   spring security的主要核心功能为 认证和授权，所有的架构也是基于这两个核心功能去实现的。</p>
+<h3 id="核心组件"><a href="#核心组件" class="headerlink" title="核心组件"></a>核心组件</h3><ul>
+<li><strong>SecurityContextHolder</strong>：提供对SecurityContext的访问</li>
+<li><strong>SecurityContext</strong>,：持有Authentication对象和其他可能需要的信息</li>
+<li><strong>AuthenticationManager</strong>其中可以包含多个AuthenticationProvider</li>
+<li><strong>ProviderManager</strong>对象为AuthenticationManager接口的实现AuthenticationProvider 主要用来进行认证操作的类 调用其中的authenticate()方法去进行认证操作</li>
+<li><strong>Authentication</strong>：Spring Security方式的认证主体</li>
+<li><strong>GrantedAuthority</strong>：对认证主题的应用层面的授权，含当前用户的权限信息，通常使用角色表示</li>
+<li><strong>UserDetails</strong>：构建Authentication对象必须的信息，可以自定义，可能需要访问DB得到</li>
+<li><strong>UserDetailsService</strong>：通过username构建UserDetails对象，通过loadUserByUsername根据userName获取UserDetail对象 （可以在这里基于自身业务进行自定义的实现  如通过数据库，xml,缓存获取等）。<h2 id="Filter顺序"><a href="#Filter顺序" class="headerlink" title="Filter顺序"></a>Filter顺序</h2></li>
+</ul>
+<p>Spring Security的官方文档向我们提供了filter的顺序，无论实际应用中你用到了哪些，整体的顺序是保持不变的：</p>
+<ul>
+<li><strong>ChannelProcessingFilter</strong>，重定向到其他协议的过滤器。也就是说如果你访问的channel错了，那首先就会在channel之间进行跳转，如http变为https。</li>
+<li><strong>SecurityContextPersistenceFilter</strong>，请求来临时在SecurityContextHolder中建立一个SecurityContext，然后在请求结束的时候，清空SecurityContextHolder。并且任何对SecurityContext的改变都可以被copy到HttpSession。</li>
+<li><strong>ConcurrentSessionFilter</strong>，因为它需要使用SecurityContextHolder的功能，而且更新对应session的最后更新时间，以及通过SessionRegistry获取当前的SessionInformation以检查当前的session是否已经过期，过期则会调用LogoutHandler。</li>
+<li><strong>认证处理机制</strong>，如UsernamePasswordAuthenticationFilter，CasAuthenticationFilter，BasicAuthenticationFilter等，以至于SecurityContextHolder可以被更新为包含一个有效的Authentication请求。</li>
+<li><strong>SecurityContextHolderAwareRequestFilter</strong>，它将会把HttpServletRequest封装成一个继承自HttpServletRequestWrapper的SecurityContextHolderAwareRequestWrapper，同时使用SecurityContext实现了HttpServletRequest中与安全相关的方法。</li>
+<li><strong>JaasApiIntegrationFilter</strong>，如果SecurityContextHolder中拥有的Authentication是一个JaasAuthenticationToken，那么该Filter将使用包含在JaasAuthenticationToken中的Subject继续执行FilterChain。</li>
+<li><strong>RememberMeAuthenticationFilter</strong>，如果之前的认证处理机制没有更新SecurityContextHolder，并且用户请求包含了一个Remember-Me对应的cookie，那么一个对应的Authentication将会设给SecurityContextHolder。</li>
+<li><strong>AnonymousAuthenticationFilter</strong>，如果之前的认证机制都没有更新SecurityContextHolder拥有的Authentication，那么一个AnonymousAuthenticationToken将会设给SecurityContextHolder。</li>
+<li><strong>ExceptionTransactionFilter</strong>，用于处理在FilterChain范围内抛出的AccessDeniedException和AuthenticationException，并把它们转换为对应的Http错误码返回或者对应的页面。</li>
+<li><strong>FilterSecurityInterceptor</strong>，保护Web URI，进行权限认证，并且在访问被拒绝时抛出异常<h2 id="基础知识-验证"><a href="#基础知识-验证" class="headerlink" title="基础知识-验证"></a>基础知识-验证</h2></li>
+</ul>
+<ul>
+<li>Spring Security 验证身份的方式是利用 Filter，再加上 HttpServletRequest 的一些信息进行过滤。</li>
+<li>类 Authentication 保存的是身份认证信息。</li>
+<li>类 AuthenticationProvider 提供身份认证途径。</li>
+<li>类 AuthenticationManager 保存的 AuthenticationProvider 集合，并调用 AuthenticationProvider 进行身份认证。<h3 id="AbstractAuthenticationProcessingFilter"><a href="#AbstractAuthenticationProcessingFilter" class="headerlink" title="AbstractAuthenticationProcessingFilter"></a>AbstractAuthenticationProcessingFilter</h3></li>
+</ul>
+<p>AbstractAuthenticationProcessingFilter 是一个抽象类，主要的功能是身份认证。OAuth2ClientAuthenticationProcessingFilter（Spriing OAuth2）、UsernamePasswordAuthenticationFilter都继承了 AbstractAuthenticationProcessingFilter ，并重写了方法 attemptAuthentication 进行身份认证。</p>
+<p><img src="https://uploader.shimo.im/f/imk68veuNAAENP0x.png!thumbnail" alt="图片"></p>
+<p>以上意思：AuthenticationManger –&gt; UserDetailService –&gt; AccessDecisionManger –&gt; has Authority</p>
+<p>认证 –&gt; 验证权限</p>
+<p>UserDetail 与 Authorition的关系</p>
+<ul>
+<li>UserDetail 是从数据库中查出来的用户基本数据</li>
+<li>Authorition是security已认证之后的用户数据封装<h3 id="权限的注解使用"><a href="#权限的注解使用" class="headerlink" title="权限的注解使用"></a>权限的注解使用</h3></li>
+</ul>
+<p>@PreAuthorize(“hasRole(‘ROLE_ADMIN’) orhasRole(‘ROLE_USER)  “)</p>
+<p>@PostAuthorize(“hasRole(‘ROLE_ADMIN’) orhasRole(‘ROLE_USER)  “)</p>
+<p>@PreFilter()</p>
+<p>@PostFilter()</p>
+<p>@EnableGlobalMethodSecurity(prePostEnable = true)</p>
+<p><img src="https://uploader.shimo.im/f/AuAUAzYEJZYVEGT6.png!thumbnail" alt="图片"></p>
+<p><img src="https://uploader.shimo.im/f/OdEP9mKmcK4J2mQO.png!thumbnail" alt="图片"></p>
+<h2 id="入门demo"><a href="#入门demo" class="headerlink" title="入门demo"></a>入门demo</h2><p>官网demo：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.spring.io/spring-security/site/docs/current/guides/html5/helloworld-boot.html">https://docs.spring.io/spring-security/site/docs/current/guides/html5/helloworld-boot.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/spring-projects/spring-security-javaconfig">https://github.com/spring-projects/spring-security-javaconfig</a></li>
+</ul>
+<p>常见异常类型</p>
+<ul>
+<li>UsernameNotFoundException（用户不存在）</li>
+<li>DisabledException（用户已被禁用）</li>
+<li>BadCredentialsException（坏的凭据）</li>
+<li>LockedException（账户锁定）</li>
+<li>AccountExpiredException （账户过期）</li>
+<li>CredentialsExpiredException（证书过期）<h2 id="springboot集成"><a href="#springboot集成" class="headerlink" title="springboot集成"></a>springboot集成</h2></li>
+</ul>
+<p>第一步，导入jar包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-security&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br><span class="line">&lt;!--如果页面模板是thymeleaf--&gt;</span><br><span class="line">&lt;!-- thymeleaf页面模板--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br><span class="line">&lt;!--Thymeleaf Spring Security依赖--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.thymeleaf.extras&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;thymeleaf-extras-springsecurity5&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>第二步、配置基本信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">@EnableWebSecurity &#x2F;&#x2F;开启security自动配置</span><br><span class="line">@EnableGlobalMethodSecurity(prePostEnabled &#x3D; true) &#x2F;&#x2F;开启注解</span><br><span class="line">public class SecurityConfig extends WebSecurityConfigurerAdapter &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    CustomUserDetailsService customUserDetailsService;</span><br><span class="line">    @Override</span><br><span class="line">    protected void configure(HttpSecurity http) throws Exception &#123;</span><br><span class="line">        http.authorizeRequests()</span><br><span class="line">                .antMatchers(&quot;&#x2F;css&#x2F;**&quot;, &quot;&#x2F;&quot;, &quot;&#x2F;index&quot;).permitAll()</span><br><span class="line">                .antMatchers(&quot;&#x2F;user&#x2F;**&quot;).hasRole(&quot;USER&quot;)</span><br><span class="line">                .and()</span><br><span class="line">                .formLogin().loginPage(&quot;&#x2F;login&quot;).failureUrl(&quot;&#x2F;login-error&quot;)</span><br><span class="line">        ;</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    protected void configure(AuthenticationManagerBuilder auth) throws Exception &#123;</span><br><span class="line">&#x2F;&#x2F;        auth.inMemoryAuthentication().passwordEncoder(new IPasswordEncoder())</span><br><span class="line">&#x2F;&#x2F;                .withUser(&quot;user&quot;).password(&quot;1&quot;).roles(&quot;USER&quot;);</span><br><span class="line">        auth.userDetailsService(customUserDetailsService).passwordEncoder(new IPasswordEncoder());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>通过 @EnableWebMvcSecurity 注解开启Spring Security的功能</li>
+</ol>
+<p>@EnableGlobalMethodSecurity(prePostEnabled = true)开启security的注解功能，如@PreAuthorize(“hasRole(‘ROLE_VIP’)”)</p>
+<ol>
+<li>继承 WebSecurityConfigurerAdapter ，并重写它的方法来设置一些web安全的细节</li>
+<li>configure(HttpSecurity http) 方法配置与http连接相关</li>
+<li>通过 authorizeRequests() 定义哪些URL需要被保护、哪些不需要被保护。例如以上代码指定了 /css/** 和 /index不需要任何认证就可以访问，/user/**需要USER角色权限。</li>
+<li>通过 formLogin() 定义当需要用户登录时候，转到的登录页面。</li>
+<li>configure(AuthenticationManagerBuilder auth) 方法，注释的部分表示在内存中创建了一个用户，该用户的名称为user，密码为1，用户角色为USER。一般我们都是从数据库中查询用户数据，所以这里实现了UserDetailsService接口，定义了一个CustomUserDetailsService 类。loadUserByUsername（）方法中返回User，带有用户名称、密码、和用户的角色权限。同时在security5.0后，需要自定义一个密码匹配器，所以要重写一个PasswordEncoder，定义匹配规则。</li>
+</ol>
+<p>第三步、定义UserDetailsService 和PasswordEncorder</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">public class CustomUserDetailsService implements UserDetailsService &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException &#123;</span><br><span class="line">        String username &#x3D; &quot;lv&quot;;</span><br><span class="line">        String password &#x3D; &quot;1&quot;;</span><br><span class="line">        Collection&lt;GrantedAuthority&gt; authorities &#x3D; new ArrayList&lt;&gt;();</span><br><span class="line">        authorities.add(new SimpleGrantedAuthority(&quot;ROLE_ADMIN&quot;));</span><br><span class="line">        UserDetails userDetails &#x3D; User.withUsername(username)</span><br><span class="line">                .password(password)</span><br><span class="line">                .authorities(authorities)</span><br><span class="line">                .build();</span><br><span class="line">        return userDetails;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>还有PasswordEncorder</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 创建PasswordEncorder的实现类</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class IPasswordEncoder implements PasswordEncoder &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public String encode(CharSequence charSequence) &#123;</span><br><span class="line">        return charSequence.toString();</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public boolean matches(CharSequence charSequence, String s) &#123;</span><br><span class="line">        return s.equals(charSequence.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ok，上面的配置完毕之后，可以说我们已经集成了spring security了，那么我们正在用到我们项目资源中，从上面的配置可以知道，我们要使得资源拥有权限才能访问。现在我们建一下资源</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@Slf4j</span><br><span class="line">@Controller</span><br><span class="line">public class IndexController &#123;</span><br><span class="line">    @GetMapping(&quot;&#x2F;login&quot;)</span><br><span class="line">    public String login() &#123;</span><br><span class="line">        log.info(&quot;-------------&gt; login&quot;);</span><br><span class="line">        return &quot;login&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    @GetMapping(&#123;&quot;&#x2F;&quot;, &quot;&quot;, &quot;&#x2F;index&quot;&#125;)</span><br><span class="line">    public String index() &#123;</span><br><span class="line">        Authentication authentication &#x3D; SecurityContextHolder.getContext().getAuthentication();</span><br><span class="line">        log.info(&quot;用户-----------&gt;&#123;&#125;&quot;, authentication.getPrincipal());</span><br><span class="line">        return &quot;index&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>访问受限资源或者点击登录时候，我们都会跳转到/login页面，</p>
+<ul>
+<li>login.html<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;form name&#x3D;&#39;f&#39; th:action&#x3D;&#39;@&#123;&#x2F;login&#125;&#39; method&#x3D;&#39;POST&#39;&gt;</span><br><span class="line">    &lt;table&gt;</span><br><span class="line">        &lt;tr&gt;&lt;td&gt;User:&lt;&#x2F;td&gt;&lt;td&gt;</span><br><span class="line">            &lt;input type&#x3D;&#39;text&#39; name&#x3D;&#39;username&#39; value&#x3D;&#39;&#39; &#x2F;&gt;&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;</span><br><span class="line">        &lt;tr&gt;&lt;td&gt;Password:&lt;&#x2F;td&gt;</span><br><span class="line">            &lt;td&gt;&lt;input type&#x3D;&#39;password&#39; name&#x3D;&#39;password&#39;&#x2F;&gt;&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;</span><br><span class="line">        &lt;tr&gt;&lt;td colspan&#x3D;&#39;2&#39;&gt;</span><br><span class="line">            &lt;input id&#x3D;&quot;remember_me&quot; name&#x3D;&quot;remember-me&quot; type&#x3D;&quot;checkbox&quot;&#x2F;&gt;</span><br><span class="line">            &lt;label for&#x3D;&quot;remember_me&quot; class&#x3D;&quot;inline&quot;&gt;Remember me&lt;&#x2F;label&gt;&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;</span><br><span class="line">        &lt;tr&gt;&lt;td colspan&#x3D;&#39;2&#39;&gt;</span><br><span class="line">            &lt;input name&#x3D;&quot;submit&quot; type&#x3D;&quot;submit&quot; value&#x3D;&quot;Login&quot;&#x2F;&gt;&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;</span><br><span class="line">    &lt;&#x2F;table&gt;</span><br><span class="line">&lt;&#x2F;form&gt;</span><br></pre></td></tr></table></figure>
+用户的登陆认证是由Spring Security进行处理的，请求路径默认为/login，方法是Post方式。用户名字段默认为username，密码字段默认为password。可以研究一下UsernamePasswordAuthenticationFilter就会发现。<br><img src="https://uploader.shimo.im/f/8dgm2nQMlrQZez2B.png!thumbnail" alt="图片"></li>
+</ul>
+<p>说明了，点击post的login表单之后会在这个过滤器中被处理。</p>
+<p>登录成功之后跳转到/index</p>
+<ul>
+<li>index.html<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;index&lt;&#x2F;title&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">here is index;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+另外受限资源还可以使用注解来拦截，@PreAuthorize表示前缀权限拦截<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@ResponseBody</span><br><span class="line">@PreAuthorize(&quot;hasRole(&#39;ROLE_ADMIN&#39;)&quot;)</span><br><span class="line">@GetMapping(&quot;&#x2F;admin&quot;)</span><br><span class="line">public Object admin() &#123;</span><br><span class="line">    return &quot;说明有admin角色权限&quot;;</span><br><span class="line">&#125;</span><br><span class="line">@ResponseBody</span><br><span class="line">@PreAuthorize(&quot;hasRole(&#39;ROLE_VIP&#39;)&quot;)</span><br><span class="line">@GetMapping(&quot;&#x2F;vip&quot;)</span><br><span class="line">public Object vip() &#123;</span><br><span class="line">    return &quot;说明有vip角色权限&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="OAuth2"><a href="#OAuth2" class="headerlink" title="OAuth2"></a>OAuth2</h2></li>
+</ul>
+<p>OAuth 就是一种授权机制。数据的所有者告诉系统，同意授权第三方应用进入系统，获取这些数据。系统从而产生一个短期的进入令牌（token），用来代替密码，供第三方应用使用。</p>
+<h3 id="令牌与密码"><a href="#令牌与密码" class="headerlink" title="令牌与密码"></a>令牌与密码</h3><p>令牌（token）与密码（password）的作用是一样的，都可以进入系统，但是有三点差异。</p>
+<p>（1）令牌是短期的，到期会自动失效，用户自己无法修改。密码一般长期有效，用户不修改，就不会发生变化。</p>
+<p>（2）令牌可以被数据所有者撤销，会立即失效。密码一般不允许被他人撤销。</p>
+<p>（3）令牌有权限范围（scope）,密码一般是完整权限。</p>
+<h3 id="四种授权方式"><a href="#四种授权方式" class="headerlink" title="四种授权方式"></a>四种授权方式</h3><ul>
+<li>授权码（authorization-code）<ul>
+<li>授权码（authorization code）方式，指的是第三方应用先申请一个授权码，然后再用该码获取令牌。</li>
+</ul>
+</li>
+<li>隐藏式（implicit）<ul>
+<li>允许直接向前端颁发令牌。这种方式没有授权码这个中间步骤，所以称为（授权码）”隐藏式”（implicit）</li>
+</ul>
+</li>
+<li>密码式（password）：<ul>
+<li>允许用户把用户名和密码，直接告诉该应用。该应用就使用你的密码，申请令牌，这种方式称为”密码式”（password）</li>
+</ul>
+</li>
+<li>客户端凭证（client credentials）<ul>
+<li>适用于没有前端的命令行应用，即在命令行下请求令牌。</li>
+</ul>
+</li>
+</ul>
+<p>Oauth2授权主要由两部分组成：</p>
+<ul>
+<li>Authorization server：认证服务器<ul>
+<li>授权模式</li>
+<li>生成token的存储</li>
+</ul>
+</li>
+<li>Resource server：资源服务器<ul>
+<li>springsecurity过滤器链上加了OAuth2AuthenticationProcessingFilter（决定是否能访问保护资源）</li>
+<li>资源（rest服务）</li>
+</ul>
+</li>
+</ul>
+<p>在实际项目中以上两个服务可以在一个服务器上，也可以分开部署。</p>
+<p>核心配置主要分为授权应用和客户端应用两部分，如下：</p>
+<ul>
+<li>授权应用：即Oauth2授权服务，主要包括Spring Security、认证服务和资源服务两部分配置</li>
+<li>客户端应用：即通过授权应用进行认证的应用，多个客户端应用间支持单点登录</li>
+</ul>
+<p><img src="https://uploader.shimo.im/f/ThP9QSbx8eIOpq1P.png!thumbnail" alt="图片"></p>
+<p>授权模式第一步：</p>
+<p><a target="_blank" rel="noopener" href="http://localhost:8081/oauth/authorize?client_id=client&response_type=code&redirect_uri=http://www.baidu.com">http://localhost:8081/oauth/authorize?client_id=client&amp;response_type=code&amp;redirect_uri=http://www.baidu.com</a></p>
+<p>授权模式第二步：</p>
+<ul>
+<li>Spring Security 与 OAuth2（授权服务器）</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/227f7e7503cb">https://www.jianshu.com/p/227f7e7503cb</a></p>
+<h3 id="授权码模式"><a href="#授权码模式" class="headerlink" title="授权码模式"></a>授权码模式</h3><p>关于授权码模式，参考qq、微博、github登录的模式</p>
+<p>看mblog项目</p>
+<h3 id="密码模式"><a href="#密码模式" class="headerlink" title="密码模式"></a>密码模式</h3><p>通过输入密码得到token</p>
+<h3 id="授权服务配置"><a href="#授权服务配置" class="headerlink" title="授权服务配置"></a>授权服务配置</h3><ul>
+<li>配置一个授权服务，需要考虑 授权类型（GrantType）、不同授权类型为客户端（Client）提供了不同的获取令牌（Token）方式，每一个客户端（Client）都能够通过明确的配置以及权限来实现不同的授权访问机制，也就是说如果你提供了一个 “client_credentials” 授权方式，并不意味着其它客户端就要采用这种方式来授权</li>
+<li>使用 @EnableAuthorizationServer 来配置授权服务机制，并继承 AuthorizationServerConfigurerAdapter 该类重写 configure 方法定义授权服务器策略<h3 id="资源服务器"><a href="#资源服务器" class="headerlink" title="资源服务器"></a>资源服务器</h3></li>
+</ul>
+<ul>
+<li>要访问资源服务器受保护的资源需要携带令牌（从授权服务器获得）</li>
+<li>客户端往往同时也是一个资源服务器，各个服务之间的通信（访问需要权限的资源）时需携带访问令牌</li>
+<li>资源服务器通过 @EnableResourceServer 注解来开启一个 OAuth2AuthenticationProcessingFilter 类型的过滤器</li>
+<li>通过继承 ResourceServerConfigurerAdapter 类来配置资源服务器</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/09/14/%E8%BD%AC%E8%BD%BD%2013%E3%80%81%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%E5%B7%A5%E5%85%B7jenkins/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          持续集成工具jenkins
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/09/14/%E8%BD%AC%E8%BD%BD%209%E3%80%81renren-fast%E8%84%9A%E6%89%8B%E6%9E%B6%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%8B%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">renren-fast脚手架学习（下）</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="转载 12、spring security与oauth2" data-title="spring security与oauth2" data-url="http://www.2333nmsl.ml/2020/09/14/%E8%BD%AC%E8%BD%BD%2012%E3%80%81spring%20security%E4%B8%8Eoauth2/"  data-images="/img/1.gif" data-content="spring security与oauth2">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2020 yht
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"rect":"opacity:0.8","log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

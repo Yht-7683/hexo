@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>redis的高可用、主从与缓存的使用 | Hexo</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="转载5、redis的高可用、主从与缓存的使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis的高可用、主从与缓存的使用">
+<meta property="og:url" content="http://www.2333nmsl.ml/2020/09/14/%E8%BD%AC%E8%BD%BD%205%E3%80%81redis%E7%9A%84%E9%AB%98%E5%8F%AF%E7%94%A8%E3%80%81%E4%B8%BB%E4%BB%8E%E3%80%81%E4%B8%8E%E7%BC%93%E5%AD%98%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="转载5、redis的高可用、主从与缓存的使用">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://images-cdn.shimo.im/TBpPOKgqXBIKLiQj/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/Pk5fcsPdaKAi6DeS/image.png!thumbnail">
+<meta property="og:image" content="https://uploader.shimo.im/f/JTPKCLHkjlQSFxet.png!thumbnail">
+<meta property="og:image" content="https://uploader.shimo.im/f/OrI9nz9noBwY5beg.png!thumbnail">
+<meta property="og:image" content="http://img.blog.csdn.net/20170210143107403?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSFVYVTk4MTU5ODQzNg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20170210143206336?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSFVYVTk4MTU5ODQzNg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="https://images-cdn.shimo.im/7do43jkNXXIobvYV/image.png!thumbnail">
+<meta property="og:image" content="https://uploader.shimo.im/f/bKLB0GR4iUMSqsxa.png!thumbnail">
+<meta property="og:image" content="https://uploader.shimo.im/f/nEUlBPzOKpIy2wm7.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/cH10C0fSUkIoimcI/image.png!thumbnail">
+<meta property="og:image" content="https://uploader.shimo.im/f/ZrBnyYjNdBEpjAZh.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/Ooe0kYLSfIkTVhnX/image.png!thumbnail">
+<meta property="og:image" content="https://uploader.shimo.im/f/TUnoZjIooiAkPa1f.png!thumbnail">
+<meta property="og:image" content="https://uploader.shimo.im/f/NuZFhubnubM60KPs.png!thumbnail">
+<meta property="article:published_time" content="2020-09-14T14:53:04.000Z">
+<meta property="article:modified_time" content="2020-09-14T07:07:17.956Z">
+<meta property="article:author" content="yht">
+<meta property="article:tag" content="Redis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images-cdn.shimo.im/TBpPOKgqXBIKLiQj/image.png!thumbnail">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 5.0.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/1.gif" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/"></a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Yht-7683/" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="#" title="mail">mail</a>
+					        
+								<a class="qq" target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=434807683&site=qq&menu=yes" title="qq">qq</a>
+					        
+								<a class="weibo" target="_blank" href="https://weibo.com/" title="weibo">weibo</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ASCII%E7%A0%81%E5%9B%BE/" style="font-size: 10px;">ASCII码图</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 20px;">Java基础</a> <a href="/tags/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 10px;">Java多线程</a> <a href="/tags/Redis/" style="font-size: 20px;">Redis</a> <a href="/tags/Websocket/" style="font-size: 10px;">Websocket</a> <a href="/tags/io/" style="font-size: 10px;">io</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/mybatis%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">mybatis框架</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/renren-fast/" style="font-size: 15px;">renren-fast</a> <a href="/tags/spring-data/" style="font-size: 10px;">spring data</a> <a href="/tags/spring-security/" style="font-size: 10px;">spring security</a> <a href="/tags/springboot%E6%A1%86%E6%9E%B6/" style="font-size: 15px;">springboot框架</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 10px;">消息队列</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">计算机网络</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://a-cai.gitee.io/blog/">前端资料</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/1.gif" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Yht-7683/" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="#" title="mail">mail</a>
+			        
+						<a class="qq" target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=434807683&site=qq&menu=yes" title="qq">qq</a>
+			        
+						<a class="weibo" target="_blank" href="https://weibo.com/" title="weibo">weibo</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-转载 5、redis的高可用、主从、与缓存使用" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/09/14/%E8%BD%AC%E8%BD%BD%205%E3%80%81redis%E7%9A%84%E9%AB%98%E5%8F%AF%E7%94%A8%E3%80%81%E4%B8%BB%E4%BB%8E%E3%80%81%E4%B8%8E%E7%BC%93%E5%AD%98%E4%BD%BF%E7%94%A8/" class="article-date">
+  	<time datetime="2020-09-14T14:53:04.000Z" itemprop="datePublished">2020-09-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      redis的高可用、主从与缓存的使用
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="2-redis的五大数据结构-xmind3-redis的高可用-xmind-课程5-redis简介-高可用预习-xmind【课程5】redis简介、高可用（预习）-xmind1-redis简介-xmind"><a href="#2-redis的五大数据结构-xmind3-redis的高可用-xmind-课程5-redis简介-高可用预习-xmind【课程5】redis简介、高可用（预习）-xmind1-redis简介-xmind" class="headerlink" title="2_redis的五大数据结构.xmind3_redis的高可用.xmind_课程5_redis简介_高可用预习.xmind【课程5】redis简介、高可用（预习）.xmind1_redis简介.xmind"></a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/h4TbcU17cTA7y2fs.xmind">2_redis的五大数据结构.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/MXRhSoojr4wOZqaV.xmind">3_redis的高可用.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/VZS9Mr2HPgcZRfMy.xmind">_课程5_redis简介_高可用<em>预习</em>.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/7MkBBPBElvAgYmLP.xmind">【课程5】redis简介、高可用（预习）.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/SdPF9O42LHQormxr.xmind">1_redis简介.xmind</a></h2><p>为什么需要缓存框架</p>
+<p>那么我们第一节课中已经说明了一个网站演变的过程中，用户量的增加引起了并发量提高，如果不做处理，则频繁的查询数据库，结果是页面显示的慢，服务器、数据库不堪重负。如果网站页面所展示的数据的更新不是特别频繁，想提高页面显示的速度，减轻服务器的负担，此时应该考虑使用缓存。</p>
+<p>所以，缓存是介于应用程序和物理数据源之间，其作用是为了降低应用程序对物理数据源访问的频次，从而提高了应用的运行性能。缓存内的数据是对物理数据源中的数据的复制，应用程序在运行时从缓存读写数据，在特定的时刻或事件会同步缓存和物理数据源的数据。</p>
+<p>使用缓存有一个原则：<strong>越高层次的缓存效果越好</strong>。 推荐使用页面缓存。</p>
+<h2 id="redis简介"><a href="#redis简介" class="headerlink" title="redis简介"></a>redis简介</h2><p>redis是一个key-value存储系统。和Memcached类似，它支持存储的value类型相对更多，包括string(字符串)、list(链表)、set(集合)和zset(有序集合)、Hash(哈希类型的映射表)。这些数据类型都支持push/pop、add/remove及取交集并集和差集及更丰富的操作，而且这些操作都是原子性的。</p>
+<p>在此基础上，redis支持各种不同方式的排序。与memcached一样，为了保证效率，数据都是缓存在内存中。区别的是redis会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了master-slave(主从)同步。</p>
+<p>Redis 是一个高性能的key-value数据库。 redis的出现，很大程度补偿了memcached这类key/value存储的不足，在部 分场合可以对关系数据库起到很好的补充作用。它提供了Java，Python，Ruby，Perl，PHP客户端，使用很方便。</p>
+<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><p>速度快</p>
+<ul>
+<li>数据存在内存中</li>
+<li>c语言编写,5W行代码</li>
+<li>单线程数据模型</li>
+<li><a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1624003934114185747&wfr=spider&for=pc">https://baijiahao.baidu.com/s?id=1624003934114185747&amp;wfr=spider&amp;for=pc</a></li>
+</ul>
+<p>持久化</p>
+<p>多种数据结构</p>
+<p>支持多种编辑语言</p>
+<p>功能丰富</p>
+<p>简单</p>
+<p>主从复制</p>
+<h2 id="redis的安装"><a href="#redis的安装" class="headerlink" title="redis的安装"></a>redis的安装</h2><p>redis-server – port 6380</p>
+<h3 id="linux安装"><a href="#linux安装" class="headerlink" title="linux安装"></a>linux安装</h3><ul>
+<li>下载链接：<a target="_blank" rel="noopener" href="https://redis.io/download">https://redis.io/download</a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#解压安装</span><br><span class="line">$ wget http:&#x2F;&#x2F;download.redis.io&#x2F;releases&#x2F;redis-5.0.4.tar.gz</span><br><span class="line">$ tar xzf redis-5.0.4.tar.gz</span><br><span class="line">$ cd redis-5.0.4</span><br><span class="line">$ make</span><br><span class="line">#启动</span><br><span class="line">$ cd src</span><br><span class="line">$ .&#x2F;redis-server redis.conf</span><br><span class="line">#试用</span><br><span class="line">$ src&#x2F;redis-cli</span><br><span class="line">redis&gt; set foo bar</span><br><span class="line">OK</span><br><span class="line">redis&gt; get foo</span><br><span class="line">&quot;bar&quot;</span><br></pre></td></tr></table></figure>
+安装过程中遇到以下错误说明gcc-c++环境未安装，直接运行yum -y install gcc-c++先安装环境：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost redis-5.0.4]# make</span><br><span class="line">cd src &amp;&amp; make all</span><br><span class="line">make[1]: 进入目录“&#x2F;opt&#x2F;redis-5.0.4&#x2F;src”</span><br><span class="line">    CC adlist.o</span><br><span class="line">&#x2F;bin&#x2F;sh: cc: 未找到命令</span><br><span class="line">make[1]: *** [adlist.o] 错误 127</span><br><span class="line">make[1]: 离开目录“&#x2F;opt&#x2F;redis-5.0.4&#x2F;src”</span><br><span class="line">make: *** [all] 错误 2</span><br></pre></td></tr></table></figure>
+遇到一下错误运行make distclean<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon redis-3.2.0]# make</span><br><span class="line">cd src &amp;&amp; make all</span><br><span class="line">make[1]: 进入目录“&#x2F;usr&#x2F;local&#x2F;redis-3.2.0&#x2F;src”</span><br><span class="line">CC adlist.o</span><br><span class="line">In file included from adlist.c:34:0:</span><br><span class="line">zmalloc.h:50:31: 致命错误：jemalloc&#x2F;jemalloc.h：没有那个文件或目录</span><br><span class="line">#include &lt;jemalloc&#x2F;jemalloc.h&gt;                              ^</span><br><span class="line">编译中断。</span><br><span class="line">make[1]: *** [adlist.o] 错误 1</span><br><span class="line">make[1]: 离开目录“&#x2F;usr&#x2F;local&#x2F;redis-3.2.0&#x2F;src”</span><br><span class="line">make: *** [all] 错误 2</span><br></pre></td></tr></table></figure>
+解决“jemalloc/jemalloc.h：没有那个文件或目录“问题，在进行编译（因为上次编译失败，有残留的文件）。直接运行make distclean命令。<h3 id="windows安装"><a href="#windows安装" class="headerlink" title="windows安装"></a>windows安装</h3></li>
+</ul>
+<ul>
+<li>下载链接：<a target="_blank" rel="noopener" href="https://github.com/MicrosoftArchive/redis/releases">https://github.com/MicrosoftArchive/redis/releases</a></li>
+</ul>
+<p><img src="https://images-cdn.shimo.im/TBpPOKgqXBIKLiQj/image.png!thumbnail" alt="图片"></p>
+<p>解压之后切换到安装目录运行<strong>redis-server.exe redis.windows.conf</strong></p>
+<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1wdE8Xxku0ghM6xP77O0k9w">https://pan.baidu.com/s/1wdE8Xxku0ghM6xP77O0k9w</a></li>
+</ul>
+<p><img src="https://images-cdn.shimo.im/Pk5fcsPdaKAi6DeS/image.png!thumbnail" alt="图片"></p>
+<h2 id="redis命令"><a href="#redis命令" class="headerlink" title="redis命令"></a>redis命令</h2><ul>
+<li>请参考一下地址：<a target="_blank" rel="noopener" href="http://www.runoob.com/redis/redis-commands.html">http://www.runoob.com/redis/redis-commands.html</a></li>
+<li><a target="_blank" rel="noopener" href="http://doc.redisfans.com/">http://doc.redisfans.com/</a><h3 id="scan命令"><a href="#scan命令" class="headerlink" title="scan命令"></a>scan命令</h3></li>
+</ul>
+<p><strong>SCAN cursor [MATCH pattern] [COUNT count]</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://doc.redisfans.com/key/scan.html#scan">SCAN</a>命令用于迭代当前数据库中的数据库键。</li>
+<li><a target="_blank" rel="noopener" href="http://doc.redisfans.com/set/sscan.html#sscan">SSCAN</a>命令用于迭代集合键中的元素。</li>
+<li><a target="_blank" rel="noopener" href="http://doc.redisfans.com/hash/hscan.html#hscan">HSCAN</a>命令用于迭代哈希键中的键值对。</li>
+<li><a target="_blank" rel="noopener" href="http://doc.redisfans.com/sorted_set/zscan.html#zscan">ZSCAN</a>命令用于迭代有序集合中的元素（包括元素成员和元素分值）。</li>
+</ul>
+<p>一个基于游标的迭代器（cursor based iterator）：<a target="_blank" rel="noopener" href="http://doc.redisfans.com/key/scan.html#scan">SCAN</a>命令每次被调用之后， 都会向用户返回一个新的游标， 用户在下次迭代时需要使用这个新游标作为<a target="_blank" rel="noopener" href="http://doc.redisfans.com/key/scan.html#scan">SCAN</a>命令的游标参数， 以此来延续之前的迭代过程。</p>
+<p>当<a target="_blank" rel="noopener" href="http://doc.redisfans.com/key/scan.html#scan">SCAN</a>命令的游标参数被设置为 0 时， 服务器将开始一次新的迭代， 而当服务器向用户返回值为 0 的游标时， 表示迭代已结束。</p>
+<p>COUNT 参数的默认值为 10 。</p>
+<p><img src="https://uploader.shimo.im/f/JTPKCLHkjlQSFxet.png!thumbnail" alt="图片"></p>
+<p>又比如：</p>
+<p><img src="https://uploader.shimo.im/f/OrI9nz9noBwY5beg.png!thumbnail" alt="图片"></p>
+<h3 id="Info命令"><a href="#Info命令" class="headerlink" title="Info命令"></a>Info命令</h3><p>查看redis服务运行信息，分为 9 大块，每个块都有非常多的参数，这 9 个块分别是</p>
+<ul>
+<li>Server 服务器运行的环境参数</li>
+<li>Clients 客户端相关信息</li>
+<li>Memory 服务器运行内存统计数据</li>
+<li>Persistence 持久化信息</li>
+<li>Stats 通用统计数据</li>
+<li>Replication 主从复制相关信息</li>
+<li>CPU CPU 使用情况</li>
+<li>Cluster 集群信息</li>
+<li>KeySpace 键值对统计数量信息<h2 id="redis的配置"><a href="#redis的配置" class="headerlink" title="redis的配置"></a>redis的配置</h2></li>
+</ul>
+<ul>
+<li>参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/tmpt/p/redis_conf_detail_annotation.html">https://www.cnblogs.com/tmpt/p/redis_conf_detail_annotation.html</a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br></pre></td><td class="code"><pre><span class="line"># redis version 2.8.19</span><br><span class="line"> </span><br><span class="line"># 1k &#x3D;&gt; 1000 bytes</span><br><span class="line"># 1kb &#x3D;&gt; 1024 bytes</span><br><span class="line"># 1m &#x3D;&gt; 1000000 bytes</span><br><span class="line"># 1mb &#x3D;&gt; 1024*1024 bytes</span><br><span class="line"># 1g &#x3D;&gt; 1000000000 bytes</span><br><span class="line"># 1gb &#x3D;&gt; 1024*1024*1024 bytes</span><br><span class="line"> </span><br><span class="line"># 只用最新的，所以可以放到最后。</span><br><span class="line"># include &#x2F;path&#x2F;to&#x2F;local.conf</span><br><span class="line"># include &#x2F;path&#x2F;to&#x2F;other.conf</span><br><span class="line"> </span><br><span class="line">################################  通用 #####################################</span><br><span class="line"> </span><br><span class="line"># 是否后台执行</span><br><span class="line">daemonize yes</span><br><span class="line"> </span><br><span class="line"># 后台执行的pid文件</span><br><span class="line"># pidfile &#x2F;var&#x2F;run&#x2F;redis.pid</span><br><span class="line"> </span><br><span class="line"># 0的话，不接受TCP连接</span><br><span class="line">port 6379</span><br><span class="line"> </span><br><span class="line"># TCP listen() backlog. 虽然listen有两个参数int listen(int s, int backlog); 但是第二个参数会被&#x2F;proc&#x2F;sys&#x2F;net&#x2F;core&#x2F;somaxconn覆盖。比如nginx设置的是511，但是也会被这个覆盖成默认的128,</span><br><span class="line"># 所以要&#x2F;etc&#x2F;sysctl.conf中添加net.core.somaxconn &#x3D; 2048 然后 sysctl -p ，就是说，如果软件设置大于linux配置，就是linux配置，软件设置小于linux，就用软件的，就是用最小的那个。</span><br><span class="line">tcp-backlog 511</span><br><span class="line"> </span><br><span class="line"># 绑定IP请求来源</span><br><span class="line"># bind 192.168.1.100 10.0.0.1</span><br><span class="line"> </span><br><span class="line"># 在空闲多少秒后关闭链接（0是禁用此功能）</span><br><span class="line">timeout 0</span><br><span class="line"> </span><br><span class="line"># TCP keepalive</span><br><span class="line"># Linux内核里，下边的值以秒记，相当于tcp_keepalive_time，要用两倍的这个时间才能杀死（画外音，也就是probes*intvl&#x3D;如下的值了，详见EverNote搜索“linux 在线服务器优化配置”）</span><br><span class="line"># 设成60比较好</span><br><span class="line">tcp-keepalive 0</span><br><span class="line"> </span><br><span class="line"># 日志记录等级debug》verbose》notice（生产环境）》warning</span><br><span class="line">loglevel notice</span><br><span class="line"> </span><br><span class="line"># 日志名。空字符串意味着输出到 标准输出。后台运行的redis标准输出是&#x2F;dev&#x2F;null。（画外音，所以要设置个文件名）</span><br><span class="line">logfile &quot;&quot;</span><br><span class="line"> </span><br><span class="line"># 是否把log记到系统日志里。标示是什么？</span><br><span class="line"># syslog-enabled no</span><br><span class="line"># syslog-ident redis</span><br><span class="line"> </span><br><span class="line">#设置db的数量，默认db是0，你可以用SELECT &lt;dbid&gt; dbid在0到下边的值-1；</span><br><span class="line">databases 16</span><br><span class="line"> </span><br><span class="line">################################ 快照 ################################</span><br><span class="line"> </span><br><span class="line"># 保存时间间隔，更新数量。如果1个key更新了，15min保存一次。10个key更新了，5分钟保存一次，10000个key更新了，每1分钟保存一次。主动调用SAVE()会阻塞所有客户端！一般是BGSAVE异步的。</span><br><span class="line">save 900 1</span><br><span class="line">save 300 10</span><br><span class="line">save 60 10000</span><br><span class="line"> </span><br><span class="line"># 如果最后一次的后台保存RDB snapshot出错，redis就会拒绝所有写请求。这样也相当于一个报警吧。等后台保存继续工作后，redis就允许写了。</span><br><span class="line"># 如果你自己配置好了redis的持久化进程的监控，你可以关闭下边：</span><br><span class="line">stop-writes-on-bgsave-error yes</span><br><span class="line"> </span><br><span class="line"># 是否压缩dump后的   .rdb 数据库？默认压缩。会省硬盘，但耗CPU。</span><br><span class="line">rdbcompression no</span><br><span class="line"> </span><br><span class="line"># 是否校验rdb快照？CRC64校验值会放在文件尾部。会导致10%性能下降。关闭后，校验值用0填充</span><br><span class="line">rdbchecksum yes</span><br><span class="line"> </span><br><span class="line"># DB名称</span><br><span class="line">dbfilename dump.rdb</span><br><span class="line"> </span><br><span class="line"># 工作目录</span><br><span class="line"># DB会写入这个目录，以上边的名字。“仅追加文件”也会存在这个目录。注意：这里必须是目录名，不能是文件名！</span><br><span class="line">dir .&#x2F;</span><br><span class="line">################################# 复制集 #################################</span><br><span class="line"> </span><br><span class="line"># 主从复制。用slaveof去复制另一份redis。</span><br><span class="line"># 1）redis复制是异步的。但你可以让主redis拒绝写请求，当少于某个个数的从redis在线。</span><br><span class="line"># 2）如果复制进程暂停了一小会儿，slave可以进行重新进行部分同步，你可以设置一下复制backlog大小</span><br><span class="line"># 3）是自动的，无需干预。</span><br><span class="line"> </span><br><span class="line"># slaveof &lt;masterip&gt; &lt;masterport&gt;</span><br><span class="line"> </span><br><span class="line"># 如果主机需要鉴权，则需要配置密码</span><br><span class="line"># masterauth &lt;master-password&gt;</span><br><span class="line"> </span><br><span class="line"># 当slave和master断了，会有两种情况：</span><br><span class="line"># 1）默认：slave-serve-stale-data yes 这时，slave接受请求并返回老数据</span><br><span class="line"># 2）如果是no了，则对任何命令都返回SYNC with master in progress，INFO和SLAVEOF命令除外！</span><br><span class="line">slave-serve-stale-data yes</span><br><span class="line"> </span><br><span class="line"># 2.6之后，redis默认slave都是read-only的，但是slave默认可以执行所有管理员命令。CONFIG,DEBUG等。你可以用rename-command去重命名危险的命令，隐藏他们。</span><br><span class="line">slave-read-only yes</span><br><span class="line"> </span><br><span class="line"># 复制集同步策略：磁盘或者socket</span><br><span class="line"># 新slave连接或者老slave重新连接时候不能只接收不同，得做一个全同步。需要一个新的RDB文件dump出来，然后从master传到slave。可以有两种情况：</span><br><span class="line"># 1）基于硬盘（disk-backed）：master创建一个新进程dump RDB，完事儿之后由父进程（即主进程）增量传给slaves。</span><br><span class="line"># 2）基于socket（diskless）：master创建一个新进程直接dump RDB到slave的socket，不经过主进程，不经过硬盘。</span><br><span class="line"># 基于硬盘的话，RDB文件创建后，一旦创建完毕，可以同时服务更多的slave。基于socket的话， 新slave来了后，得排队（如果超出了repl-diskless-sync-delay还没来），完事儿一个再进行下一个。</span><br><span class="line"># 当用diskless的时候，master等待一个repl-diskless-sync-delay的秒数，如果没slave来的话，就直接传，后来的得排队等了。否则就可以一起传。</span><br><span class="line"># disk较慢，并且网络较快的时候，可以用diskless。（默认用disk-based）</span><br><span class="line">repl-diskless-sync no</span><br><span class="line"># 设置成0的话，传输开始ASAP</span><br><span class="line">repl-diskless-sync-delay 5</span><br><span class="line"> </span><br><span class="line"># Slave发送ping给master。默认10s</span><br><span class="line"># repl-ping-slave-period 10</span><br><span class="line"> </span><br><span class="line"># 超时时间，包括从master看slave，从slave看master，要大于上边的repl-ping-slave-period</span><br><span class="line"># repl-timeout 60</span><br><span class="line"> </span><br><span class="line"># SYNC完毕后，在slave的socket里关闭TCP_NODELAY。</span><br><span class="line"># 如果是yes,reids发送少量的TCP包给slave，但可能导致最高40ms的数据延迟。</span><br><span class="line"># 如果是no，那可能在复制的时候，会消耗 少量带宽。</span><br><span class="line"># 默认我们是为了低延迟优化而设置成no，如果主从之间有很多网络跳跃。那设置成yes吧。</span><br><span class="line">repl-disable-tcp-nodelay no</span><br><span class="line"> </span><br><span class="line"># 复制集后台backlog大小</span><br><span class="line"># 越大，slave可以丢失的时间就越长。</span><br><span class="line"># repl-backlog-size 1mb</span><br><span class="line"> </span><br><span class="line"># 多久释放backlog，当确认master不再需要slave的时候，多久释放。0是永远不释放。</span><br><span class="line"># repl-backlog-ttl 3600</span><br><span class="line"> </span><br><span class="line"># 当master不可用，Sentinel会根据slave的优先级选举一个master。最低的优先级的slave，当选master。而配置成0，永远不会被选举。（必须≥0）。默认是100</span><br><span class="line">slave-priority 100</span><br><span class="line"> </span><br><span class="line"># slave小于几个，网络lag大于几秒的时候，master停止接受write请求。默认对slave数目无限制，给0。网络延迟给10s</span><br><span class="line"># min-slaves-to-write 3</span><br><span class="line">min-slaves-max-lag 10</span><br><span class="line"> </span><br><span class="line">################################## 安全 ###################################</span><br><span class="line"># 多数情况下无需密码鉴别slave。同时，由于redis处理速度太快，所以爆破速率可达150K&#x2F;S。10万&#x2F;S。所以如果你要设置密码，必须设置超强的密码。</span><br><span class="line"># requirepass foobared &lt;--这就是密码</span><br><span class="line"> </span><br><span class="line"># 命令重命名</span><br><span class="line"># 在一个shared环境里，可以对危险的命令，比如CONFIG，进行重命名：也可以用空字符串，达到完全屏蔽此命令的目的。</span><br><span class="line"># rename-command CONFIG b840fc02d524045429941cc15f59e41cb7be6c52</span><br><span class="line"># rename-command CONFIG &quot;&quot;</span><br><span class="line"># 记录进AOF或者传给slave的重命名操作可能会引发问题哦~。</span><br><span class="line"> </span><br><span class="line">################################### 限制 ####################################</span><br><span class="line"># 设置最大client连接数。默认10000一万个。如果redis没法控制最大文件数。则给到最低32.</span><br><span class="line"># maxclients 10000</span><br><span class="line"> </span><br><span class="line"># 如果redis用内存超过了设置的限制，第一，开始用maxmemory-policy配置的策略往外删数据，如果配置成了noeviction。所有write都会拒绝，比如set，lpush等。所有读请求可以接受。</span><br><span class="line"># 主要用在把redis用在LRU缓存，或者用在一个内存吃紧又不能删除的策略上。</span><br><span class="line"># 如果你有slave，你应该把最大内存别设置的太大，留一些系统内存给slave output buffers（如果是noeviction策略，就无需这样设置了）</span><br><span class="line"># maxmemory &lt;bytes&gt;</span><br><span class="line"> </span><br><span class="line"># 内存策略。</span><br><span class="line"># volatile-lru -&gt;用LRU删除设置了ttl的key</span><br><span class="line"># allkeys-lru -&gt;用LRU删除任何key</span><br><span class="line"># volatile-random -&gt;随机删除有ttl的key</span><br><span class="line"># allkeys-random -&gt;随机删除任何key</span><br><span class="line"># volatile-ttl -&gt;删除即将ttl到期的key</span><br><span class="line"># noeviction -&gt;不删，有write的时候报错。</span><br><span class="line"># 如下操作会返回错误</span><br><span class="line">#       set setnx setex append</span><br><span class="line">#       incr decr rpush lpush rpushx lpushx linsert lset rpoplpush sadd</span><br><span class="line">#       sinter sinterstore sunion sunionstore sdiff sdiffstore zadd zincrby</span><br><span class="line">#       zunionstore zinterstore hset hsetnx hmset hincrby incrby decrby</span><br><span class="line">#       getset mset msetnx exec sort</span><br><span class="line"># 默认是</span><br><span class="line"># maxmemory-policy volatile-lru</span><br><span class="line"> </span><br><span class="line"># LRU和最小TTL并不是最精确的，但是差不多了也。默认redis每次取3个key然后取最符合删除策略的删除。你可以配置这个数。越低，删除的东西就会越多。比如设置100个，就能删百分之一。</span><br><span class="line"># maxmemory-samples 3</span><br><span class="line"> </span><br><span class="line">############################## AOF ###############################</span><br><span class="line"># 默认redis异步的dump数据到disk。但如果断电了，那么就会丢失一部分数据了（根据save的配置）。</span><br><span class="line"># AOF提供更好模式。比如用默认的AOF，redis只丢失最近一秒的数据（断电情况），或者最后一个write操作（redis自身错误，os正常）。每个write操作写一次AOF。</span><br><span class="line"># 当AOF文件太大了，redis会自动重写一个aof文件出来。</span><br><span class="line"># AOF和RDB持久化可以同时启用。redis会优先读AOF恢复数据。</span><br><span class="line"># Please check http:&#x2F;&#x2F;redis.io&#x2F;topics&#x2F;persistence for more information</span><br><span class="line">appendonly no</span><br><span class="line"> </span><br><span class="line"># 默认文件名</span><br><span class="line">appendfilename &quot;appendonly.aof&quot;</span><br><span class="line"> </span><br><span class="line"># fsync()三种：</span><br><span class="line"># no：让OS托管，这样更快。</span><br><span class="line"># always：每次write都刷到log，慢，最安全。</span><br><span class="line"># everysec：每秒一次flush。（默认）</span><br><span class="line"># http:&#x2F;&#x2F;antirez.com&#x2F;post&#x2F;redis-persistence-demystified.html</span><br><span class="line"># appendfsync always</span><br><span class="line">appendfsync everysec</span><br><span class="line"># appendfsync no</span><br><span class="line"> </span><br><span class="line"># 当fsync为always或者everysec，当一个bgsave或者AOF rewrite线程正在耗费大量I&#x2F;0，redis可能会在fsync上阻塞很久。发生之后就无法fix，即使是另一个线程跑fsync，也会阻塞我们同步的write方法。</span><br><span class="line"># 如下方法可以解决这个问题：当bgsave()或bgrewriteaof()在跑，主进程的fsync()就无法调用。也就是当子进程在save，那段时光相当于redis是appendaof no的。也就是有可能会丢失最多30s的log。</span><br><span class="line"># 所以如果你有lag问题，把下边改成yes，否则就用no。yes意思是暂停aof，拒绝主进程的这次fsync。no是redis是排队的，不会被prevent了，但主进程是阻塞的。</span><br><span class="line">no-appendfsync-on-rewrite no</span><br><span class="line"> </span><br><span class="line"># 自动重写AOF</span><br><span class="line"># 当AOF文件大小到一定比例，就自动隐式调用BGREWRITEAOF</span><br><span class="line"># 过程：redis记住最后一次rewrite时aof文件大小（重启后没rewrite的话，就是启动时AOF文件的大小），如果现在AOF大小和上次的比例达到特定值就重写。也要指定最小AOF大小，防止到2倍：1M的时候也重写。</span><br><span class="line"># 把percentage改成0，就是禁用重写。</span><br><span class="line">auto-aof-rewrite-percentage 100</span><br><span class="line">auto-aof-rewrite-min-size 64mb</span><br><span class="line"> </span><br><span class="line"># AOF文件可能在尾部是不完整的（上次system关闭有问题，尤其是mount ext4文件系统时没有加上data&#x3D;ordered选项。只会发生在os死时，redis自己死不会不完整）。那redis重启时load进内存的时候就有问题了。</span><br><span class="line"># 发生的时候，可以选择redis启动报错，或者load尽量多正常的数据。</span><br><span class="line"># 如果aof-load-truncated是yes，会自动发布一个log给客户端然后load（默认）。如果是no，用户必须手动redis-check-aof修复AOF文件才可以。</span><br><span class="line">aof-load-truncated yes</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">################################ LUA SCRIPTING  ###############################</span><br><span class="line"># 如果达到最大时间限制（毫秒），redis会记个log，然后返回error。</span><br><span class="line"># 当一个脚本超过了最大时限。只有SCRIPT KILL和SHUTDOWN NOSAVE可以用。第一个可以杀没有调write命令的东西。要是已经调用了write，只能用第二个命令杀。</span><br><span class="line"># 设置成0或者负值，时限就无限。</span><br><span class="line">lua-time-limit 5000</span><br><span class="line"> </span><br><span class="line">################################## SLOW LOG ###################################</span><br><span class="line"># 线程阻塞不能服务其他请求的时间长度。两个参数：第一个是时长（以微秒为单位！，是毫秒的千分之一。）。第二个是log的size，超过了，就会删除之前的log。</span><br><span class="line"># 1000000是一秒。负值是所有请求都记log！下边是0.10S。100毫秒。</span><br><span class="line">slowlog-log-slower-than 10000</span><br><span class="line"> </span><br><span class="line"># log长度的设置值是没限制。但是需要内存。</span><br><span class="line">slowlog-max-len 128</span><br><span class="line"> </span><br><span class="line">################################ LATENCY MONITOR ##############################</span><br><span class="line"># 用LATENCY打印redis实例在跑命令时的耗时图表。</span><br><span class="line"># 只记录大于等于下边设置的值的操作。0的话，就是关闭监视。可以动态开启。直接运行CONFIG SET latency-monitor-threshold &lt;milliseconds&gt;</span><br><span class="line">latency-monitor-threshold 0</span><br><span class="line"> </span><br><span class="line">############################# Event notification ##############################</span><br><span class="line"># 可以通知pub&#x2F;sub客户端关于key空间的变化。http:&#x2F;&#x2F;redis.io&#x2F;topics&#x2F;notifications</span><br><span class="line"># 比如如果开着开关。一个client进行了DEL操作在“foo”key上在database0上。两个消息将会发布通过 pub&#x2F;sub</span><br><span class="line"># PUBLISH __keyspace@0__:foo del</span><br><span class="line"># PUBLISH __keyevent@0__:del foo</span><br><span class="line"># 大部分人不需要这个功能，并且还需要一定开销，所以默认关闭。</span><br><span class="line">notify-keyspace-events &quot;&quot;</span><br><span class="line"> </span><br><span class="line">############################### ADVANCED CONFIG ###############################</span><br><span class="line"># hash结构存储，小数据量的用数组，大数据量用map（encoding保存结构信息）</span><br><span class="line">hash-max-ziplist-entries 512</span><br><span class="line">hash-max-ziplist-value 64</span><br><span class="line"> </span><br><span class="line"># list同上。</span><br><span class="line">list-max-ziplist-entries 512</span><br><span class="line">list-max-ziplist-value 64</span><br><span class="line"> </span><br><span class="line"># Set在一种情况下会用特殊encoding：整个set是string组成，但是突然需要变成64位带符号整数且是10为根。。不懂。</span><br><span class="line">set-max-intset-entries 512</span><br><span class="line"> </span><br><span class="line"># zset同set</span><br><span class="line">zset-max-ziplist-entries 128</span><br><span class="line">zset-max-ziplist-value 64</span><br><span class="line"> </span><br><span class="line"># HyperLogLog 不懂。大于16000完全不可接受！当CPU很顶得住的话，给10000可以。默认给3000.</span><br><span class="line">hll-sparse-max-bytes 3000</span><br><span class="line"> </span><br><span class="line"># Active rehashing 越多次的操作进入了正在进行rehash的table，越多的rehash步骤需要执行。如果redis是空闲的，那么rehash操作是永远没法停止的，越多的内存也被消耗了。</span><br><span class="line"># 默认就用yes就行 了如果你想释放内存ASAP。</span><br><span class="line">activerehashing yes</span><br><span class="line"> </span><br><span class="line"># client output buffer限制，可以用来强制关闭传输缓慢的客户端（比如redis pub的东西有比较慢的client无法及时sub）</span><br><span class="line"># client-output-buffer-limit &lt;class&gt; &lt;hard limit&gt; &lt;soft limit&gt; &lt;soft seconds&gt;</span><br><span class="line"># class可以为以下：</span><br><span class="line">#</span><br><span class="line"># normal -&gt; normal clients including MONITOR clients</span><br><span class="line"># slave  -&gt; slave clients</span><br><span class="line"># pubsub -&gt; clients subscribed to at least one pubsub channel or pattern</span><br><span class="line"># 当hard限制到了会立即被关闭客户端。如果soft限制到了，会等soft秒。</span><br><span class="line"># 比如硬限制是32m，soft是16m，10secs。到32m就立即断，或者在16m以上停止了10secs。</span><br><span class="line"># 设置成0就是关闭。</span><br><span class="line">client-output-buffer-limit normal 0 0 0 </span><br><span class="line">client-output-buffer-limit slave 256mb 64mb 60</span><br><span class="line">client-output-buffer-limit pubsub 32mb 8mb 60</span><br><span class="line"> </span><br><span class="line"># redis内部调度（进行关闭timeout的客户端，删除过期key等等）频率，越大则调度频率越高。设置成100以上会对CPU造成大压力除非你对线上实时性要求很高。可以在1~500之间。</span><br><span class="line">hz 10</span><br><span class="line"> </span><br><span class="line"># 当child进程在rewrite AOF文件，如果这个选项是yes，那么这个file每32MB会写fsync()。这个是保证增量写硬盘而防止写硬盘时I&#x2F;O突增。</span><br><span class="line">aof-rewrite-incremental-fsync yes</span><br></pre></td></tr></table></figure>
+<h2 id="redis单线程"><a href="#redis单线程" class="headerlink" title="redis单线程"></a>redis单线程</h2></li>
+</ul>
+<p>为什么这么快？</p>
+<ul>
+<li>纯内存操作</li>
+<li>非阻塞IO</li>
+<li>避免线程切换和竞态消耗</li>
+</ul>
+<p>如何使用？</p>
+<ul>
+<li>拒绝长（慢）命令<ul>
+<li>keys、flushall。。</li>
+</ul>
+</li>
+<li>一次只运行一个命令<h2 id="redis存储机制"><a href="#redis存储机制" class="headerlink" title="redis存储机制"></a>redis存储机制</h2></li>
+</ul>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yyjie/p/7487937.html">https://www.cnblogs.com/yyjie/p/7487937.html</a></li>
+</ul>
+<p>Redis存储机制分成两种Snapshot和AOF。无论是那种机制,Redis都是将数据存储在内存中。</p>
+<h3 id="Snapshot工作原理"><a href="#Snapshot工作原理" class="headerlink" title="Snapshot工作原理"></a>Snapshot工作原理</h3><p>是将数据先存储在内存，然后当数据累计达到某些设定的伐值的时候，就会触发一次DUMP操作，将变化的数据一次性写入数据文件（RDB文件）。</p>
+<p><img src="http://img.blog.csdn.net/20170210143107403?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSFVYVTk4MTU5ODQzNg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="图片"></p>
+<h3 id="AOF-工作原理"><a href="#AOF-工作原理" class="headerlink" title="AOF 工作原理"></a>AOF 工作原理</h3><p>是将数据也是先存在内存，但是在存储的时候会使用调用fsync来完成对本次写操作的日志记录，这个日志揭露文件其实是一个基于Redis网络交互协议的文本文件。AOF调用fsync也不是说全部都是无阻塞的，在某些系统上可能出现fsync阻塞进程的情况，对于这种情况可以通过配置修改，但默认情况不要修改。AOF最关键的配置就是关于调用fsync追加日志文件的平率，有两种预设频率，always每次记录进来都添加，everysecond 每秒添加一次。两个配置各有所长后面分析。由于是采用日志追加的方式来持久话数据，所以引出了第二个日志的概念：rewrite. 后面介绍它的由来。</p>
+<p><img src="http://img.blog.csdn.net/20170210143206336?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSFVYVTk4MTU5ODQzNg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="图片"></p>
+<h3 id="存储模式性能和安全比较"><a href="#存储模式性能和安全比较" class="headerlink" title="存储模式性能和安全比较"></a>存储模式性能和安全比较</h3><p><strong>1.性能</strong></p>
+<p>Snapshot方式的性能是要明显高于AOF方式的，原因有两点：</p>
+<p>采用2进制方式存储数据，数据文件比较小，加载快速。</p>
+<p>存储的时候是按照配置中的save策略来存储，每次都是聚合很多数据批量存储，写入的效率很好，而AOF则一般都是工作在实时存储或者准实时模式下。相对来说存储的频率高，效率却偏低。</p>
+<p><strong>2.数据安全</strong></p>
+<p>AOF数据安全性高于Snapshot存储，原因：</p>
+<p>Snapshot存储是基于累计批量的思想，也就是说在允许的情况下，累计的数据越多那么写入效率也就越高，但数据的累计是靠时间的积累完成的，那么如果在长时间数据不写入RDB，但Redis又遇到了崩溃，那么没有写入的数据就无法恢复了，但是AOF方式偏偏相反，根据AOF配置的存储频率的策略可以做到最少的数据丢失和较高的数据恢复能力。</p>
+<p>说完了性能和安全，这里不得不提的就是在Redis中的Rewrite的功能，AOF的存储是按照记录日志的方式去工作的，那么成千上万的数据插入必然导致日志文件的扩大，Redis这个时候会根据配置合理触发Rewrite操作，所谓Rewrite就是将日志文件中的所有数据都重新写到另外一个新的日志文件中，但是不同的是，对于老日志文件中对于Key的多次操作，只保留最终的值的那次操作记录到日志文件中，从而缩小日志文件的大小。这里有两个配置需要注意：</p>
+<p>auto-aof-rewrite-percentage 100 （当前写入日志文件的大小占到初始日志文件大小的某个百分比时触发Rewrite）</p>
+<p>auto-aof-rewrite-min-size 64mb （本次Rewrite最小的写入数据良）</p>
+<p>两个条件需要同时满足。</p>
+<h2 id="redis的数据结构、使用场景"><a href="#redis的数据结构、使用场景" class="headerlink" title="redis的数据结构、使用场景"></a>redis的数据结构、使用场景</h2><p><img src="https://images-cdn.shimo.im/7do43jkNXXIobvYV/image.png!thumbnail" alt="图片"></p>
+<p><img src="https://uploader.shimo.im/f/bKLB0GR4iUMSqsxa.png!thumbnail" alt="图片"></p>
+<h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><p>缓存、计数器、分布式锁、分布式ID、、</p>
+<p><img src="https://uploader.shimo.im/f/nEUlBPzOKpIy2wm7.png!thumbnail" alt="图片"></p>
+<h3 id="HASH"><a href="#HASH" class="headerlink" title="HASH"></a>HASH</h3><p>存储用户信息、用户主页访问量</p>
+<p><img src="https://images-cdn.shimo.im/cH10C0fSUkIoimcI/image.png!thumbnail" alt="图片"></p>
+<p><img src="https://uploader.shimo.im/f/ZrBnyYjNdBEpjAZh.png!thumbnail" alt="图片"></p>
+<h3 id="LIST"><a href="#LIST" class="headerlink" title="LIST"></a>LIST</h3><p>微博关注人微博时间轴列表</p>
+<h3 id="SET"><a href="#SET" class="headerlink" title="SET"></a>SET</h3><p>赞、踩、标签</p>
+<h3 id="ZSET"><a href="#ZSET" class="headerlink" title="ZSET"></a>ZSET</h3><p>排行榜</p>
+<h2 id="redis的主从模式"><a href="#redis的主从模式" class="headerlink" title="redis的主从模式"></a>redis的主从模式</h2><h3 id="主从配置"><a href="#主从配置" class="headerlink" title="主从配置"></a>主从配置</h3><p>主从机器一般是分开的两台机器，这里为了演示方便，使用了一台机器，所以配置文件中，处理端口的区分之外，还需要注意日志文件，数据库文件，pid文件等的区分。</p>
+<h3 id="启动redis命令"><a href="#启动redis命令" class="headerlink" title="启动redis命令"></a>启动redis命令</h3><p>redis-server redis.conf</p>
+<p><em>直接自定加载的配置文件即可</em></p>
+<p><strong>主机配置</strong></p>
+<p>复制一份redis.conf成redis-6379.conf。修改配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#演示方便，开放ip连接</span><br><span class="line">bind 0.0.0.0</span><br><span class="line">#后台运行</span><br><span class="line">daemonize yes</span><br><span class="line">#pid文件</span><br><span class="line">pidfile &#x2F;var&#x2F;run&#x2F;redis_6379.pid</span><br><span class="line">dbfilename dump-6379.rdb</span><br><span class="line">#日志文件</span><br><span class="line">logfile &quot;6379.log&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>从机配置</strong></p>
+<p>复制一份redis.conf成redis-6380.conf。修改配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">bind 0.0.0.0</span><br><span class="line">port 6380</span><br><span class="line">daemonize yes</span><br><span class="line">pidfile &#x2F;var&#x2F;run&#x2F;redis_6380.pid</span><br><span class="line">dbfilename dump-6380.rdb</span><br><span class="line">logfile &quot;6380.log&quot;</span><br><span class="line">#slaveof表示作为从库的配置</span><br><span class="line">slaveof 127.0.0.1 6379</span><br><span class="line">#从库只能读操作</span><br><span class="line">slave-read-only yes</span><br></pre></td></tr></table></figure>
+<h3 id="查看redis的信息"><a href="#查看redis的信息" class="headerlink" title="查看redis的信息"></a>查看redis的信息</h3><p>redis-cli -p 6379 info replication</p>
+<ul>
+<li>其中6379表示指定端口</li>
+<li>replication表示主从的信息</li>
+</ul>
+<p>查看主库信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[root@izwz95t3hfncu7j54o7zefz src]# .&#x2F;redis-cli -p 6379 info replication</span><br><span class="line"># Replication</span><br><span class="line">role:master</span><br><span class="line">connected_slaves:1</span><br><span class="line">slave0:ip&#x3D;127.0.0.1,port&#x3D;6380,state&#x3D;online,offset&#x3D;1183,lag&#x3D;0</span><br><span class="line">master_replid:32125185597f85a2155d187ccd57168cf6681395</span><br><span class="line">master_replid2:0000000000000000000000000000000000000000</span><br><span class="line">master_repl_offset:1183</span><br><span class="line">second_repl_offset:-1</span><br><span class="line">repl_backlog_active:1</span><br><span class="line">repl_backlog_size:1048576</span><br><span class="line">repl_backlog_first_byte_offset:1</span><br><span class="line">repl_backlog_histlen:1183</span><br></pre></td></tr></table></figure>
+<p>查看从库信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[root@izwz95t3hfncu7j54o7zefz src]# .&#x2F;redis-cli -p 6380 info replication</span><br><span class="line"># Replication</span><br><span class="line">role:slave</span><br><span class="line">master_host:127.0.0.1</span><br><span class="line">master_port:6379</span><br><span class="line">master_link_status:up</span><br><span class="line">master_last_io_seconds_ago:0</span><br><span class="line">master_sync_in_progress:0</span><br><span class="line">slave_repl_offset:1239</span><br><span class="line">slave_priority:100</span><br><span class="line">slave_read_only:1</span><br><span class="line">connected_slaves:0</span><br><span class="line">master_replid:32125185597f85a2155d187ccd57168cf6681395</span><br><span class="line">master_replid2:0000000000000000000000000000000000000000</span><br><span class="line">master_repl_offset:1239</span><br><span class="line">second_repl_offset:-1</span><br><span class="line">repl_backlog_active:1</span><br><span class="line">repl_backlog_size:1048576</span><br><span class="line">repl_backlog_first_byte_offset:1</span><br><span class="line">repl_backlog_histlen:1239</span><br></pre></td></tr></table></figure>
+<p>查看配置效果：复制成功！！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@izwz95t3hfncu7j54o7zefz src]# .&#x2F;redis-cli -p 6379 set hello helloworld</span><br><span class="line">OK</span><br><span class="line">[root@izwz95t3hfncu7j54o7zefz src]# .&#x2F;redis-cli -p 6380 get hello</span><br><span class="line">&quot;helloworld&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="redis的高可用"><a href="#redis的高可用" class="headerlink" title="redis的高可用"></a>redis的高可用</h2><h3 id="sentinel启动命令"><a href="#sentinel启动命令" class="headerlink" title="sentinel启动命令"></a>sentinel启动命令</h3><p>redis-sentinel sentinel.conf</p>
+<h3 id="sentinel机制"><a href="#sentinel机制" class="headerlink" title="sentinel机制"></a>sentinel机制</h3><p><img src="https://images-cdn.shimo.im/Ooe0kYLSfIkTVhnX/image.png!thumbnail" alt="图片"></p>
+<p>过程：</p>
+<ol>
+<li>多个sentinel发现并确认master有问题</li>
+<li>选举出一个sentinel作为领导</li>
+<li>选出一个slave作为master</li>
+<li>通知其余slave成为新的master的slave</li>
+<li>通知客户端主从变化</li>
+<li>等待老的master复活成为新的master的slave<h3 id="创建sentinel-conf配置文件"><a href="#创建sentinel-conf配置文件" class="headerlink" title="创建sentinel.conf配置文件"></a><strong>创建sentinel.conf配置文件</strong></h3></li>
+</ol>
+<ol>
+<li>port26379</li>
+<li>daemonize yes</li>
+<li><h1 id="sentinel-announce-ip"><a href="#sentinel-announce-ip" class="headerlink" title="sentinel announce-ip "></a>sentinel announce-ip <ip></h1></li>
+<li><h1 id="sentinel-announce-port"><a href="#sentinel-announce-port" class="headerlink" title="sentinel announce-port "></a>sentinel announce-port <port></h1></li>
+<li>dir/opt/redis-5.0.4/data</li>
+<li>logfile “26379.log”</li>
+<li>sentinel monitor mymaster 127.0.0.16379 2</li>
+<li><h1 id="sentinel-auth-pass"><a href="#sentinel-auth-pass" class="headerlink" title="sentinel auth-pass  "></a>sentinel auth-pass <master-name> <password></h1></li>
+<li>sentinel down-after-milliseconds mymaster30000</li>
+<li>sentinel parallel-syncs mymaster1</li>
+<li>sentinel failover-timeout mymaster180000</li>
+<li><h1 id="sentinel-notification-script"><a href="#sentinel-notification-script" class="headerlink" title="sentinel notification-script  "></a>sentinel notification-script <master-name> <script-path></h1></li>
+</ol>
+<p>附课程的配置文件：</p>
+<p><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/HnSnIQQSGDQotki4.conf">redis-6379.conf</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/lbgQQRyBkbM8wrCP.conf">redis-6380.conf</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/ZzZpySSG0KcfHrDY.conf">redis-6381.conf</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/JPXbq1UE21cUWroZ.conf">sentinel-26379.conf</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/7dbdAEXL5Z45P3fG.conf">sentinel-26380.conf</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/E2rCkoUgVOkHZwTC.conf">sentinel-26381.conf</a></p>
+<p><strong>配置文件说明：</strong></p>
+<p><strong>1.**</strong>port**:当前Sentinel服务运行的端口</p>
+<p><strong>2.**</strong>dir**: Sentinel服务运行时使用的临时文件</p>
+<p><strong>3.**</strong>sentinel monitor master001**<strong>192.168**</strong>.<strong>**110.101 6379 2</strong>:Sentinel去监视一个名为master001的主redis实例，这个主实例的IP地址为本机地址192.168.110.101，端口号为6379，而将这个主实例判断为失效至少需要2个 Sentinel进程的同意，只要同意Sentinel的数量不达标，自动failover就不会执行</p>
+<p><strong>4.**</strong>sentinel down**<strong>-**</strong>after**<strong>-**</strong>milliseconds master001**<strong>30000</strong>:指定了Sentinel认为Redis实例已经失效所需的毫秒数。当实例超过该时间没有返回PING，或者直接返回错误，那么Sentinel将这个实例标记为主观下线。只有一个 Sentinel进程将实例标记为主观下线并不一定会引起实例的自动故障迁移：只有在足够数量的Sentinel都将一个实例标记为主观下线之后，实例才会被标记为客观下线，这时自动故障迁移才会执行</p>
+<p><strong>5.**</strong>sentinel parallel**<strong>-**</strong>syncs master001**<strong>1</strong>：指定了在执行故障转移时，最多可以有多少个从Redis实例在同步新的主实例，在从Redis实例较多的情况下这个数字越小，同步的时间越长，完成故障转移所需的时间就越长</p>
+<p><strong>6.**</strong>sentinel failover**<strong>-**</strong>timeout master001**<strong>180000</strong>：如果在该时间（ms）内未能完成failover操作，则认为该failover失败</p>
+<p><strong>7.**</strong>sentinel notification-script <master-name> <script-path>**：指定sentinel检测到该监控的redis实例指向的实例异常时，调用的报警脚本。该配置项可选，但是很常用</p>
+<h3 id="三个定时任务"><a href="#三个定时任务" class="headerlink" title="三个定时任务"></a>三个定时任务</h3><p>（1）每隔10s每个sentinel会对master节点和slave节点执行info命令</p>
+<p>作用就是发现slave节点，并且确认主从关系，因为redis-Sentinel节点启动的时候是知道</p>
+<p>master节点的，只是没有配置相应的slave节点的信息</p>
+<p>（2）每隔两秒，sentinel都会通过master节点内部的channel来交换信息（基于发布订阅）</p>
+<p>作用是通过master节点的频道来交互每个Sentinel对master节点的判断信息</p>
+<p>（3） 每隔一秒每个sentinel对其他的redis节点（master，slave，sentinel）执行ping操作，对于master来说，若超过30s内没有回复，就对该master进行主观下线并询问其他的Sentinel节点是否可以客观下线</p>
+<h3 id="故障转移过程"><a href="#故障转移过程" class="headerlink" title="故障转移过程"></a>故障转移过程</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Xrinehart/p/3502213.html">https://www.cnblogs.com/Xrinehart/p/3502213.html</a></li>
+</ul>
+<p><strong>1. 领导者选举</strong></p>
+<p>作用：选举出一个sentenel节点作为领导者去进行故障转移操作。</p>
+<p>过程：</p>
+<p>1). 每个做主观下线的sentinel节点向其他sentinel节点发送上面那条命令，要求将它设置为领导者。</p>
+<p>2). 收到命令的sentinel节点如果还没有同意过其他的sentinel发送的命令（还未投过票），那么就会同意，否则拒绝。</p>
+<p>3). 如果该sentinel节点发现自己的票数已经过半且达到了quorum的值，就会成为领导者。</p>
+<p>4). 如果这个过程出现多个sentinel成为领导者，则会等待一段时间重新选举。</p>
+<p><img src="https://uploader.shimo.im/f/TUnoZjIooiAkPa1f.png!thumbnail" alt="图片"></p>
+<p><strong>2. 选出新的master节点</strong></p>
+<p>redis sentinel会选一个合适的slave来升级为master，那么，如何选择一个合适的slave呢？顺序如下：</p>
+<p>1). 选择slave-priority最高的slave节点（默认是相同）。</p>
+<p>2). 选择复制偏移量最大的节点。</p>
+<p>3). 如果以上两个条件都不满足，选runId最小的（启动最早的）。</p>
+<p><strong>3. 更改slave节点的master节点</strong></p>
+<p>当选举出新的master节点后，会将其余的节点变更为新的master节点的slave节点，如果原有的master节点重新上线，成为新的master节点的slave节点。</p>
+<p><strong>4. 通知客户端</strong></p>
+<p>当所有节点配置结束后，sentinel会通知客户端节点变更信息。</p>
+<p><strong>5. 客户端连接新的master节点</strong></p>
+<p>客户端收到节点信息后，会连接新的master节点。</p>
+<p><img src="https://uploader.shimo.im/f/NuZFhubnubM60KPs.png!thumbnail" alt="图片"></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/09/14/%E8%BD%AC%E8%BD%BD%2010%E3%80%81%E6%8C%81%E4%B9%85%E5%B1%82%E6%A1%86%E6%9E%B6spring%20data%20jpa/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          持久层框架spring data jpa
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/09/14/%E8%BD%AC%E8%BD%BD%204%E3%80%81springboot%E7%9A%84%E9%9B%86%E6%88%90%E4%B8%8E%E8%BF%90%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">springboot集成与运用</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="转载 5、redis的高可用、主从、与缓存使用" data-title="redis的高可用、主从与缓存的使用" data-url="http://www.2333nmsl.ml/2020/09/14/%E8%BD%AC%E8%BD%BD%205%E3%80%81redis%E7%9A%84%E9%AB%98%E5%8F%AF%E7%94%A8%E3%80%81%E4%B8%BB%E4%BB%8E%E3%80%81%E4%B8%8E%E7%BC%93%E5%AD%98%E4%BD%BF%E7%94%A8/"  data-images="/img/1.gif" data-content="redis的高可用、主从与缓存的使用">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2020 yht
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"rect":"opacity:0.8","log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

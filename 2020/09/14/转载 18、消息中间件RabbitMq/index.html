@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>消息中间件RabbitMq | Hexo</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="转载 18、消息中间件RabbitMq">
+<meta property="og:type" content="article">
+<meta property="og:title" content="消息中间件RabbitMq">
+<meta property="og:url" content="http://www.2333nmsl.ml/2020/09/14/%E8%BD%AC%E8%BD%BD%2018%E3%80%81%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6RabbitMq/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="转载 18、消息中间件RabbitMq">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://images-cdn.shimo.im/qgubi7bYNV8EQbnx/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/nLmjjYHoHgoGYQ3P/image.png!thumbnail">
+<meta property="og:image" content="https://uploader.shimo.im/f/hh9u2y4wvrklK5YS.png!thumbnail">
+<meta property="og:image" content="https://uploader.shimo.im/f/qsM9lgQH6Pg51NYy.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/VCBu8i6TwpYXXTg1/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/oh0uhfzhEwEfuG3V/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/eswMr2ZEx0cfSmzS/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/ilyVG8FiW9wD0mQq/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/XNq4Iz0K9RstAjK3/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/gyBH3B8sHjQtf1PN/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/GNv2X1NcEsECKB8V/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/bY6CrBOMsRUu7N8B/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/ZhqgopRemeoJtPez/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/UXm6l2L9VVgjVElB/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/HMJMnPkNZucvef58/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/aGZv6ddx5LABsUYv/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/nVC6msJVdA86PYNJ/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/meChClL08dI5fQmd/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/2wtrH7Nehu4PoCq3/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/3C637kFOh1oCzfDR/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/p3mrmWdWsfcdF71y/image.png!thumbnail">
+<meta property="article:published_time" content="2020-09-14T15:08:04.000Z">
+<meta property="article:modified_time" content="2020-09-14T07:07:17.956Z">
+<meta property="article:author" content="yht">
+<meta property="article:tag" content="消息队列">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images-cdn.shimo.im/qgubi7bYNV8EQbnx/image.png!thumbnail">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 5.0.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/1.gif" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/"></a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Yht-7683/" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="#" title="mail">mail</a>
+					        
+								<a class="qq" target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=434807683&site=qq&menu=yes" title="qq">qq</a>
+					        
+								<a class="weibo" target="_blank" href="https://weibo.com/" title="weibo">weibo</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ASCII%E7%A0%81%E5%9B%BE/" style="font-size: 10px;">ASCII码图</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 20px;">Java基础</a> <a href="/tags/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 10px;">Java多线程</a> <a href="/tags/Redis/" style="font-size: 20px;">Redis</a> <a href="/tags/Websocket/" style="font-size: 10px;">Websocket</a> <a href="/tags/io/" style="font-size: 10px;">io</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/mybatis%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">mybatis框架</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/renren-fast/" style="font-size: 15px;">renren-fast</a> <a href="/tags/spring-data/" style="font-size: 10px;">spring data</a> <a href="/tags/spring-security/" style="font-size: 10px;">spring security</a> <a href="/tags/springboot%E6%A1%86%E6%9E%B6/" style="font-size: 15px;">springboot框架</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 10px;">消息队列</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">计算机网络</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://a-cai.gitee.io/blog/">前端资料</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/1.gif" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Yht-7683/" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="#" title="mail">mail</a>
+			        
+						<a class="qq" target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=434807683&site=qq&menu=yes" title="qq">qq</a>
+			        
+						<a class="weibo" target="_blank" href="https://weibo.com/" title="weibo">weibo</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-转载 18、消息中间件RabbitMq" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/09/14/%E8%BD%AC%E8%BD%BD%2018%E3%80%81%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6RabbitMq/" class="article-date">
+  	<time datetime="2020-09-14T15:08:04.000Z" itemprop="datePublished">2020-09-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      消息中间件RabbitMq
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" rel="tag">消息队列</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="3-五种队列模式-xmind4-消息确认机制-xmind5-消息应答与持久化-xmind课程18预习-消息中间件RabbitMq-xmind1-RabbitMq简介-xmind2-RabbitMq安装与组件-xmind"><a href="#3-五种队列模式-xmind4-消息确认机制-xmind5-消息应答与持久化-xmind课程18预习-消息中间件RabbitMq-xmind1-RabbitMq简介-xmind2-RabbitMq安装与组件-xmind" class="headerlink" title="3_五种队列模式.xmind4_消息确认机制.xmind5_消息应答与持久化.xmind课程18预习_消息中间件RabbitMq.xmind1_RabbitMq简介.xmind2_RabbitMq安装与组件.xmind"></a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/dGqVYSa3LHYKfmyv.xmind">3_五种队列模式.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/xiZWFxbBG6sUBCtt.xmind">4_消息确认机制.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/OvsJwp2Y3SsuHfmH.xmind">5_消息应答与持久化.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/EJhLHdcFRBIWX3CA.xmind">课程18预习_消息中间件RabbitMq.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/JEdIJLdockkOQ0OR.xmind">1_RabbitMq简介.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/NC8GfDrAaKkPMP9i.xmind">2_RabbitMq安装与组件.xmind</a></h2><p><strong>消息与消息队列</strong></p>
+<p>消息（Message）是指在应用间传送的数据。消息可以非常简单，比如只包含文本字符串，也可以更复杂，可能包含嵌入对象。</p>
+<p>消息队列（Message Queue）是一种应用间的通信方式，消息发送后可以立即返回，由消息系统来确保消息的可靠传递。消息发布者只管把消息发布到 MQ 中而不用管谁来取，消息使用者只管从 MQ 中取消息而不管是谁发布的。这样发布者和使用者都不用知道对方的存在。</p>
+<h2 id="使用消息队列的情景例子"><a href="#使用消息队列的情景例子" class="headerlink" title="使用消息队列的情景例子"></a>使用消息队列的情景例子</h2><p>以常见的订单系统为例，用户点击【下单】按钮之后的业务逻辑可能包括：扣减库存、生成相应单据、发红包、发短信通知。在业务发展初期这些逻辑可能放在一起同步执行，随着业务的发展订单量增长，需要提升系统服务的性能，这时可以将一些不需要立即生效的操作拆分出来异步执行，比如发放红包、发短信通知等。这种场景下就可以用 MQ ，在下单的主流程（比如扣减库存、生成相应单据）完成之后发送一条消息到 MQ 让主流程快速完结，而由另外的单独线程拉取MQ的消息（或者由 MQ 推送消息），当发现 MQ 中有发红包或发短信之类的消息时，执行相应的业务逻辑。</p>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>异步处理</p>
+<p>应用解耦</p>
+<p>流量削锋</p>
+<p>日志处理</p>
+<p>消息通讯</p>
+<h2 id="RabbitMq教程"><a href="#RabbitMq教程" class="headerlink" title="RabbitMq教程"></a>RabbitMq教程</h2><h3 id="AMQP"><a href="#AMQP" class="headerlink" title="AMQP"></a>AMQP</h3><p>即Advanced Message Queuing Protocol,一个提供统一消息服务的应用层标准高级消息队列协议,是应用层协议的一个开放标准,为面向消息的中间件设计。基于此协议的客户端与消息中间件可传递消息，并不受客户端/中间件不同产品，不同的开发语言等条件的限制。Erlang中的实现有 RabbitMQ等。</p>
+<h3 id="RabbitMq维基百科"><a href="#RabbitMq维基百科" class="headerlink" title="RabbitMq维基百科"></a>RabbitMq维基百科</h3><p>MQ全称为Message Queue, 消息队列（MQ）是一种应用程序对应用程序的通信方法。应用程序通过读写出入队列的消息（针对应用程序的数据）来通信，而无需专用连接来链接它们。消息传递指的是程序之间通过在消息中发送数据进行通信，而不是通过直接调用彼此来通信，直接调用通常是用于诸如远程过程调用的技术。排队指的是应用程序通过 队列来通信。队列的使用除去了接收和发送应用程序同时执行的要求。其中较为成熟的MQ产品有IBM WEBSPHERE MQ等等。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.rabbitmq.com/getstarted.html">https://www.rabbitmq.com/getstarted.html</a></li>
+</ul>
+<p><img src="https://images-cdn.shimo.im/qgubi7bYNV8EQbnx/image.png!thumbnail" alt="图片"></p>
+<h2 id="rabbitMq安装"><a href="#rabbitMq安装" class="headerlink" title="rabbitMq安装"></a>rabbitMq安装</h2><p>第一步、Erlang语言环境安装</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://www.erlang.org/downloads">http://www.erlang.org/downloads</a></li>
+</ul>
+<p><img src="https://images-cdn.shimo.im/nLmjjYHoHgoGYQ3P/image.png!thumbnail" alt="图片"></p>
+<p>安装erlang环境，看最新的RabbitMq支持的版本支持erlang的版本在20.3~22.0.*之间，为了通用后面的版本，我选了erlang的21.3.*版本安装</p>
+<p><img src="https://uploader.shimo.im/f/hh9u2y4wvrklK5YS.png!thumbnail" alt="图片"></p>
+<p>于是有了下面步骤，安装官方的提示打开<a target="_blank" rel="noopener" href="https://github.com/rabbitmq/erlang-rpm">https://github.com/rabbitmq/erlang-rpm</a></p>
+<p>1、安装erlang环境</p>
+<p>首先在打开/etc/yum.repos.d/rabbitmq-erlang.repo，注意手动创建rabbitmq-erlang.repo。</p>
+<p>在rabbitmq-erlang.repo输入以下内容，保存，然后执行yum install erlang命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[rabbitmq-erlang]</span><br><span class="line">name&#x3D;rabbitmq-erlang</span><br><span class="line">baseurl&#x3D;https:&#x2F;&#x2F;dl.bintray.com&#x2F;rabbitmq-erlang&#x2F;rpm&#x2F;erlang&#x2F;21&#x2F;el&#x2F;7</span><br><span class="line">gpgcheck&#x3D;1</span><br><span class="line">gpgkey&#x3D;https:&#x2F;&#x2F;dl.bintray.com&#x2F;rabbitmq&#x2F;Keys&#x2F;rabbitmq-release-signing-key.asc</span><br><span class="line">repo_gpgcheck&#x3D;0</span><br><span class="line">enabled&#x3D;1</span><br></pre></td></tr></table></figure>
+<p>然后输入erl，提示已经可以了。<br>2、安装RabbitMq，首先需要看版本，</p>
+<p>打开<a target="_blank" rel="noopener" href="https://www.rabbitmq.com/install-rpm.html#downloads">https://www.rabbitmq.com/install-rpm.html#downloads</a></p>
+<p><img src="https://uploader.shimo.im/f/qsM9lgQH6Pg51NYy.png!thumbnail" alt="图片"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#下载rabbitmq的rpm</span><br><span class="line">wget https:&#x2F;&#x2F;github.com&#x2F;rabbitmq&#x2F;rabbitmq-server&#x2F;releases&#x2F;download&#x2F;v3.7.15&#x2F;rabbitmq-server-3.7.15-1.el7.noarch.rpm</span><br><span class="line">yum install rabbitmq-server-3.7.15-1.el7.noarch.rpm</span><br><span class="line">#完成后启动服务：</span><br><span class="line">service rabbitmq-server start</span><br><span class="line">#可以查看服务状态：</span><br><span class="line">service rabbitmq-server status</span><br></pre></td></tr></table></figure>
+
+<p>3、、windows中安装RabbitMq</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.rabbitmq.com/install-windows.html">https://www.rabbitmq.com/install-windows.html</a></li>
+</ul>
+<p><img src="https://images-cdn.shimo.im/VCBu8i6TwpYXXTg1/image.png!thumbnail" alt="图片"></p>
+<p>4、启动RabbitMq</p>
+<p>RabbitMq默认用户guest只能localhost访问，所以我们需要新建一个用户，命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">新建：</span><br><span class="line">rabbitmqctl add_user username password</span><br><span class="line">比如：rabbitmqctl add_user root admin</span><br><span class="line">授权：</span><br><span class="line">rabbitmqctl set_user_tags username role</span><br><span class="line">rabbitmqctl set_user_tags root administrator</span><br><span class="line">启动界面管理插件</span><br><span class="line">rabbitmq-plugins enable rabbitmq_management</span><br><span class="line">可以在登录后在界面中管理用户和授权</span><br></pre></td></tr></table></figure>
+<p>5、启动RabbitMq（windows）</p>
+<ul>
+<li>安装RabbitMQ 网页插件，在cmd控制面板中进入RabbitMQ 的安装目录下的rabbitmq_server-3.7.3\sbin文件夹，(D:\Program Files\RabbitMQServer\rabbitmq_server-3.7.3\sbin)，输入: rabbitmq-plugins.bat enable rabbitmq_management</li>
+<li>默认会提供一个默认用户guest，密码也是guest，线上环境需要创建一个新用户，并把guest用户删除。</li>
+<li>默认账号密码：guest  /  guest，直接打开localhost:15672可以登录</li>
+</ul>
+<p><img src="https://images-cdn.shimo.im/oh0uhfzhEwEfuG3V/image.png!thumbnail" alt="图片"></p>
+<p>第四步、添加用户和授权</p>
+<ul>
+<li>开始新建用户：重新通过cmd控制面板中进入RabbitMQ 的安装目录下的rabbitmq_server-3.7.3\sbin文件夹，(D:\Program Files\RabbitMQServer\rabbitmq_server-3.7.3\sbin)，开始新建用户，输入：rabbitmqctl.bat add_user username password，即可成功添加用户</li>
+</ul>
+<p><img src="https://images-cdn.shimo.im/eswMr2ZEx0cfSmzS/image.png!thumbnail" alt="图片"></p>
+<ul>
+<li>授权管理员命令：rabbitmqctl.bat set_user_tags root administrator</li>
+</ul>
+<p><img src="https://images-cdn.shimo.im/ilyVG8FiW9wD0mQq/image.png!thumbnail" alt="图片"></p>
+<ul>
+<li>授权命令： rabbitmqctl.bat set_permissions -p / root .* .* .*</li>
+</ul>
+<p><img src="https://images-cdn.shimo.im/XNq4Iz0K9RstAjK3/image.png!thumbnail" alt="图片"></p>
+<ul>
+<li>停止/启动RabbitMQ服务（需要以管理员身份使用命令行）: net stop RabbitMQ &amp;&amp; net start RabbitMQ</li>
+</ul>
+<p><img src="https://images-cdn.shimo.im/gyBH3B8sHjQtf1PN/image.png!thumbnail" alt="图片"></p>
+<ul>
+<li>RabbitMq界面。（<a target="_blank" rel="noopener" href="http://192.168.1.101:15672/#/users">http://192.168.1.101:15672/</a>）</li>
+</ul>
+<p><img src="https://images-cdn.shimo.im/GNv2X1NcEsECKB8V/image.png!thumbnail" alt="图片"></p>
+<h2 id="RabbitMq命令大全"><a href="#RabbitMq命令大全" class="headerlink" title="RabbitMq命令大全"></a>RabbitMq命令大全</h2><p>启动监控管理器：rabbitmq-plugins enable rabbitmq_management</p>
+<p>关闭监控管理器：rabbitmq-plugins disable rabbitmq_management</p>
+<p>启动rabbitmq：rabbitmq-service start</p>
+<p>关闭rabbitmq：rabbitmq-service stop</p>
+<p>查看所有的队列：rabbitmqctl list_queues</p>
+<p>清除所有的队列：rabbitmqctl reset</p>
+<p>关闭应用：rabbitmqctl stop_app</p>
+<p>启动应用：rabbitmqctl start_app</p>
+<p>用户和权限设置（后面用处）</p>
+<p>添加用户：rabbitmqctl add_user username password</p>
+<p>分配角色：rabbitmqctl set_user_tags username administrator</p>
+<p>新增虚拟主机：rabbitmqctl add_vhost vhost_name</p>
+<p>将新虚拟主机授权给新用户：rabbitmqctl set_permissions -p vhost_name username ‘.<em>‘ ‘.</em>‘ ‘.*’</p>
+<h2 id="概念理解"><a href="#概念理解" class="headerlink" title="概念理解"></a>概念理解</h2><p>1.<strong>Broker</strong>：简单来说就是消息队列服务器实体。</p>
+<p>2.<strong>Exchange</strong>：消息交换机，它指定消息按什么规则，路由到哪个队列。</p>
+<p>3.<strong>Queue</strong>：消息队列载体，每个消息都会被投入到一个或多个队列。</p>
+<p>4.<strong>Binding</strong>：绑定，它的作用就是把exchange和queue按照路由规则绑定起来。</p>
+<p>5.<strong>Routing Key</strong>：路由关键字，exchange根据这个关键字进行消息投递。</p>
+<p>6.<strong>vhost</strong>：虚拟主机，一个broker里可以开设多个vhost，用作不同用户的权限分离。</p>
+<p>7.<strong>producer</strong>：消息生产者，就是投递消息的程序。</p>
+<p>8.<strong>consumer</strong>：消息消费者，就是接受消息的程序。</p>
+<p>9.<strong>channel</strong>：消息通道，在客户端的每个连接里，可建立多个channel，每个channel代表一个会话任务。</p>
+<h2 id="五种队列模式"><a href="#五种队列模式" class="headerlink" title="五种队列模式"></a>五种队列模式</h2><ul>
+<li>P：消息的生产者</li>
+<li>C：消息的消费者</li>
+<li>红色：队列</li>
+</ul>
+<p><strong>应答机制ack</strong></p>
+<p><strong>持久化机制durable</strong></p>
+<ul>
+<li>rabbitMq不允许一个已存在的队列重新定义持久化参数。<h3 id="简单队列"><a href="#简单队列" class="headerlink" title="简单队列"></a>简单队列</h3></li>
+</ul>
+<p>简单队列的生产者和消费者关系一对一</p>
+<p>项目代码：simpleQueue()；</p>
+<p><img src="https://images-cdn.shimo.im/bY6CrBOMsRUu7N8B/image.png!thumbnail" alt="图片"></p>
+<h3 id="工作队列"><a href="#工作队列" class="headerlink" title="工作队列"></a>工作队列</h3><p>一个生产者、2个消费者。</p>
+<p>但MQ中一个消息只能被一个消费者获取。即消息要么被C1获取，要么被C2获取。这种模式适用于类似集群，能者多劳。性能好的可以安排多消费，性能低的可以安排低消费。</p>
+<p>默认：轮询分发</p>
+<p>其他：公平分发</p>
+<ul>
+<li>使用公平分发，必须关闭自动应答，改为手动应答。</li>
+<li>消费者端添加代码：channel.basicQos(1);</li>
+</ul>
+<p>项目代码：</p>
+<p><img src="https://images-cdn.shimo.im/ZhqgopRemeoJtPez/image.png!thumbnail" alt="图片"></p>
+<h3 id="发布订阅模式"><a href="#发布订阅模式" class="headerlink" title="发布订阅模式"></a>发布订阅模式</h3><p>这种模式可以满足消费者发布一个消息，多个消费者消费同一信息的需求。</p>
+<p>广播给所有的接收者。</p>
+<p><img src="https://images-cdn.shimo.im/UXm6l2L9VVgjVElB/image.png!thumbnail" alt="图片"></p>
+<ol>
+<li>一个生产者，多个消费者</li>
+<li>每个消费者都有自己的队列</li>
+<li>生产者没有把消息发送到队列，而是发送到交换机exchange</li>
+<li>每个队列都绑定到交换机</li>
+<li>生产者发送的消息经过交换机，到达队列就能实现一个消息被多个消费者消费</li>
+</ol>
+<ul>
+<li>伪代码–生产者<ul>
+<li>创建mq链接、通道</li>
+<li>声明<strong>交换机–**</strong>fanout**<strong>模式</strong>，把消息发送到交换机上，（注意：交换机没有存储信息功能，不能持久化消息，因此，如果交换机没有绑定队列，那么消息就丢失了）</li>
+</ul>
+</li>
+<li>伪代码–消费者<ul>
+<li>创建mq链接、通道</li>
+<li>声明队列</li>
+<li>把对列绑定到上交换机</li>
+<li>消费者监听该队列的通道<h3 id="路由模式Routing"><a href="#路由模式Routing" class="headerlink" title="路由模式Routing"></a>路由模式Routing</h3></li>
+</ul>
+</li>
+</ul>
+<p>路由模式是在订阅模式基础上的完善，可以在生产消息的时候，加入Key值，与key值匹配的消费者消费信息。</p>
+<p><img src="https://images-cdn.shimo.im/HMJMnPkNZucvef58/image.png!thumbnail" alt="图片"></p>
+<ul>
+<li>伪代码–生产者<ul>
+<li>创建mq链接、通道</li>
+<li>声明<strong>交换机–**</strong>direct**<strong>模式</strong>，把消息发送到交换机上，并指定<strong>routingKey</strong>，（注意：交换机没有存储信息功能，不能持久化消息，因此，如果交换机没有绑定队列，那么消息就丢失了）</li>
+</ul>
+</li>
+<li>伪代码–消费者<ul>
+<li>创建mq链接、通道</li>
+<li>声明队列</li>
+<li>把<strong>对列绑定到上交换机，并指定routingKey</strong>，多个就绑定多个routingKey</li>
+<li>消费者监听该队列的通道<h3 id="通配符模式–Topic模式"><a href="#通配符模式–Topic模式" class="headerlink" title="通配符模式–Topic模式"></a>通配符模式–Topic模式</h3></li>
+</ul>
+</li>
+</ul>
+<p>通配符模式是在路由模式的升级，他允许key模糊匹配。*代表一个词，#代表一个或多个词。通过通配符模式我们就可以将C1对应的一个key准确定为item.add。而C2我们就不需要一一写出key值，而是用item.#代替即可。</p>
+<ul>
+<li><ul>
+<li>表示匹配一个</li>
+</ul>
+</li>
+<li><h1 id="表示匹配一个或多个"><a href="#表示匹配一个或多个" class="headerlink" title="表示匹配一个或多个"></a>表示匹配一个或多个</h1></li>
+</ul>
+<p><img src="https://images-cdn.shimo.im/aGZv6ddx5LABsUYv/image.png!thumbnail" alt="图片"></p>
+<ul>
+<li>伪代码–生产者<ul>
+<li>创建mq链接、通道</li>
+<li>声明<strong>交换机–**</strong>topic**<strong>模式</strong>，把消息发送到交换机上，并指定<strong>routingKey</strong>（注意：交换机没有存储信息功能，不能持久化消息，因此，如果交换机没有绑定队列，那么消息就丢失了）</li>
+</ul>
+</li>
+<li>伪代码–消费者<ul>
+<li>创建mq链接、通道</li>
+<li>声明队列</li>
+<li>把*<em>对列绑定到上交换机，并指定routingKey（可以用</em>和#来进行模糊匹配）**</li>
+<li>消费者监听该队列的通道<h3 id="RPC"><a href="#RPC" class="headerlink" title="RPC"></a>RPC</h3></li>
+</ul>
+</li>
+</ul>
+<p>（略）</p>
+<p><img src="https://images-cdn.shimo.im/nVC6msJVdA86PYNJ/image.png!thumbnail" alt="图片"></p>
+<h2 id="代码参数详解"><a href="#代码参数详解" class="headerlink" title="代码参数详解"></a>代码参数详解</h2><h3 id="channel通道"><a href="#channel通道" class="headerlink" title="channel通道"></a>channel通道</h3><ul>
+<li><p>channel方法详解：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/piaolingzxh/p/5448927.html">rabbitmq channel参数详解</a></p>
+</li>
+<li><p>queueDeclare方法参数详解：<a target="_blank" rel="noopener" href="https://blog.csdn.net/vbirdbest/article/details/78670550">https://blog.csdn.net/vbirdbest/article/details/78670550</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">channel.queueDeclare（）</span><br><span class="line">channel.basicQos（）</span><br><span class="line">channel.basicPublish（）</span><br><span class="line">channel.basicAck（）</span><br><span class="line">channel.basicConsume（）</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>为队列设置消息TTL</p>
+</li>
+</ul>
+<p>TTL 是 Time-To-Live 的缩写，指的是存活时间。RabbitMQ 可以为每一个队列设置其内部消息的 TTL。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, Object&gt; args &#x3D; new HashMap&lt;String, Object&gt;();</span><br><span class="line">args.put(&quot;x-message-ttl&quot;, 5000);</span><br><span class="line">consumerChannel.queueDeclare(QUEUE_NAME, false, false, true, args);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>为单条消息设置TTL</li>
+</ul>
+<p>也可以为每一条消息设置存活时间。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">AMQP.BasicProperties properties &#x3D; new AMQP.BasicProperties.Builder().expiration(&quot;500&quot;).build();</span><br><span class="line">senderChannel.basicPublish(&quot;&quot;, QUEUE_NAME, properties, message.getBytes(&quot;UTF-8&quot;));</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>队列TTL</li>
+</ul>
+<p>通过设置队列TTL，如果指定时间内队列没被使用，则队列自动被删除。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, Object&gt; args &#x3D; new HashMap&lt;String, Object&gt;();</span><br><span class="line">args.put(&quot;x-expires&quot;, 5000);</span><br><span class="line">consumerChannel.queueDeclare(QUEUE_NAME, false, false, true, args);</span><br></pre></td></tr></table></figure>
+<p>args参数：</p>
+<p>x-max-length 参数限制了一个队列的消息总数，当消息总数达到限定值时，队列头的消息会被抛弃。</p>
+<p>x-max-length-bytes队列中消息体总字节数进行限制</p>
+<p>x-dead-letter-exchange 死信队列</p>
+<h3 id="Exchange类型"><a href="#Exchange类型" class="headerlink" title="Exchange类型"></a>Exchange类型</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/piaolingzxh/p/5448757.html">rabbitmq direct、fanout、topic 三种Exchange java 代码比较</a><h3 id="消息应答ack"><a href="#消息应答ack" class="headerlink" title="消息应答ack"></a>消息应答ack</h3></li>
+</ul>
+<ul>
+<li>boolean autoAck = true;(自动确认模式)<ul>
+<li>一旦 RabbitMQ 将消息分发给了消费者，就会从内存中删除。在这种情况下，如果杀死正在执行任务的消费者，会丢失正在处理的消息，也会丢失已经分发给这个消费者但尚未处理的消息。</li>
+</ul>
+</li>
+<li>boolean autoAck = false; (手动确认模式)<ul>
+<li>我们不想丢失任何任务，如果有一个消费者挂掉了，那么我们应该将分发给它的任务交付给另一个消费者去处理。 为了确保消息不会丢失，RabbitMQ 支持消息应答。消费者发送一个消息应答，告诉 RabbitMQ 这个消息已经接收并且处理完毕了。RabbitMQ 可以删除它了。</li>
+</ul>
+</li>
+<li>消息应答是默认打开的。也就是 boolean autoAck =false;<h3 id="消息持久化"><a href="#消息持久化" class="headerlink" title="消息持久化"></a>消息持久化</h3></li>
+</ul>
+<p>boolean durable = true;</p>
+<p>channel.queueDeclare(“test_queue_work”, durable, false, false, null);</p>
+<h2 id="生产者发送消息（exchange交换机模式）"><a href="#生产者发送消息（exchange交换机模式）" class="headerlink" title="生产者发送消息（exchange交换机模式）"></a>生产者发送消息（exchange交换机模式）</h2><h3 id="Direct类型（路由模式）"><a href="#Direct类型（路由模式）" class="headerlink" title="Direct类型（路由模式）"></a><strong>Direct类型（路由模式）</strong></h3><p>将消息中的RoutingKey与该Exchange关联的所有Binding中的BindingKey进行比较，如果相等，则发送到该Binding对应的Queue中。</p>
+<p><img src="https://images-cdn.shimo.im/meChClL08dI5fQmd/image.png!thumbnail" alt="图片"></p>
+<h3 id="Fanout-类型（发布订阅模式）"><a href="#Fanout-类型（发布订阅模式）" class="headerlink" title="Fanout 类型（发布订阅模式）"></a><strong>Fanout 类型（发布订阅模式）</strong></h3><p>则会将消息发送给所有与该  Exchange 定义过  Binding 的所有  Queues 中去，其实是一种广播行为</p>
+<p><img src="https://images-cdn.shimo.im/2wtrH7Nehu4PoCq3/image.png!thumbnail" alt="图片"></p>
+<h3 id="Topic类型（通配符模式）"><a href="#Topic类型（通配符模式）" class="headerlink" title="Topic类型（通配符模式）"></a><strong>Topic类型（通配符模式）</strong></h3><p>则会按照正则表达式，对RoutingKey与BindingKey进行匹配，如果匹配成功，则发送到对应的Queue中</p>
+<p><img src="https://images-cdn.shimo.im/3C637kFOh1oCzfDR/image.png!thumbnail" alt="图片"></p>
+<h2 id="消息确认机制（事务-confirm）"><a href="#消息确认机制（事务-confirm）" class="headerlink" title="消息确认机制（事务+confirm）"></a>消息确认机制（事务+confirm）</h2><p>在使用RabbitMQ的时候，我们可以通过消息持久化操作来解决因为服务器的异常奔溃导致的消息丢失，除此之外我们还会遇到一个问题，当消息的发布者在将消息发送出去之后，消息到底有没有正确到达broker代理服务器呢？如果不进行特殊配置的话，默认情况下发布操作是不会返回任何信息给生产者的，也就是默认情况下我们的生产者是不知道消息有没有正确到达broker的，如果在消息到达broker之前已经丢失的话，持久化操作也解决不了这个问题，因为消息根本就没到达代理服务器，你怎么进行持久化，那么这个问题该怎么解决呢？</p>
+<p>RabbitMQ为我们提供了两种方式：</p>
+<ul>
+<li>（事务机制）通过AMQP事务机制实现，这也是AMQP协议层面提供的解决方案；</li>
+<li>（Confirm模式）通过将channel设置成confirm模式来实现；<h3 id="1、AMQP事务机制"><a href="#1、AMQP事务机制" class="headerlink" title="1、AMQP事务机制"></a>1、AMQP事务机制</h3></li>
+</ul>
+<p><img src="https://images-cdn.shimo.im/p3mrmWdWsfcdF71y/image.png!thumbnail" alt="图片"></p>
+<ul>
+<li>txSelect：用户将当前channel设置成transaction模式</li>
+<li>txCommit：用于提交事务</li>
+<li>txRollback：回滚事务</li>
+</ul>
+<p>这里首先探讨下RabbitMQ事务机制。</p>
+<p>RabbitMQ中与事务机制有关的方法有三个：txSelect(), txCommit()以及txRollback(), txSelect用于将当前channel设置成transaction模式，txCommit用于提交事务，txRollback用于回滚事务，在通过txSelect开启事务之后，我们便可以发布消息给broker代理服务器了，如果txCommit提交成功了，则消息一定到达了broker了，如果在txCommit执行之前broker异常崩溃或者由于其他原因抛出异常，这个时候我们便可以捕获异常通过txRollback回滚事务了。</p>
+<p>事务机制的优缺点：</p>
+<p>事务确实能够解决producer与broker之间消息确认的问题，只有消息成功被broker接受，事务提交才能成功，否则我们便可以在捕获异常进行事务回滚操作同时进行消息重发，但是使用事务机制的话会降低RabbitMQ的性能，那么有没有更好的方法既能保障producer知道消息已经正确送到，又能基本上不带来性能上的损失呢？从AMQP协议的层面看是没有更好的方法，但是RabbitMQ提供了一个更好的方案，即将channel信道设置成confirm模式。</p>
+<h3 id="2、Comfirm模式"><a href="#2、Comfirm模式" class="headerlink" title="2、Comfirm模式"></a>2、Comfirm模式</h3><p>生产者将信道设置成confirm模式，一旦信道进入confirm模式，所有在该信道上面发布的消息都会被指派一个唯一的ID(从1开始)，一旦消息被投递到所有匹配的队列之后，broker就会发送一个确认给生产者（包含消息的唯一ID）,这就使得生产者知道消息已经正确到达目的队列了，如果消息和队列是可持久化的，那么确认消息会将消息写入磁盘之后发出，broker回传给生产者的确认消息中deliver-tag域包含了确认消息的序列号，此外broker也可以设置basic.ack的multiple域，表示到这个序列号之前的所有消息都已经得到了处理。</p>
+<p>confirm模式最大的好处在于他是异步的，一旦发布一条消息，生产者应用程序就可以在等信道返回确认的同时继续发送下一条消息，当消息最终得到确认之后，生产者应用便可以通过回调方法来处理该确认消息，如果RabbitMQ因为自身内部错误导致消息丢失，就会发送一条nack消息，生产者应用程序同样可以在回调方法中处理该nack消息。</p>
+<p>在channel 被设置成 confirm 模式之后，所有被 publish 的后续消息都将被 confirm（即 ack） 或者被nack一次。但是没有对消息被 confirm 的快慢做任何保证，并且同一条消息不会既被 confirm又被nack 。</p>
+<p>核心代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;生产者通过调用channel的confirmSelect方法将channel设置为confirm模式</span><br><span class="line">channel.confirmSelect();</span><br></pre></td></tr></table></figure>
+<ol>
+<li>普通 confirm 模式：每发送一条消息后，调用waitForConfirms()方法，等待服务器端</li>
+</ol>
+<p>confirm。实际上是一种串行 confirm 了。</p>
+<ol start="2">
+<li>批量 confirm 模式：每发送一批消息后，调用 waitForConfirms()方法，等待服务器端</li>
+</ol>
+<p>confirm。</p>
+<p>3.异步 confirm 模式：提供一个回调方法，服务端 confirm 了一条或者多条消息后 Client 端会回</p>
+<p>调这个方法</p>
+<ul>
+<li>同步模式：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;使用waitForConfirms等待确认，串行模式（同步）</span><br><span class="line">if(channel.waitForConfirms()) &#123;</span><br><span class="line">    System.out.println(&quot;消息发送成功~~&quot;);</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    System.out.println(&quot;消息发送失败！！！&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>异步模式（监听模式）</li>
+</ul>
+<p>当一个消费者向RabbitMQ注册后，RabbitMQ会用basic.deliver 方法向消费者推送消息，这个方法携带了一个<em>delivery tag</em>， 它在一个channel中唯一代表了一次投递。delivery tag的唯一标识范围限于channel。</p>
+<p>delivery tag是单调递增的正整数，客户端获取投递的方法用用dellivery tag作为一个参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;通道监听</span><br><span class="line">channel.addConfirmListener(new ConfirmListener() &#123;</span><br><span class="line">    &#x2F;&#x2F;没问题的回调ack方法</span><br><span class="line">    &#x2F;&#x2F;每回调一次handleAck方法，unconfirm集合删掉相应的一条（multiple&#x3D;false） 或多条（multiple&#x3D;true）记录。</span><br><span class="line">    public void handleAck(long deliveryTag, boolean multiple) throws IOException &#123;</span><br><span class="line">        System.out.println(&quot;正常回调--&gt; deliveryTag-&quot; + deliveryTag + &quot;  multiple-&quot; + multiple);</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;有问题的回调nack方法，1s，3s，10s</span><br><span class="line">    public void handleNack(long deliveryTag, boolean multiple) throws IOException &#123;</span><br><span class="line">        System.out.println(&quot;异常回调--&gt; deliveryTag-&quot; + deliveryTag + &quot;  multiple-&quot; + multiple);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>可以通过一下代码获取</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">long nextSeqNo &#x3D; channel.getNextPublishSeqNo();</span><br></pre></td></tr></table></figure>
+<h2 id="消费者订阅消息"><a href="#消费者订阅消息" class="headerlink" title="消费者订阅消息"></a>消费者订阅消息</h2><p>通过basic.consume命令，订阅某一个队列中的消息,channel会自动在处理完上一条消息之后，接收下一条消息。（同一个channel消息处理是串行的）。除非关闭channel或者取消订阅，否则客户端将会一直接收队列的消息。</p>
+<p>6</p>
+<p>通过basic.get命令主动获取队列中的消息，但是绝对不可以通过循环调用basic.get来代替basic.consume，这是因为basic.get RabbitMQ在实际执行的时候，是首先consume某一个队列，然后检索第一条消息，然后再取消订阅。如果是高吞吐率的消费者，最好还是建议使用basic.consume。</p>
+<h2 id="Springboot集成RabbitMq"><a href="#Springboot集成RabbitMq" class="headerlink" title="Springboot集成RabbitMq"></a>Springboot集成RabbitMq</h2><h2 id="2、RabbitMq安装与组件-xmind3、五种队列模式-xmind4、消息确认机制-xmind5、消息应答与持久化-xmind课程18预习、消息中间件RabbitMq-xmind1、RabbitMq简介-xmind"><a href="#2、RabbitMq安装与组件-xmind3、五种队列模式-xmind4、消息确认机制-xmind5、消息应答与持久化-xmind课程18预习、消息中间件RabbitMq-xmind1、RabbitMq简介-xmind" class="headerlink" title="2、RabbitMq安装与组件.xmind3、五种队列模式.xmind4、消息确认机制.xmind5、消息应答与持久化.xmind课程18预习、消息中间件RabbitMq.xmind1、RabbitMq简介.xmind"></a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/qdU6Q06NQOoQnd0V.xmind">2、RabbitMq安装与组件.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/9vo4MwkRuSgJ6Nbo.xmind">3、五种队列模式.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/R0NTDFCuBbwxFbVo.xmind">4、消息确认机制.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/aES3oUlYo7EnHpHu.xmind">5、消息应答与持久化.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/hQe5u8giaC8CNz8Y.xmind">课程18预习、消息中间件RabbitMq.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/ddLZcK8YucseAbCL.xmind">1、RabbitMq简介.xmind</a></h2><p>第一步，导入坐标</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-amqp&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>第二步、配置rabbitmq的服务器信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  rabbitmq:</span><br><span class="line">    host: localhost</span><br><span class="line">    port: 5672</span><br></pre></td></tr></table></figure>
+<p>第三步，声明交换机，路由键、队列等信息，方便监听</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">import org.springframework.amqp.core.Binding;</span><br><span class="line">import org.springframework.amqp.core.BindingBuilder;</span><br><span class="line">import org.springframework.amqp.core.Queue;</span><br><span class="line">import org.springframework.amqp.core.TopicExchange;</span><br><span class="line">import org.springframework.context.annotation.Bean;</span><br><span class="line">import org.springframework.context.annotation.Configuration;</span><br><span class="line">@Configuration</span><br><span class="line">public class RabbitConfig &#123;</span><br><span class="line">    &#x2F;&#x2F; 队列名称</span><br><span class="line">    public final static String SPRING_BOOT_QUEUE &#x3D; &quot;spring-boot-queue-1&quot;;</span><br><span class="line">    &#x2F;&#x2F; 交换机名称</span><br><span class="line">    public final static String SPRING_BOOT_EXCHANGE_queue &#x3D; &quot;spring-boot-topic-exchange-queue-1&quot;;</span><br><span class="line">    &#x2F;&#x2F;</span><br><span class="line">    public final static String SPRING_BOOT_EXCHANGE &#x3D; &quot;spring-boot-topic-exchange-1&quot;;</span><br><span class="line">    &#x2F;&#x2F; 绑定的值</span><br><span class="line">    public static final String SPRING_BOOT_BIND_KEY &#x3D; &quot;topic.message&quot;;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public Queue helloQueue() &#123;</span><br><span class="line">        return new Queue(SPRING_BOOT_QUEUE);</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;--------------------</span><br><span class="line">    @Bean</span><br><span class="line">    public Queue exQueue() &#123;</span><br><span class="line">        return new Queue(SPRING_BOOT_EXCHANGE_queue);</span><br><span class="line">    &#125;</span><br><span class="line">    @Bean</span><br><span class="line">    TopicExchange exchange() &#123;</span><br><span class="line">        return new TopicExchange(SPRING_BOOT_EXCHANGE);</span><br><span class="line">    &#125;</span><br><span class="line">    @Bean</span><br><span class="line">    Binding bindingExchangeMessage(Queue exQueue, TopicExchange exchange) &#123;</span><br><span class="line">        return BindingBuilder.bind(exQueue).to(exchange).with(SPRING_BOOT_BIND_KEY);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第四步、监听队列信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">@RabbitListener(queues &#x3D; RabbitConfig.SPRING_BOOT_QUEUE)</span><br><span class="line">public class HelloReceiver &#123;</span><br><span class="line">    @RabbitHandler</span><br><span class="line">    public void process(String hello) &#123;</span><br><span class="line">        System.out.println(&quot;You receiver a message : --&gt; &quot; + hello);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第五步、发送信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@RestController</span><br><span class="line">public class MqController &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    private AmqpTemplate amqpTemplate;</span><br><span class="line">    @GetMapping(&quot;&#x2F;send&quot;)</span><br><span class="line">    public void send () &#123;</span><br><span class="line">        &#x2F;&#x2F;往队列发送信息</span><br><span class="line">        amqpTemplate.convertAndSend(RabbitConfig.SPRING_BOOT_QUEUE,&quot;hello springboot rabbitmq&quot;);</span><br><span class="line">        &#x2F;&#x2F;往交换机发送信息</span><br><span class="line">        amqpTemplate.convertAndSend(RabbitConfig.SPRING_BOOT_EXCHANGE, RabbitConfig.SPRING_BOOT_BIND_KEY, &quot;hello springboot exchange message!!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/09/14/%E8%BD%AC%E8%BD%BD%2017%E3%80%81%E5%BC%80%E6%BA%90%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AEmiaosha%E8%A7%A3%E8%AF%BB/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">开源秒杀项目miaosha解读</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="转载 18、消息中间件RabbitMq" data-title="消息中间件RabbitMq" data-url="http://www.2333nmsl.ml/2020/09/14/%E8%BD%AC%E8%BD%BD%2018%E3%80%81%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6RabbitMq/"  data-images="/img/1.gif" data-content="消息中间件RabbitMq">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2020 yht
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"rect":"opacity:0.8","log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>renren-fast脚手架学习（上） | Hexo</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="转载8、renren-fast脚手架学习（上）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="renren-fast脚手架学习（上）">
+<meta property="og:url" content="http://www.2333nmsl.ml/2020/09/14/%E8%BD%AC%E8%BD%BD%208%E3%80%81renren-fast%E8%84%9A%E6%89%8B%E6%9E%B6%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%8A%EF%BC%89/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="转载8、renren-fast脚手架学习（上）">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://uploader.shimo.im/f/xTyWqz8xpac8Qz8t.png!thumbnail">
+<meta property="og:image" content="https://uploader.shimo.im/f/hKkMcC7T91Qj71fb.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/twDJqCc4MTUwDVzL/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/AmEM6jqp5w45PraA/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/0G1kxTZzC3McF69t/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/SgnevpHrDM4Wijf4/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/RxRGlP1vJGo5iCBe/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/IUJLSK06iFA7ZdRe/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/eiFQtj01pKYONaBC/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/pKe8UW7fLmEBtO0w/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/6OvUkazkmQsXMDMR/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/wVwD7D4865Yac743/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/gMAiX78TONkJJJWi/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/wwCAOSGA5vknTG51/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/7F9C0PRb4pYZ0I1S/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/ouRhGJJdm9IOZ8Az/image.png!thumbnail">
+<meta property="article:published_time" content="2020-09-14T14:55:04.000Z">
+<meta property="article:modified_time" content="2020-09-14T07:07:17.956Z">
+<meta property="article:author" content="yht">
+<meta property="article:tag" content="renren-fast">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://uploader.shimo.im/f/xTyWqz8xpac8Qz8t.png!thumbnail">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 5.0.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/1.gif" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/"></a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Yht-7683/" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="#" title="mail">mail</a>
+					        
+								<a class="qq" target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=434807683&site=qq&menu=yes" title="qq">qq</a>
+					        
+								<a class="weibo" target="_blank" href="https://weibo.com/" title="weibo">weibo</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ASCII%E7%A0%81%E5%9B%BE/" style="font-size: 10px;">ASCII码图</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 20px;">Java基础</a> <a href="/tags/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 10px;">Java多线程</a> <a href="/tags/Redis/" style="font-size: 20px;">Redis</a> <a href="/tags/Websocket/" style="font-size: 10px;">Websocket</a> <a href="/tags/io/" style="font-size: 10px;">io</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/mybatis%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">mybatis框架</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/renren-fast/" style="font-size: 15px;">renren-fast</a> <a href="/tags/spring-data/" style="font-size: 10px;">spring data</a> <a href="/tags/spring-security/" style="font-size: 10px;">spring security</a> <a href="/tags/springboot%E6%A1%86%E6%9E%B6/" style="font-size: 15px;">springboot框架</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 10px;">消息队列</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">计算机网络</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://a-cai.gitee.io/blog/">前端资料</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/1.gif" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Yht-7683/" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="#" title="mail">mail</a>
+			        
+						<a class="qq" target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=434807683&site=qq&menu=yes" title="qq">qq</a>
+			        
+						<a class="weibo" target="_blank" href="https://weibo.com/" title="weibo">weibo</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-转载 8、renren-fast脚手架学习（上）" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/09/14/%E8%BD%AC%E8%BD%BD%208%E3%80%81renren-fast%E8%84%9A%E6%89%8B%E6%9E%B6%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%8A%EF%BC%89/" class="article-date">
+  	<time datetime="2020-09-14T14:55:04.000Z" itemprop="datePublished">2020-09-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      renren-fast脚手架学习（上）
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/renren-fast/" rel="tag">renren-fast</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="5-jwt机制-xmind6-动态数据源-xmind课程8、renren-fast项目解读-（预习）-xmind课程8-renren-fast项目解读预习-xmind1-renren-fast项目-xmind2-自定义异常与redis开关-xmind3-日志处理与数据校验模块-xmind4-token机制-xmind项目介绍"><a href="#5-jwt机制-xmind6-动态数据源-xmind课程8、renren-fast项目解读-（预习）-xmind课程8-renren-fast项目解读预习-xmind1-renren-fast项目-xmind2-自定义异常与redis开关-xmind3-日志处理与数据校验模块-xmind4-token机制-xmind项目介绍" class="headerlink" title="5_jwt机制.xmind6_动态数据源.xmind课程8、renren-fast项目解读 （预习）.xmind课程8_renren-fast项目解读预习.xmind1_renren-fast项目.xmind2_自定义异常与redis开关.xmind3_日志处理与数据校验模块.xmind4_token机制.xmind项目介绍"></a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/aP4BEprUKa8dVuTc.xmind">5_jwt机制.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/h1L8tkHSVEALcsnt.xmind">6_动态数据源.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/3o4j1434AUwXnL61.xmind">课程8、renren-fast项目解读 （预习）.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/3Do0DbqCPcMkgAE4.xmind">课程8_renren-fast项目解读<em>预习</em>.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/lUDXFVKHsE8BVtWM.xmind">1_renren-fast项目.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/SFTWgnhyYdASGwdZ.xmind">2_自定义异常与redis开关.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/kq9mQSb0TPUNO36X.xmind">3_日志处理与数据校验模块.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/zlwn8t4g5Ic0yuiS.xmind">4_token机制.xmind</a>项目介绍</h2><ul>
+<li>官方网址：<a target="_blank" rel="noopener" href="http://www.renren.io/">http://www.renren.io/</a></li>
+<li>项目演示地址：<a target="_blank" rel="noopener" href="http://fast.demo.renren.io/#/login">http://fast.demo.renren.io/#/login</a>账号密码admin/admin</li>
+<li>renren-fast是一个轻量级的 Spring Boot 快速开发平台，能快速开发项目并交付【接私活利器】</li>
+<li>完善的 XSS 防范及脚本过滤，彻底杜绝 XSS 攻击</li>
+<li>实现前后端分离，通过 token 进行数据</li>
+</ul>
+<p>后端：<a target="_blank" rel="noopener" href="https://gitee.com/renrenio/renren-fast">https://gitee.com/renrenio/renren-fast</a></p>
+<p>前端：<a target="_blank" rel="noopener" href="https://gitee.com/renrenio/renren-fast-vue">https://gitee.com/renrenio/renren-fast-vue</a></p>
+<h2 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型"></a>技术选型</h2><p>后端</p>
+<ul>
+<li>spring boot</li>
+<li>mybatis plus</li>
+<li>shiro</li>
+<li>swagger2</li>
+<li>redis</li>
+<li>mysql</li>
+</ul>
+<p>前段</p>
+<ul>
+<li>vue.js</li>
+<li>element-ui<h2 id="前端部署"><a href="#前端部署" class="headerlink" title="前端部署"></a>前端部署</h2></li>
+</ul>
+<p>由于前端使用vue开发，因此需要安装node.js环境。</p>
+<p>node.js安装教程：<a target="_blank" rel="noopener" href="http://nodejs.cn/download/">http://nodejs.cn/download/</a>下载msi版本安装。</p>
+<p>安装之后，命令行窗口，表示安装成功。</p>
+<p><img src="https://uploader.shimo.im/f/xTyWqz8xpac8Qz8t.png!thumbnail" alt="图片"></p>
+<p>启动步骤：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 克隆项目</span><br><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;daxiongYang&#x2F;renren-fast-vue.git</span><br><span class="line"># 切换到项目目录根目录renren-fast-vue里面</span><br><span class="line"># 1、安装淘宝镜像依赖</span><br><span class="line">npm install -g cnpm --registry&#x3D;https:&#x2F;&#x2F;registry.npm.taobao.org</span><br><span class="line"># 2、安装项目依赖</span><br><span class="line">cnpm install</span><br><span class="line"># 启动服务</span><br><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+<h2 id="系统日志"><a href="#系统日志" class="headerlink" title="系统日志"></a>系统日志</h2><p>系统管理员的有很多，操作权限也不同，但每个人的操作都需要有个操作记录才能跟踪每个管理员的操作，便于排查事故。</p>
+<h3 id="关键类"><a href="#关键类" class="headerlink" title="关键类"></a>关键类</h3><ul>
+<li>io.renren.common.annotation.SysLog（日志注解）</li>
+<li>io.renren.common.aspect.SysLogAspect（系统日志，切面处理类）<h3 id="项目逻辑"><a href="#项目逻辑" class="headerlink" title="项目逻辑"></a><strong>项目逻辑</strong></h3></li>
+</ul>
+<ul>
+<li>其实Spring Aop切面编程的使用。</li>
+<li>自定义方法级别的注解SysLog，在需要说明操作日志的方法上添加此注解，并说明操作的意义。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@SysLog(&quot;保存菜单&quot;)</span><br></pre></td></tr></table></figure></li>
+<li>同时编写切面处理类SysLogAspect，使用SysLog作为切入点，监测注解的方法。并把操作内容保存到数据库中。<strong>操作内容包括：调用的方法，参数，时间点，操作用户，操作ip地址</strong>等~<h3 id="总结-自定义注解步骤"><a href="#总结-自定义注解步骤" class="headerlink" title="总结-自定义注解步骤"></a>总结-自定义注解步骤</h3></li>
+</ul>
+<p>第一步、首先新建一个注解</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Target(ElementType.METHOD)</span><br><span class="line">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="line">@Documented</span><br><span class="line">public @interface SysLog &#123;</span><br><span class="line">   String value() default &quot;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第二步、新建一个切面处理类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Aspect</span><br><span class="line">@Component</span><br><span class="line">public class SysLogAspect &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第三步、定切点在注解上，切面需要处理的拦截点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Pointcut(&quot;@annotation(io.renren.common.annotation.SysLog)&quot;)</span><br><span class="line">public void logPointCut() &#123; </span><br><span class="line">   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第四步、定义切点的环绕处理方法、如前置、后置、环绕处理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Around(&quot;logPointCut()&quot;)</span><br><span class="line">public Object around(ProceedingJoinPoint point) throws Throwable &#123;</span><br><span class="line">。   </span><br><span class="line">   ...</span><br><span class="line">   return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="自定义异常"><a href="#自定义异常" class="headerlink" title="自定义异常"></a>自定义异常</h2><h3 id="自定义异常类RRException"><a href="#自定义异常类RRException" class="headerlink" title="自定义异常类RRException"></a><strong>自定义异常类RRException</strong></h3><ul>
+<li>io.renren.common.exception.RRException（自定义异常）</li>
+<li>io.renren.common.exception.RRExceptionHandler（异常处理类）</li>
+</ul>
+<p>系统自带的，系统自己处理，但是很多时候项目会出现特有问题，而这些问题并未被java所描述并封装成对象，所以对于这些特有的问题可以按照java的对问题封装的思想，将特有的问题进行自定义异常封装。在Java中要想创建自定义异常，需要继承Throwable或者他的子Exception。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class  自定义异常类 extends 异常类型(RuntimeException)&#123;</span><br><span class="line"> &#x2F;&#x2F; 因为父类已经把异常信息的操作都完成了，所在子类只要在构造时，将异常信息传递给父类通过super 语句即可。</span><br><span class="line">  &#x2F;&#x2F; 重写 有参 和 无参  构造方法</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="spring-boot统一异常处理"><a href="#spring-boot统一异常处理" class="headerlink" title="spring boot统一异常处理"></a><strong>spring boot统一异常处理</strong></h3><p><strong><em>主要注解：@ControllerAdvice、@ExceptionHandler</em></strong></p>
+<p>全局异常处理@ControllerAdvice。</p>
+<p>添加@ControllerAdvice注解的类是集中处理异常的地方，可以同时存在多个这样的类，用来做更细粒度的划分。</p>
+<p>在这个类中，我们可以对每一种异常编写一种处理逻辑，在方法上使用@ExceptionHandler注解修饰，传入指定的异常类型即可。</p>
+<p>如果是RESTful风格，不返回视图，也可使用@RestControllerAdvice</p>
+<p>@RestControllerAdvice是一个组合注解，组合了@ControllerAdvice、@ResponseBody</p>
+<p><img src="https://uploader.shimo.im/f/hKkMcC7T91Qj71fb.png!thumbnail" alt="图片"></p>
+<h2 id="数据校验"><a href="#数据校验" class="headerlink" title="数据校验"></a>数据校验</h2><p>后端实体效验使用的是Hibernate Validator校验框架。</p>
+<p>且自定义ValidatorUtils工具类，用来效验数据。</p>
+<ul>
+<li>io.renren.common.validator.ValidatorUtils（校验工具）</li>
+<li>io.renren.common.validator.Assert（自定义的断言，用于抛出自定义的RRException）</li>
+</ul>
+<p><img src="https://images-cdn.shimo.im/twDJqCc4MTUwDVzL/image.png!thumbnail" alt="图片"></p>
+<p>通过上面的实体类代码，我们来理解Hibernate Validator校验框架的使用。</p>
+<p>其中，username属性，表示保存或修改用户时，都会效验username属性； 而password属</p>
+<p>性，表示只有保存用户时，才会效验password属性，也就是说，修改用户时，password可以</p>
+<p>不填写，允许为空。</p>
+<p>如果不指定属性的groups，则默认属于javax.validation.groups.Default.class分组，可以通</p>
+<p>过ValidatorUtils.validateEntity(user)进行效验。</p>
+<p>校验分组</p>
+<ul>
+<li>io.renren.common.validator.group.AddGroup</li>
+<li>io.renren.common.validator.group.AliyunGroup</li>
+<li>io.renren.common.validator.group.Group</li>
+<li>io.renren.common.validator.group.QcloudGroup</li>
+<li>io.renren.common.validator.group.QiniuGroup</li>
+<li>io.renren.common.validator.group.UpdateGroup<h3 id="项目逻辑-1"><a href="#项目逻辑-1" class="headerlink" title="项目逻辑"></a><strong>项目逻辑</strong></h3></li>
+</ul>
+<ul>
+<li>1、首先定义分组，根据实际情况，可以分为添加组AddGroup和修改组UpdateGroup等。</li>
+<li>2、在实体上添加hibernate.validator规则注解@NotBlank、@Email等，并分组。</li>
+<li>3、编写规则校验工具类ValidatorUtils。校验出有不符合规则的内容抛出自定义异常RRException</li>
+<li>4、再保存、更新等操作中使用ValidatorUtils.validateEntity(user, AddGroup.class);校验实体规则情况。<h3 id="常用注解"><a href="#常用注解" class="headerlink" title="常用注解"></a><strong>常用注解</strong></h3></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Bean Validation 中内置的 constraint         </span><br><span class="line">@Null   被注释的元素必须为 null    </span><br><span class="line">@NotNull    被注释的元素必须不为 null    </span><br><span class="line">@AssertTrue     被注释的元素必须为 true    </span><br><span class="line">@AssertFalse    被注释的元素必须为 false    </span><br><span class="line">@Min(value)     被注释的元素必须是一个数字，其值必须大于等于指定的最小值    </span><br><span class="line">@Max(value)     被注释的元素必须是一个数字，其值必须小于等于指定的最大值    </span><br><span class="line">@DecimalMin(value)  被注释的元素必须是一个数字，其值必须大于等于指定的最小值    </span><br><span class="line">@DecimalMax(value)  被注释的元素必须是一个数字，其值必须小于等于指定的最大值    </span><br><span class="line">@Size(max&#x3D;, min&#x3D;)   被注释的元素的大小必须在指定的范围内    </span><br><span class="line">@Digits (integer, fraction)     被注释的元素必须是一个数字，其值必须在可接受的范围内    </span><br><span class="line">@Past   被注释的元素必须是一个过去的日期    </span><br><span class="line">@Future     被注释的元素必须是一个将来的日期    </span><br><span class="line">@Pattern(regex&#x3D;,flag&#x3D;)  被注释的元素必须符合指定的正则表达式    </span><br><span class="line">    </span><br><span class="line">Hibernate Validator 附加的 constraint    </span><br><span class="line">@NotBlank(message &#x3D;)   验证字符串非null，且长度必须大于0    </span><br><span class="line">@Email  被注释的元素必须是电子邮箱地址    </span><br><span class="line">@Length(min&#x3D;,max&#x3D;)  被注释的字符串的大小必须在指定的范围内    </span><br><span class="line">@NotEmpty   被注释的字符串的必须非空    </span><br><span class="line">@Range(min&#x3D;,max&#x3D;,message&#x3D;)  被注释的元素必须在合适的范围内 </span><br></pre></td></tr></table></figure>
+<h2 id="redis的使用"><a href="#redis的使用" class="headerlink" title="redis的使用"></a>redis的使用</h2><h3 id="renren官方给出的redis使用原则"><a href="#renren官方给出的redis使用原则" class="headerlink" title="renren官方给出的redis使用原则"></a><strong>renren官方给出的redis使用原则</strong></h3><ol>
+<li><p>查询数据的时候，尽量减少DB查询，DB主要负责写数</p>
+</li>
+<li><p>尽量不使用 LEFt JOIN 等关联查询，缓存命中率不高，还浪费内存</p>
+</li>
+<li><p>多使用单表查询，缓存命中率最高</p>
+</li>
+<li><p>数据库 insert 、 update 、 delete 时，同步更新缓存数据</p>
+</li>
+<li><p>合理运用Redis数据结构，也许有质的飞跃</p>
+</li>
+<li><p>对于访问量不大的项目，使用缓存只会增加项目的复杂性。</p>
+</li>
+</ol>
+<p>Redis切面处理类RedisAspect，使用切面定义是否启用redis缓存。</p>
+<h3 id="redis开关原理"><a href="#redis开关原理" class="headerlink" title="redis开关原理"></a><strong>redis开关原理</strong></h3><p>ProceedingJoinPoint：用于环绕通知，使用proceed()方法来执行目标方法，当不打开redis缓存时候，跳过RedisUtils的所有方法执行。</p>
+<ul>
+<li>io.renren.common.utils.RedisUtils，redis操作的工具类</li>
+<li>io.renren.modules.sys.redis.SysConfigRedis，系统配置缓存操作的工具类</li>
+<li>io.renren.common.aspect.RedisAspect<h2 id="Token机制"><a href="#Token机制" class="headerlink" title="Token机制"></a>Token机制</h2></li>
+</ul>
+<h2 id="JWT"><a href="#JWT" class="headerlink" title="JWT"></a>JWT</h2><h3 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h3><p>JWT是一种用于双方之间传递安全信息的简洁的、URL安全的表述性声明规范。JWT定义了一种简洁的，自包含的方法用于通信双方之间以Json对象的形式安全的传递信息。因为数字签名的存在，这些信息是可信的，JWT可以使用HMAC算法或者是RSA的公私秘钥对进行签名。</p>
+<ul>
+<li><strong>简洁(Compact)</strong>: 可以通过URL，POST参数或者在HTTP header发送，因为数据量小，传输速度也很快</li>
+<li>**自包含(Self-contained)**：负载中包含了所有用户所需要的信息，避免了多次查询数据库<h3 id="主要应用场景"><a href="#主要应用场景" class="headerlink" title="主要应用场景"></a>主要应用场景</h3></li>
+</ul>
+<p>身份认证在这种场景下，一旦用户完成了登陆，在接下来的每个请求中包含JWT，可以用来验证用户身份以及对路由，服务和资源的访问权限进行验证。</p>
+<p>由于它的开销非常小，可以轻松的在不同域名的系统中传递，所有目前在<strong>单点登录（SSO）</strong>中比较广泛的使用了该技术。</p>
+<p>信息交换在通信的双方之间使用JWT对数据进行编码是一种非常安全的方式，由于它的信息是经过签名的，可以确保发送者发送的信息是没有经过伪造的。</p>
+<h3 id="jwt消息结构"><a href="#jwt消息结构" class="headerlink" title="jwt消息结构"></a>jwt消息结构</h3><p>一个token分3部分，按顺序为</p>
+<ul>
+<li><strong>头部（header)</strong></li>
+<li><strong>载荷（payload)</strong></li>
+<li><strong>签证（signature)</strong></li>
+</ul>
+<p>由三部分生成token3部分之间用“**.**”号做分隔。</p>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</span><br></pre></td></tr></table></figure>
+<h3 id="头部（header）"><a href="#头部（header）" class="headerlink" title="头部（header）"></a>头部（header）</h3><p>Jwt的头部承载两部分信息：</p>
+<ul>
+<li>声明类型，这里是jwt</li>
+<li>声明加密的算法 通常直接使用 HMAC SHA256<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; &quot;alg&quot;: &quot;HS256&quot;, &quot;typ&quot;: &quot;JWT&quot;&#125;</span><br></pre></td></tr></table></figure>
+然后将头部进行base64加密（该加密是可以对称解密的),构成了第一部分：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</span><br></pre></td></tr></table></figure>
+<h3 id="载荷（payload"><a href="#载荷（payload" class="headerlink" title="载荷（payload)"></a><strong>载荷（payload)</strong></h3></li>
+</ul>
+<p>载荷就是存放有效信息的地方。这个名字像是特指飞机上承载的货品，这些有效信息包含三个部分</p>
+<ul>
+<li><strong>标准中注册的声明</strong></li>
+<li><strong>公共的声明</strong></li>
+<li><strong>私有的声明</strong></li>
+</ul>
+<p><strong><em>payload-标准中注册的声明 (建议但不强制使用) ：</em></strong></p>
+<ul>
+<li><strong>iss</strong>: jwt签发者</li>
+<li><strong>sub</strong>: jwt所面向的用户</li>
+<li><strong>aud</strong>: 接收jwt的一方</li>
+<li><strong>exp</strong>: jwt的过期时间，这个过期时间必须要大于签发时间</li>
+<li><strong>nbf</strong>: 定义在什么时间之前，该jwt都是不可用的.</li>
+<li><strong>iat</strong>: jwt的签发时间</li>
+<li><strong>jti</strong>: jwt的唯一身份标识，主要用来作为一次性token,从而回避重放攻击。</li>
+</ul>
+<p><strong><em>payload-公共的声明 ：</em></strong></p>
+<p>公共的声明可以添加任何的信息，一般添加用户的相关信息或其他业务需要的必要信息.但不建议添加敏感信息，因为该部分在客户端可解密。</p>
+<p><strong><em>payload-私有的声明 ：</em></strong></p>
+<p>私有声明是提供者和消费者所共同定义的声明，一般不建议存放敏感信息，因为base64是对称解密的，意味着该部分信息可以归类为明文信息。</p>
+<p>定义一个payload：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;name&quot;:&quot;Free码农&quot;,&quot;age&quot;:&quot;28&quot;,&quot;org&quot;:&quot;今日头条&quot;&#125;</span><br></pre></td></tr></table></figure>
+<p>然后将其进行base64加密，得到Jwt的第二部分：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eyJvcmciOiLku4rml6XlpLTmnaEiLCJuYW1lIjoiRnJlZeeggeWGnCIsImV4cCI6MTUxNDM1NjEwMywiaWF0IjoxNTE0MzU2MDQzLCJhZ2UiOiIyOCJ9</span><br></pre></td></tr></table></figure>
+<h3 id="签证（signature）"><a href="#签证（signature）" class="headerlink" title="签证（signature）"></a><strong>签证（signature）</strong></h3><p>jwt的第三部分是一个签证信息，这个签证信息由三部分组成：</p>
+<ul>
+<li>header (base64后的)</li>
+<li>payload (base64后的)</li>
+<li>secret</li>
+</ul>
+<p>这个部分需要base64加密后的header和base64加密后的payload使用.连接组成的字符串，然后通过header中声明的加密方式进行加盐secret组合加密，然后就构成了jwt的第三部分：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">49UF72vSkj-sA4aHHiYN5eoZ9Nb4w5Vb45PsLF7x_NY</span><br></pre></td></tr></table></figure>
+<p>密钥secret是保存在服务端的，服务端会根据这个密钥进行生成token和验证，所以需要保护好。</p>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ul>
+<li>在Web应用中，别再把JWT当做session使用，绝大多数情况下，传统的cookie-session机制工作得更好</li>
+<li>JWT适合一次性的命令认证，颁发一个有效期极短的JWT，即使暴露了危险也很小，由于每次操作都会生成新的JWT，因此也没必要保存JWT，真正实现无状态。<h2 id="JWT的代码实现"><a href="#JWT的代码实现" class="headerlink" title="JWT的代码实现"></a>JWT的代码实现</h2></li>
+</ul>
+<p><strong>第一步</strong>、导入maven坐标</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">   &lt;groupId&gt;io.jsonwebtoken&lt;&#x2F;groupId&gt;</span><br><span class="line">   &lt;artifactId&gt;jjwt&lt;&#x2F;artifactId&gt;</span><br><span class="line">   &lt;version&gt;0.9.0&lt;&#x2F;version&gt;#renren-fast用的是0.7.0版本</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>第二步</strong>、封装一个util工具类统一头部和载荷部分的信息，应包含生成jwt和校验jwt。<br>io.renren.modules.app.utils.JwtUtils</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">@ConfigurationProperties(prefix &#x3D; &quot;renren.jwt&quot;)</span><br><span class="line">@Component</span><br><span class="line">public class JwtUtils &#123;</span><br><span class="line">    private Logger logger &#x3D; LoggerFactory.getLogger(getClass());</span><br><span class="line">    private String secret;</span><br><span class="line">    private long expire;</span><br><span class="line">    private String header;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 生成jwt token</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public String generateToken(long userId) &#123;</span><br><span class="line">        Date nowDate &#x3D; new Date();</span><br><span class="line">        &#x2F;&#x2F;过期时间</span><br><span class="line">        Date expireDate &#x3D; new Date(nowDate.getTime() + expire * 1000);</span><br><span class="line">        return Jwts.builder()</span><br><span class="line">                .setHeaderParam(&quot;typ&quot;, &quot;JWT&quot;)</span><br><span class="line">                .setSubject(userId+&quot;&quot;)</span><br><span class="line">                .setIssuedAt(nowDate)</span><br><span class="line">                .setExpiration(expireDate)</span><br><span class="line">                .signWith(SignatureAlgorithm.HS512, secret)</span><br><span class="line">                .compact();</span><br><span class="line">    &#125;</span><br><span class="line">    public Claims getClaimByToken(String token) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            return Jwts.parser()</span><br><span class="line">                    .setSigningKey(secret)</span><br><span class="line">                    .parseClaimsJws(token)</span><br><span class="line">                    .getBody();</span><br><span class="line">        &#125;catch (Exception e)&#123;</span><br><span class="line">            logger.debug(&quot;validate is token error &quot;, e);</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    &#x2F;**</span><br><span class="line">     * token是否过期</span><br><span class="line">     * @return  true：过期</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public boolean isTokenExpired(Date expiration) &#123;</span><br><span class="line">        return expiration.before(new Date());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    ....getter、setter</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>第三步、</strong>为了区分需要拦截和不需要拦截的资源，项目添加了一个@login注解</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * app登录效验</span><br><span class="line"> * @author chenshun</span><br><span class="line"> * @email sunlightcs@gmail.com</span><br><span class="line"> * @date 2017&#x2F;9&#x2F;23 14:30</span><br><span class="line"> *&#x2F;</span><br><span class="line">@Target(ElementType.METHOD)</span><br><span class="line">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="line">@Documented</span><br><span class="line">public @interface Login &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>第四步</strong>、登录成功后，生成一个jwt的 token，用于返回给前段。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 登录</span><br><span class="line"> *&#x2F;</span><br><span class="line">@PostMapping(&quot;login&quot;)</span><br><span class="line">@ApiOperation(&quot;登录&quot;)</span><br><span class="line">public R login(@RequestBody LoginForm form)&#123;</span><br><span class="line">    &#x2F;&#x2F;表单校验</span><br><span class="line">    ValidatorUtils.validateEntity(form);</span><br><span class="line">    &#x2F;&#x2F;用户登录</span><br><span class="line">    long userId &#x3D; userService.login(form);</span><br><span class="line">    &#x2F;&#x2F;生成token</span><br><span class="line">    String token &#x3D; jwtUtils.generateToken(userId);</span><br><span class="line">    Map&lt;String, Object&gt; map &#x3D; new HashMap&lt;&gt;();</span><br><span class="line">    map.put(&quot;token&quot;, token);</span><br><span class="line">    map.put(&quot;expire&quot;, jwtUtils.getExpire());</span><br><span class="line">    return R.ok(map);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>第五步、</strong>编写一个拦截器，拦截所有需要校验的资源模块的url（有加了@login注解的），访问前校验jwt是否合法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 权限(Token)验证</span><br><span class="line"> * @author chenshun</span><br><span class="line"> * @email sunlightcs@gmail.com</span><br><span class="line"> * @date 2017-03-23 15:38</span><br><span class="line"> *&#x2F;</span><br><span class="line">@Component</span><br><span class="line">public class AuthorizationInterceptor extends HandlerInterceptorAdapter &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    private JwtUtils jwtUtils;</span><br><span class="line">    public static final String USER_KEY &#x3D; &quot;userId&quot;;</span><br><span class="line">    @Override</span><br><span class="line">    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception &#123;</span><br><span class="line">        Login annotation;</span><br><span class="line">        if(handler instanceof HandlerMethod) &#123;</span><br><span class="line">            annotation &#x3D; ((HandlerMethod) handler).getMethodAnnotation(Login.class);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">        if(annotation &#x3D;&#x3D; null)&#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F;获取用户凭证</span><br><span class="line">        String token &#x3D; request.getHeader(jwtUtils.getHeader());</span><br><span class="line">        if(StringUtils.isBlank(token))&#123;</span><br><span class="line">            token &#x3D; request.getParameter(jwtUtils.getHeader());</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F;凭证为空</span><br><span class="line">        if(StringUtils.isBlank(token))&#123;</span><br><span class="line">            throw new RRException(jwtUtils.getHeader() + &quot;不能为空&quot;, HttpStatus.UNAUTHORIZED.value());</span><br><span class="line">        &#125;</span><br><span class="line">        Claims claims &#x3D; jwtUtils.getClaimByToken(token);</span><br><span class="line">        if(claims &#x3D;&#x3D; null || jwtUtils.isTokenExpired(claims.getExpiration()))&#123;</span><br><span class="line">            throw new RRException(jwtUtils.getHeader() + &quot;失效，请重新登录&quot;, HttpStatus.UNAUTHORIZED.value());</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F;设置userId到request里，后续根据userId，获取用户信息</span><br><span class="line">        request.setAttribute(USER_KEY, Long.parseLong(claims.getSubject()));</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="获取用户信息"><a href="#获取用户信息" class="headerlink" title="获取用户信息"></a>获取用户信息</h3><p>项目用了一个一种特殊的方法来获取用户信息，一般我们再baseController中获取用户信息，但renren-fast使用了注解的形式，@loginUser</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 登录用户信息</span><br><span class="line"> *</span><br><span class="line"> * @author chenshun</span><br><span class="line"> * @email sunlightcs@gmail.com</span><br><span class="line"> * @date 2017-03-23 20:39</span><br><span class="line"> *&#x2F;</span><br><span class="line">@Target(ElementType.PARAMETER)</span><br><span class="line">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="line">public @interface LoginUser &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运用是这样的，参数中添加@LoginUser UserEntity user作为参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@RestController</span><br><span class="line">@RequestMapping(&quot;&#x2F;app&quot;)</span><br><span class="line">@Api(&quot;APP测试接口&quot;)</span><br><span class="line">public class AppTestController &#123;</span><br><span class="line">    @Login</span><br><span class="line">    @GetMapping(&quot;userInfo&quot;)</span><br><span class="line">    @ApiOperation(&quot;获取用户信息&quot;)</span><br><span class="line">    public R userInfo(@LoginUser UserEntity user)&#123;</span><br><span class="line">        return R.ok().put(&quot;user&quot;, user);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后写一个全局解析注解的类：其中HandlerMethodArgumentResolver是用来为处理器解析参数的。<br>HandlerMethodArgumentResolver的接口定义如下：</p>
+<p>（1）supportsParameter 用于判断是否支持对某种参数的解析</p>
+<p>（2）resolveArgument  将请求中的参数值解析为某种对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 有@LoginUser注解的方法参数，注入当前登录用户</span><br><span class="line"> * @author chenshun</span><br><span class="line"> * @email sunlightcs@gmail.com</span><br><span class="line"> * @date 2017-03-23 22:02</span><br><span class="line"> *&#x2F;</span><br><span class="line">@Component</span><br><span class="line">public class LoginUserHandlerMethodArgumentResolver implements HandlerMethodArgumentResolver &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    private UserService userService;</span><br><span class="line">    @Override</span><br><span class="line">    public boolean supportsParameter(MethodParameter parameter) &#123;</span><br><span class="line">        return parameter.getParameterType().isAssignableFrom(UserEntity.class) &amp;&amp; parameter.hasParameterAnnotation(LoginUser.class);</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer container,</span><br><span class="line">                                  NativeWebRequest request, WebDataBinderFactory factory) throws Exception &#123;</span><br><span class="line">        &#x2F;&#x2F;获取用户ID</span><br><span class="line">        Object object &#x3D; request.getAttribute(AuthorizationInterceptor.USER_KEY, RequestAttributes.SCOPE_REQUEST);</span><br><span class="line">        if(object &#x3D;&#x3D; null)&#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F;获取用户信息</span><br><span class="line">        UserEntity user &#x3D; userService.selectById((Long)object);</span><br><span class="line">        return user;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后在mvc配置中添加这个解析器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * MVC配置</span><br><span class="line"> *</span><br><span class="line"> * @author chenshun</span><br><span class="line"> * @email sunlightcs@gmail.com</span><br><span class="line"> * @date 2017-04-20 22:30</span><br><span class="line"> *&#x2F;</span><br><span class="line">@Configuration</span><br><span class="line">public class WebMvcConfig implements WebMvcConfigurer &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    private LoginUserHandlerMethodArgumentResolver loginUserHandlerMethodArgumentResolver;</span><br><span class="line">    @Override</span><br><span class="line">    public void addArgumentResolvers(List&lt;HandlerMethodArgumentResolver&gt; argumentResolvers) &#123;</span><br><span class="line">        argumentResolvers.add(loginUserHandlerMethodArgumentResolver);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="多数据源模块"><a href="#多数据源模块" class="headerlink" title="多数据源模块"></a>多数据源模块</h2><h3 id="预备知识-ThreadLocal"><a href="#预备知识-ThreadLocal" class="headerlink" title="预备知识-ThreadLocal"></a>预备知识-ThreadLocal</h3><p>ThreadLocal是线程局部变量，所谓的线程局部变量，就是仅仅只能被本线程访问，不能在线程之间进行共享访问的变量。</p>
+<h3 id="关键抽象类-AbstractRoutingDataSource"><a href="#关键抽象类-AbstractRoutingDataSource" class="headerlink" title="关键抽象类-AbstractRoutingDataSource"></a>关键抽象类-AbstractRoutingDataSource</h3><p>官方注释如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* Abstract &#123;@link javax.sql.DataSource&#125; implementation that routes &#123;@link #getConnection()&#125;</span><br><span class="line">* calls to one of various target DataSources based on a lookup key. The latter is usually</span><br><span class="line">* (but not necessarily) determined through some thread-bound transaction context.</span><br></pre></td></tr></table></figure>
+<p>大概意思是：<br>就是getConnection()根据查找lookup key键对不同目标数据源的调用，通常是通过(但不一定)某些线程绑定的事物上下文来实现。</p>
+<p><strong>通过这我们知道可以实现：</strong></p>
+<ul>
+<li><ul>
+<li>多数据源的动态切换，在程序运行时，把数据源数据源动态织入到程序中，灵活的进行数据源切换。</li>
+</ul>
+</li>
+<li><ul>
+<li>基于多数据源的动态切换，我们可以实现读写分离，这么做缺点也很明显，无法动态的增加数据源。<h3 id="逻辑思路"><a href="#逻辑思路" class="headerlink" title="逻辑思路"></a>逻辑思路</h3></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>DynamicDataSource继承AbstractRoutingDataSource类，并实现了determineCurrentLookupKey()方法。</li>
+<li>我们配置的多个数据源会放在AbstractRoutingDataSource的 targetDataSources和defaultTargetDataSource中，然后通过afterPropertiesSet()方法将数据源分别进行复制到resolvedDataSources和resolvedDefaultDataSource中。</li>
+<li>AbstractRoutingDataSource的getConnection()的方法的时候，先调用determineTargetDataSource()方法返回DataSource在进行getConnection()。<h3 id="实现多数据源"><a href="#实现多数据源" class="headerlink" title="实现多数据源"></a><strong>实现多数据源</strong></h3></li>
+</ul>
+<p>步骤1，在spring boot中，增加多数据源的配置</p>
+<p>步骤2，扩展Spring的AbstractRoutingDataSource抽象类，</p>
+<p>AbstractRoutingDataSource中的抽象方法determineCurrentLookupKey是实现多数据</p>
+<p>源的核心，并对该方法进行Override</p>
+<p>步骤3，配置DataSource，指定数据源的信息</p>
+<p>步骤4，通过注解，实现多数据源</p>
+<p>步骤5、配置加上(exclude={DataSourceAutoConfiguration.<strong>class</strong>})</p>
+<p><img src="https://images-cdn.shimo.im/AmEM6jqp5w45PraA/image.png!thumbnail" alt="图片"></p>
+<h3 id="关于事务"><a href="#关于事务" class="headerlink" title="关于事务"></a>关于事务</h3><p>只支持单库事务，也就是说切换数据源要在开启事务之前执行。  spring DataSourceTransactionManager进行事务管理，开启事务，会将数据源缓存到DataSourceTransactionObject对象中进行后续的commit rollback等事务操作。</p>
+<p><img src="https://images-cdn.shimo.im/0G1kxTZzC3McF69t/image.png!thumbnail" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/SgnevpHrDM4Wijf4/image.png!thumbnail" alt="图片"></p>
+<h3 id="使用经验"><a href="#使用经验" class="headerlink" title="使用经验"></a>使用经验</h3><p>出现多数据源动态切换失败的原因是因为在事务开启后，数据源就不能再进行随意切换了，也就是说，一个事务对应一个数据源。那么传统的Spring管理事务是放在Service业务层操作的，所以更换数据源的操作要放在这个操作之前进行。也就是切换数据源操作放在Controller层，可是这样操作会造成Controller层代码混乱的结果。故而想到的解决方案是将事务管理在数据持久 (Dao层) 开启，切换数据源的操作放在业务层进行操作，就可在事务开启之前顺利进行数据源切换，不会再出现切换失败了。</p>
+<h2 id="一个动态数据源DEMO"><a href="#一个动态数据源DEMO" class="headerlink" title="一个动态数据源DEMO"></a>一个动态数据源DEMO</h2><h3 id="第一步：做增删改查"><a href="#第一步：做增删改查" class="headerlink" title="第一步：做增删改查"></a>第一步：做增删改查</h3><p>新建：</p>
+<p><img src="https://images-cdn.shimo.im/RxRGlP1vJGo5iCBe/image.png!thumbnail" alt="图片"></p>
+<p>暂时先导入两个包</p>
+<p><img src="https://images-cdn.shimo.im/IUJLSK06iFA7ZdRe/image.png!thumbnail" alt="图片"></p>
+<p>因为项目还需要用到aop、mybatis plus、druid，所以先把maven包导入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--aop--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-aop&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br><span class="line">&lt;!--mybatis plus--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.baomidou&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mybatis-plus-boot-starter&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;version&gt;3.0.1&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;mysql&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mysql-connector-java&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;scope&gt;runtime&lt;&#x2F;scope&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br><span class="line">&lt;!--druid--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.alibaba&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;druid-spring-boot-starter&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.1.10&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>然后先使用mybatis plus做一个增删改查例子。这里我们使用自动生成工具~<br><a target="_blank" rel="noopener" href="https://attachments-cdn.shimo.im/jT6aih25uvc9UUrB/MyGenerator.java">MyGenerator.java</a>注意，这里使用的数据库就是renren-fast项目的数据库，所以sql文件在renren-fast项目中找哈。</p>
+<p>运行MyGenerator的main方法，然后会自动生成sys_user表的一些基本service等~，然后复制到项目中，效果如下：</p>
+<p><img src="https://images-cdn.shimo.im/eiFQtj01pKYONaBC/image.png!thumbnail" alt="图片"></p>
+<p>因为是springboot项目，所以还要手动添加扫描mapper的注解，加到springboot的启动类上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@MapperScan(&quot;com.example.mapper&quot;)</span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class DatasourceDemoApplication &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(DatasourceDemoApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>把配置文件修改成yml格式application.yml。然后添加数据库的信息。我们测试一下生成的代码是否有用！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># DataSource Config</span><br><span class="line">spring:</span><br><span class="line">  datasource:</span><br><span class="line">    driver-class-name: com.mysql.jdbc.Driver</span><br><span class="line">    url: jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;renren_fast</span><br><span class="line">    username: root</span><br><span class="line">    password: admin</span><br></pre></td></tr></table></figure>
+<p>编写测试类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(SpringRunner.class)</span><br><span class="line">@SpringBootTest</span><br><span class="line">public class DatasourceDemoApplicationTests &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    SysUserService userService;</span><br><span class="line">    @Test</span><br><span class="line">    public void contextLoads() &#123;</span><br><span class="line">        SysUser user &#x3D; userService.getById(1);</span><br><span class="line">        System.out.println(user.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试contextLoads（）方法，这时候可以看到测试结果啦~~<br><img src="https://images-cdn.shimo.im/pKe8UW7fLmEBtO0w/image.png!thumbnail" alt="图片"></p>
+<p>以上表明：生成的代码没毛病，可以查数据库了！</p>
+<h3 id="第二步：集成动态数据源模块"><a href="#第二步：集成动态数据源模块" class="headerlink" title="第二步：集成动态数据源模块"></a>第二步：集成动态数据源模块</h3><p>首先我们先梳理一下集成逻辑。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">步骤1，在spring boot中，增加多数据源的配置</span><br><span class="line">步骤2，扩展Spring的AbstractRoutingDataSource抽象类，</span><br><span class="line">AbstractRoutingDataSource中的抽象方法determineCurrentLookupKey是实现多数据</span><br><span class="line">源的核心，并对该方法进行Override</span><br><span class="line">步骤3，配置DataSource，指定数据源的信息</span><br><span class="line">步骤4，通过注解，实现多数据源</span><br><span class="line">步骤5、配置加上(exclude&#x3D;&#123;DataSourceAutoConfiguration.class&#125;)</span><br></pre></td></tr></table></figure>
+<p>下面我们按照上面的步骤一步步集成代码！</p>
+<p>步骤一、配置多数据源的信息</p>
+<p>首先在yml配置文件中添加数据源的信息，这里我新建了一个renren_fast2的数据库，然后把sys_user表的id为1的记录的名称改为了admin222。因为我们用到的druid的连接池，所以按照格式编写链接信息：如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  datasource:</span><br><span class="line">    type: com.alibaba.druid.pool.DruidDataSource</span><br><span class="line">    driverClassName: com.mysql.jdbc.Driver</span><br><span class="line">    druid:</span><br><span class="line">      first:</span><br><span class="line">        url: jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;renren_fast?allowMultiQueries&#x3D;true&amp;useUnicode&#x3D;true&amp;characterEncoding&#x3D;UTF-8</span><br><span class="line">        username: root</span><br><span class="line">        password: admin</span><br><span class="line">      second:</span><br><span class="line">        url: jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;renren_fast2?allowMultiQueries&#x3D;true&amp;useUnicode&#x3D;true&amp;characterEncoding&#x3D;UTF-8</span><br><span class="line">        username: root</span><br><span class="line">        password: admin</span><br></pre></td></tr></table></figure>
+<p>新建一个datasource包。用于放数据源模块的代码。</p>
+<p>然后写一个配置类DynamicDataSourceConfig ，配置多数据源的信息，生成两个数据源：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 配置多数据源</span><br><span class="line"> * @author chenshun</span><br><span class="line"> * @email sunlightcs@gmail.com</span><br><span class="line"> * @date 2017&#x2F;8&#x2F;19 0:41</span><br><span class="line"> *&#x2F;</span><br><span class="line">@Configuration</span><br><span class="line">public class DynamicDataSourceConfig &#123;</span><br><span class="line">    @Bean</span><br><span class="line">    @ConfigurationProperties(&quot;spring.datasource.druid.first&quot;)</span><br><span class="line">    public DataSource firstDataSource()&#123;</span><br><span class="line">        return DruidDataSourceBuilder.create().build();</span><br><span class="line">    &#125;</span><br><span class="line">    @Bean</span><br><span class="line">    @ConfigurationProperties(&quot;spring.datasource.druid.second&quot;)</span><br><span class="line">    public DataSource secondDataSource()&#123;</span><br><span class="line">        return DruidDataSourceBuilder.create().build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>另外，第五步骤中，其实现在就可以去做了，因为我们数据源是自己生成的，所以要去掉原先springboot启动时候自动装配的数据源配置。为了方便记忆，我们这里也导入自己写的配置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication(exclude&#x3D;&#123;DataSourceAutoConfiguration.class&#125;)</span><br><span class="line">@Import(&#123;DynamicDataSourceConfig.class&#125;)</span><br></pre></td></tr></table></figure>
+<p>致此，第一步完成！效果：<br><img src="https://images-cdn.shimo.im/6OvUkazkmQsXMDMR/image.png!thumbnail" alt="图片"></p>
+<p>步骤二、扩展Spring的AbstractRoutingDataSource抽象类，重写lookupkey方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 动态数据源</span><br><span class="line"> * determineCurrentLookupKey()决定使用哪个数据源</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class DynamicDataSource extends AbstractRoutingDataSource &#123;</span><br><span class="line">    @Override</span><br><span class="line">    protected Object determineCurrentLookupKey() &#123;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>为了方便我们使用aop注解时候的得到的lookupkey参数能传递到这里。所以需要建一个线程安全的ThreadLocal变量，用于传参，避免复杂的参数传递过程。那么，我们获取这个lookupkey就从这个ThreadLocal里面去获取，所以determineCurrentLookupKey()直接返回getDataSource()。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 动态数据源</span><br><span class="line"> * determineCurrentLookupKey()决定使用哪个数据源</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class DynamicDataSource extends AbstractRoutingDataSource &#123;</span><br><span class="line">    @Override</span><br><span class="line">    protected Object determineCurrentLookupKey() &#123;</span><br><span class="line">        return getDataSource();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    &#x2F;*</span><br><span class="line">     *ThreadLocal 用于提供线程局部变量，在多线程环境可以保证各个线程里的变量独立于其它线程里的变量。</span><br><span class="line">     * 也就是说 ThreadLocal 可以为每个线程创建一个【单独的变量副本】</span><br><span class="line">     * 相当于线程的 private static 类型变量。</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private static final ThreadLocal&lt;String&gt; contextHolder &#x3D; new ThreadLocal&lt;&gt;();</span><br><span class="line">    </span><br><span class="line">    public static void setDataSource(String dataSource) &#123;</span><br><span class="line">        contextHolder.set(dataSource);</span><br><span class="line">    &#125;</span><br><span class="line">    public static String getDataSource() &#123;</span><br><span class="line">        return contextHolder.get();</span><br><span class="line">    &#125;</span><br><span class="line">    public static void clearDataSource() &#123;</span><br><span class="line">        contextHolder.remove();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是上面步骤还不够，因为自动装载数据源的这个过程我们在前面已经去掉了，所以需要我们自己手动去装配数据源的信息。调用determineCurrentLookupKey()方法的determineTargetDataSource()方法可以看到，里面有用到一些变量，比如resolvedDataSources，它是一个map，查看调用地方可以看到，它的初始化实在afterPropertiesSet()方法中，这初始化方法会用到一些变量，比如：targetDataSources、defaultTargetDataSource，然后你回发现，这个两个参数，都是一个set方法初始化的，setTargetDataSources(Map&lt;Object, Object&gt; targetDataSources)、setDefaultTargetDataSource(Object defaultTargetDataSource)，这两个就是所有数据源信息，和默认数据源信息，所以我们需要手动把我们配置的数据源信息set进去。<br><img src="https://images-cdn.shimo.im/wVwD7D4865Yac743/image.png!thumbnail" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/gMAiX78TONkJJJWi/image.png!thumbnail" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/wwCAOSGA5vknTG51/image.png!thumbnail" alt="图片"></p>
+<p>方法很多，因为涉及到一个顺序问题，调用determineCurrentLookupKey()前一定要把数据源的信息初始化化好，所以我们可以写一个DynamicDataSource的构造方法。两个参数，一个默认数据源，一个所有数据源。然后调用afterPropertiesSet()，初始化必要的参数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 决定使用哪个数据源之前需要把多个数据源的信息以及默认数据源信息配置好</span><br><span class="line"> * @param defaultTargetDataSource</span><br><span class="line"> * @param targetDataSources</span><br><span class="line"> *&#x2F;</span><br><span class="line">public DynamicDataSource(DataSource defaultTargetDataSource, Map&lt;Object, Object&gt; targetDataSources) &#123;</span><br><span class="line">    super.setDefaultTargetDataSource(defaultTargetDataSource);</span><br><span class="line">    super.setTargetDataSources(targetDataSources);</span><br><span class="line">    super.afterPropertiesSet();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因为这数据源的信息启动时候就需要初始化，因为后面事务等类的初始化都需要依赖数据源bean，所以在DynamicDataSourceConfig配置中，我们生成一个DynamicDataSource的bean。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Bean</span><br><span class="line">@Primary</span><br><span class="line">public DynamicDataSource dataSource(DataSource firstDataSource, DataSource secondDataSource) &#123;</span><br><span class="line">    Map&lt;Object, Object&gt; targetDataSources &#x3D; new HashMap&lt;&gt;();</span><br><span class="line">    targetDataSources.put(DataSourceNames.FIRST, firstDataSource);</span><br><span class="line">    targetDataSources.put(DataSourceNames.SECOND, secondDataSource);</span><br><span class="line">    return new DynamicDataSource(firstDataSource, targetDataSources);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Primary 优先考虑，优先考虑被注解的对象注入。</span><br></pre></td></tr></table></figure>
+<p>因为数据源的名称在我们后面注解的时候经常会用到，所以我们作为一个enum常亮来用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 增加多数据源，在此配置</span><br><span class="line"> *</span><br><span class="line"> * @author chenshun</span><br><span class="line"> * @email sunlightcs@gmail.com</span><br><span class="line"> * @date 2017&#x2F;8&#x2F;18 23:46</span><br><span class="line"> *&#x2F;</span><br><span class="line">public interface DataSourceNames &#123;</span><br><span class="line">    String FIRST &#x3D; &quot;first&quot;;</span><br><span class="line">    String SECOND &#x3D; &quot;second&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过上面的配置，我们可以说已经完成了手动装配我们自定义的多数据源的过程了。接下来的工作就是我们自己去指定ThreadLocal里面的值就行。<br>我们采用aop的方式，在需要修改数据源的地方使用注解方式去切换，然后切面修改ThreadLocal的内容。这里比较简单，我就直接贴代码：</p>
+<p><strong>注解：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 多数据源注解</span><br><span class="line"> * @author chenshun</span><br><span class="line"> * @email sunlightcs@gmail.com</span><br><span class="line"> * @date 2017&#x2F;9&#x2F;16 22:16</span><br><span class="line"> *&#x2F;</span><br><span class="line">@Target(ElementType.METHOD)</span><br><span class="line">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="line">@Documented</span><br><span class="line">public @interface DataSource &#123;</span><br><span class="line">    String name() default &quot;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>切面处理逻辑：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 多数据源，切面处理类</span><br><span class="line"> * @author chenshun</span><br><span class="line"> * @email sunlightcs@gmail.com</span><br><span class="line"> * @date 2017&#x2F;9&#x2F;16 22:20</span><br><span class="line"> *&#x2F;</span><br><span class="line">@Aspect</span><br><span class="line">@Component</span><br><span class="line">public class DataSourceAspect implements Ordered &#123;</span><br><span class="line">    protected Logger logger &#x3D; LoggerFactory.getLogger(getClass());</span><br><span class="line">    @Pointcut(&quot;@annotation(com.example.datasource.DataSource)&quot;)</span><br><span class="line">    public void dataSourcePointCut() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    @Around(&quot;dataSourcePointCut()&quot;)</span><br><span class="line">    public Object around(ProceedingJoinPoint point) throws Throwable &#123;</span><br><span class="line">        MethodSignature signature &#x3D; (MethodSignature) point.getSignature();</span><br><span class="line">        Method method &#x3D; signature.getMethod();</span><br><span class="line">        DataSource ds &#x3D; method.getAnnotation(DataSource.class);</span><br><span class="line">        if(ds &#x3D;&#x3D; null)&#123;</span><br><span class="line">            DynamicDataSource.setDataSource(DataSourceNames.FIRST);</span><br><span class="line">            logger.debug(&quot;set datasource is &quot; + DataSourceNames.FIRST);</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            DynamicDataSource.setDataSource(ds.name());</span><br><span class="line">            logger.debug(&quot;set datasource is &quot; + ds.name());</span><br><span class="line">        &#125;</span><br><span class="line">        try &#123;</span><br><span class="line">            return point.proceed();</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            DynamicDataSource.clearDataSource();</span><br><span class="line">            logger.debug(&quot;clean datasource&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public int getOrder() &#123;</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://images-cdn.shimo.im/7F9C0PRb4pYZ0I1S/image.png!thumbnail" alt="图片"></p>
+<p>致此，完成了我们需要的所有准备工作，接下来我们只需要测试一下即可~</p>
+<p>测试：</p>
+<p>service中定义两个查询，分别查两个数据库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public interface SysUserService extends IService&lt;SysUser&gt; &#123;</span><br><span class="line">    SysUser findUserByFirstDb(long id);</span><br><span class="line">    SysUser findUserBySecondDb(long id);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实现类：因为默认是一，所以不用注解，数据库二需要添加注解@DataSource(name = DataSourceNames.SECOND)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@Service</span><br><span class="line">public class SysUserServiceImpl extends ServiceImpl&lt;SysUserMapper, SysUser&gt; implements SysUserService &#123;</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    public SysUser findUserByFirstDb(long id) &#123;</span><br><span class="line">        return this.baseMapper.selectById(id);</span><br><span class="line">    &#125;</span><br><span class="line">    @DataSource(name &#x3D; DataSourceNames.SECOND)</span><br><span class="line">    @Override</span><br><span class="line">    public SysUser findUserBySecondDb(long id) &#123;</span><br><span class="line">        return this.baseMapper.selectById(id);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试方法：test()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(SpringRunner.class)</span><br><span class="line">@SpringBootTest</span><br><span class="line">public class DatasourceDemoApplicationTests &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    SysUserService userService;</span><br><span class="line">    @Test</span><br><span class="line">    public void contextLoads() &#123;</span><br><span class="line">        SysUser user &#x3D; userService.getById(1);</span><br><span class="line">        System.out.println(user.toString());</span><br><span class="line">    &#125;</span><br><span class="line">    @Test</span><br><span class="line">    public void test() &#123;</span><br><span class="line">        SysUser user &#x3D; userService.findUserByFirstDb(1);</span><br><span class="line">        System.out.println(&quot;第one个数据库---------》&quot; + user.toString());</span><br><span class="line"></span><br><span class="line">        SysUser user2 &#x3D; userService.findUserBySecondDb(1);</span><br><span class="line">        System.out.println(&quot;第二个数据库---------》&quot; + user2.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果：<br><img src="https://images-cdn.shimo.im/ouRhGJJdm9IOZ8Az/image.png!thumbnail" alt="图片"></p>
+<p>ok，大功告成<del>~</del></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/09/14/%E8%BD%AC%E8%BD%BD%209%E3%80%81renren-fast%E8%84%9A%E6%89%8B%E6%9E%B6%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%8B%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          renren-fast脚手架学习（下）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/09/14/%E8%BD%AC%E8%BD%BD%2010%E3%80%81%E6%8C%81%E4%B9%85%E5%B1%82%E6%A1%86%E6%9E%B6spring%20data%20jpa/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">持久层框架spring data jpa</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="转载 8、renren-fast脚手架学习（上）" data-title="renren-fast脚手架学习（上）" data-url="http://www.2333nmsl.ml/2020/09/14/%E8%BD%AC%E8%BD%BD%208%E3%80%81renren-fast%E8%84%9A%E6%89%8B%E6%9E%B6%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%8A%EF%BC%89/"  data-images="/img/1.gif" data-content="renren-fast脚手架学习（上）">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2020 yht
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"rect":"opacity:0.8","log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

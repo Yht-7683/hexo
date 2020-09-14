@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>全双工通信协议Websocket | Hexo</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="转载 15、全双工通信协议Websocket">
+<meta property="og:type" content="article">
+<meta property="og:title" content="全双工通信协议Websocket">
+<meta property="og:url" content="http://www.2333nmsl.ml/2020/09/14/%E8%BD%AC%E8%BD%BD%2015%E3%80%81%E5%85%A8%E5%8F%8C%E5%B7%A5%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AEWebsocket/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="转载 15、全双工通信协议Websocket">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://images-cdn.shimo.im/TNgrgWYa5icIWn2b/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/vclkrQtHdYMqcZbb/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/DZ8SmLG3rV8QimIZ/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/TPyXUxTUDnEYzbhy/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/vYQCjSEgLIw3JdmP/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/QQQlY39xE0ob0Hlv/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/NQJtZrlKtNsAbrlc/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/Rukwp3E7ZyY522wT/image.png!thumbnail">
+<meta property="article:published_time" content="2020-09-14T15:04:04.000Z">
+<meta property="article:modified_time" content="2020-09-14T07:07:17.956Z">
+<meta property="article:author" content="yht">
+<meta property="article:tag" content="Websocket">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images-cdn.shimo.im/TNgrgWYa5icIWn2b/image.png!thumbnail">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 5.0.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/1.gif" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/"></a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Yht-7683/" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="#" title="mail">mail</a>
+					        
+								<a class="qq" target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=434807683&site=qq&menu=yes" title="qq">qq</a>
+					        
+								<a class="weibo" target="_blank" href="https://weibo.com/" title="weibo">weibo</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ASCII%E7%A0%81%E5%9B%BE/" style="font-size: 10px;">ASCII码图</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 20px;">Java基础</a> <a href="/tags/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 10px;">Java多线程</a> <a href="/tags/Redis/" style="font-size: 20px;">Redis</a> <a href="/tags/Websocket/" style="font-size: 10px;">Websocket</a> <a href="/tags/io/" style="font-size: 10px;">io</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/mybatis%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">mybatis框架</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/renren-fast/" style="font-size: 15px;">renren-fast</a> <a href="/tags/spring-data/" style="font-size: 10px;">spring data</a> <a href="/tags/spring-security/" style="font-size: 10px;">spring security</a> <a href="/tags/springboot%E6%A1%86%E6%9E%B6/" style="font-size: 15px;">springboot框架</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 10px;">消息队列</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">计算机网络</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://a-cai.gitee.io/blog/">前端资料</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/1.gif" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Yht-7683/" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="#" title="mail">mail</a>
+			        
+						<a class="qq" target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=434807683&site=qq&menu=yes" title="qq">qq</a>
+			        
+						<a class="weibo" target="_blank" href="https://weibo.com/" title="weibo">weibo</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-转载 15、全双工通信协议Websocket" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/09/14/%E8%BD%AC%E8%BD%BD%2015%E3%80%81%E5%85%A8%E5%8F%8C%E5%B7%A5%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AEWebsocket/" class="article-date">
+  	<time datetime="2020-09-14T15:04:04.000Z" itemprop="datePublished">2020-09-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      全双工通信协议Websocket
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Websocket/" rel="tag">Websocket</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="4-spirngboot集成websocket-xmind15预习、即时通讯websocket-xmind15预习-即时通讯websocket-xmind1-websocket简介-xmind2-websocket握手过程-xmind3-java-WebSocket实现-xmind百度百科：websocket"><a href="#4-spirngboot集成websocket-xmind15预习、即时通讯websocket-xmind15预习-即时通讯websocket-xmind1-websocket简介-xmind2-websocket握手过程-xmind3-java-WebSocket实现-xmind百度百科：websocket" class="headerlink" title="4_spirngboot集成websocket.xmind15预习、即时通讯websocket.xmind15预习_即时通讯websocket.xmind1_websocket简介.xmind2_websocket握手过程.xmind3_java_WebSocket实现.xmind百度百科：websocket"></a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/UqXxQuoImL88n4n9.xmind">4_spirngboot集成websocket.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/p2iXdytafMEUhYTh.xmind">15预习、即时通讯websocket.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/EPjOwRHwuHIA5OSL.xmind">15预习_即时通讯websocket.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/t6tKKOib0PktU0it.xmind">1_websocket简介.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/J6WicHe02UgAzwuJ.xmind">2_websocket握手过程.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/WvC5Qcf6bV0m1ctW.xmind">3_java_WebSocket实现.xmind</a>百度百科：websocket</h2><p>WebSocket协议是基于TCP的一种新的网络协议。它实现了浏览器与服务器全双工(full-duplex)通信——允许服务器主动发送信息给客户端。</p>
+<p>WebSocket使得客户端和服务器之间的数据交换变得更加简单，允许服务端主动向客户端推送数据。在WebSocket API中，浏览器和服务器只需要完成一次握手，两者之间就直接可以创建持久性的连接，并进行双向数据传输。</p>
+<h2 id="http的不足，websocket的出现"><a href="#http的不足，websocket的出现" class="headerlink" title="http的不足，websocket的出现"></a>http的不足，websocket的出现</h2><h3 id="websocket背景"><a href="#websocket背景" class="headerlink" title="websocket背景"></a>websocket背景</h3><p>了解计算机网络协议的人，应该都知道：HTTP 协议是一种无状态的、无连接的、单向的应用层协议。它采用了请求/响应模型。通信请求只能由客户端发起，服务端对请求做出应答处理。</p>
+<p>这种通信模型有一个弊端：HTTP 协议无法实现服务器主动向客户端发起消息。</p>
+<p>这种单向请求的特点，注定了如果服务器有连续的状态变化，客户端要获知就非常麻烦。大多数 Web 应用程序将通过频繁的异步JavaScript和XML（AJAX）请求实现长轮询。轮询的效率低，非常浪费资源（因为必须不停连接，或者 HTTP 连接始终打开）。</p>
+<p>因此，工程师们一直在思考，有没有更好的方法。WebSocket 就是这样发明的。WebSocket 连接允许客户端和服务器之间进行全双工通信，以便任一方都可以通过建立的连接将数据推送到另一端。WebSocket 只需要建立一次连接，就可以一直保持连接状态。这相比于轮询方式的不停建立连接显然效率要大大提高。</p>
+<p><img src="https://images-cdn.shimo.im/TNgrgWYa5icIWn2b/image.png!thumbnail" alt="图片"></p>
+<p>http解决双工常用方法：</p>
+<p>长久以来, 创建实现客户端和用户端之间双工通讯的web app都会造成HTTP轮询的滥用: 客户端向主机不断发送不同的HTTP呼叫来进行询问。</p>
+<h3 id="桥梁技术-–ajax轮询"><a href="#桥梁技术-–ajax轮询" class="headerlink" title="桥梁技术 –ajax轮询"></a>桥梁技术 –ajax轮询</h3><p>ajax轮询 的原理非常简单，让浏览器隔个几秒就发送一次请求，询问服务器是否有新信息。</p>
+<p>场景再现：</p>
+<p>客户端：啦啦啦，有没有新信息(Request)</p>
+<p>服务端：没有（Response）</p>
+<p>客户端：啦啦啦，有没有新信息(Request)</p>
+<p>服务端：没有。。（Response）</p>
+<p>客户端：啦啦啦，有没有新信息(Request)</p>
+<p>服务端：你好烦啊，没有啊。。（Response）</p>
+<p>客户端：啦啦啦，有没有新消息（Request）</p>
+<p>服务端：好啦好啦，有啦给你。（Response）</p>
+<p>客户端：啦啦啦，有没有新消息（Request）</p>
+<p>服务端：。。。。。没。。。。没。。。没有（Response） —- loop</p>
+<h3 id="桥梁技术-–-长轮询"><a href="#桥梁技术-–-长轮询" class="headerlink" title="桥梁技术 – 长轮询"></a>桥梁技术 – 长轮询</h3><p>long poll 其实原理跟 ajax轮询 差不多，都是采用轮询的方式，不过采取的是阻塞模型（一直打电话，没收到就不挂电话），也就是说，客户端发起连接后，如果没消息，就一直不返回Response给客户端。直到有消息才返回，返回完之后，客户端再次建立连接，周而复始。</p>
+<p>场景再现</p>
+<p>客户端：啦啦啦，有没有新信息，没有的话就等有了才返回给我吧（Request）</p>
+<p>服务端：额。。 等待到有消息的时候。。来 给你（Response）</p>
+<p>客户端：啦啦啦，有没有新信息，没有的话就等有了才返回给我吧（Request） -loop</p>
+<h2 id="websocket特点"><a href="#websocket特点" class="headerlink" title="websocket特点"></a>websocket特点</h2><p><img src="https://images-cdn.shimo.im/vclkrQtHdYMqcZbb/image.png!thumbnail" alt="图片"></p>
+<ol>
+<li>服务器可以主动向客户端推送信息，客户端也可以主动向服务器发送信息，是真正的双向平等对话，属于服务器推送技术的一种。</li>
+<li>建立在 TCP 协议之上，服务器端的实现比较容易。</li>
+<li>与 HTTP 协议有着良好的兼容性。默认端口也是80和443，并且握手阶段采用 HTTP 协议，因此握手时不容易屏蔽，能通过各种 HTTP 代理服务器。</li>
+<li>数据格式比较轻量，性能开销小，通信高效。</li>
+<li>可以发送文本，也可以发送二进制数据。</li>
+<li>没有同源限制，客户端可以与任意服务器通信。</li>
+<li>协议标识符是ws（如果加密，则为wss），服务器网址就是 URL。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ws:&#x2F;&#x2F;example.com:80&#x2F;some&#x2F;path</span><br></pre></td></tr></table></figure>
+<h2 id="websocket实现原理"><a href="#websocket实现原理" class="headerlink" title="websocket实现原理"></a>websocket实现原理</h2></li>
+</ol>
+<p>在实现websocket连线过程中，需要通过浏览器发出websocket连线请求，然后服务器发出回应，这个过程通常称为“握手” 。在 WebSocket API，浏览器和服务器只需要做一个握手的动作，然后，浏览器和服务器之间就形成了一条快速通道。两者之间就直接可以数据互相传送。在此WebSocket 协议中，为我们实现即时服务带来了两大好处：</p>
+<ul>
+<li><ol>
+<li>Header</li>
+</ol>
+</li>
+</ul>
+<p>互相沟通的Header是很小的-大概只有 2 Bytes</p>
+<ul>
+<li><ol start="2">
+<li>Server Push</li>
+</ol>
+</li>
+</ul>
+<p>服务器的推送，服务器不再被动的接收到浏览器的请求之后才返回数据，而是在有新数据时就主动推送给浏览器。</p>
+<h2 id="websocket与http的关系"><a href="#websocket与http的关系" class="headerlink" title="websocket与http的关系"></a>websocket与http的关系</h2><p><img src="https://images-cdn.shimo.im/DZ8SmLG3rV8QimIZ/image.png!thumbnail" alt="图片"></p>
+<p>首先Websocket是基于HTTP协议的，或者说借用了HTTP的协议来完成一部分握手。</p>
+<p>我们来看个典型的 Websocket 握手（借用Wikipedia的。。）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET &#x2F;chat HTTP&#x2F;1.1</span><br><span class="line">Host: server.example.com</span><br><span class="line">Upgrade: websocket</span><br><span class="line">Connection: Upgrade</span><br><span class="line">Sec-WebSocket-Key: x3JJHMbDL1EzLkh9GBhXDw&#x3D;&#x3D;</span><br><span class="line">Sec-WebSocket-Protocol: chat, superchat</span><br><span class="line">Sec-WebSocket-Version: 13</span><br><span class="line">Origin: http:&#x2F;&#x2F;example.com</span><br></pre></td></tr></table></figure>
+<p>熟悉HTTP的童鞋可能发现了，这段类似HTTP协议的握手请求中，多了几个东西。我会顺便讲解下作用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Upgrade: websocket</span><br><span class="line">Connection: Upgrade</span><br></pre></td></tr></table></figure>
+<p>这个就是Websocket的核心了，告诉 Apache 、 Nginx 等服务器：注意啦，我发起的是Websocket协议，快点帮我找到对应的助理处理~不是那个老土的HTTP。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Sec-WebSocket-Key: x3JJHMbDL1EzLkh9GBhXDw&#x3D;&#x3D;</span><br><span class="line">Sec-WebSocket-Protocol: chat, superchat</span><br><span class="line">Sec-WebSocket-Version: 13</span><br></pre></td></tr></table></figure>
+<p>首先， Sec-WebSocket-Key 是一个 Base64 encode 的值，这个是浏览器随机生成的，告诉服务器：泥煤，不要忽悠窝，我要验证尼是不是真的是Websocket助理。与后面服务端响应首部的Sec-WebSocket-Accept是配套的，提供基本的防护，比如恶意的连接，或者无意的连接。<br>然后， Sec_WebSocket-Protocol 是一个用户定义的字符串，用来区分同URL下，不同的服务所需要的协议。简单理解：今晚我要服务A，别搞错啦~</p>
+<p>最后， Sec-WebSocket-Version 是告诉服务器所使用的 Websocket Draft（协议版本），在最初的时候，Websocket协议还在 Draft 阶段，各种奇奇怪怪的协议都有，而且还有很多期奇奇怪怪不同的东西，什么Firefox和Chrome用的不是一个版本之类的，当初Websocket协议太多可是一个大难题。。不过现在还好，已经定下来啦<del>大家都使用的一个东西</del> 脱水： 服务员，我要的是13岁的噢→_→</p>
+<p>然后服务器会返回下列东西，表示已经接受到请求， 成功建立Websocket啦！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">HTTP&#x2F;1.1 101 Switching Protocols</span><br><span class="line">Upgrade: websocket</span><br><span class="line">Connection: Upgrade</span><br><span class="line">Sec-WebSocket-Accept: HSmrc0sMlYUkAGmm5OPpG2HaGWk&#x3D;</span><br><span class="line">Sec-WebSocket-Protocol: chat</span><br></pre></td></tr></table></figure>
+<p>这里开始就是HTTP最后负责的区域了，告诉客户，我已经成功切换协议啦~</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Upgrade: websocket</span><br><span class="line">Connection: Upgrade</span><br></pre></td></tr></table></figure>
+<p>依然是固定的，告诉客户端即将升级的是 Websocket 协议，而不是mozillasocket，lurnarsocket或者shitsocket。<br>然后， Sec-WebSocket-Accept 这个则是经过服务器确认，并且加密过后的 Sec-WebSocket-Key 。</p>
+<p>Sec-WebSocket-Accept 的计算方法：</p>
+<ul>
+<li>将 Sec-WebSocket-Key 跟 258EAFA5-E914-47DA-95CA-C5AB0DC85B11 拼接；</li>
+<li>通过 SHA1 计算出摘要，并转成 base64 字符串。</li>
+</ul>
+<p>作用：</p>
+<ol>
+<li>避免服务端收到非法的websocket连接（比如http客户端不小心请求连接websocket服务，此时服务端可以直接拒绝连接）</li>
+<li>确保服务端理解websocket连接。因为ws握手阶段采用的是http协议，因此可能ws连接是被一个http服务器处理并返回的，此时客户端可以通过Sec-WebSocket-Key来确保服务端认识ws协议。（并非百分百保险，比如总是存在那么些无聊的http服务器，光处理Sec-WebSocket-Key，但并没有实现ws协议。。。）</li>
+<li>Sec-WebSocket-Key主要目的并不是确保数据的安全性，因为Sec-WebSocket-Key、Sec-WebSocket-Accept的转换计算公式是公开的，而且非常简单，最主要的作用是预防一些常见的意外情况（非故意的）。</li>
+</ol>
+<p>后面的， Sec-WebSocket-Protocol 则是表示最终使用的协议。</p>
+<p>至此，HTTP已经完成它所有工作了，接下来就是完全按照Websocket协议进行了。</p>
+<p>连接成功的状态码是101。</p>
+<p><img src="https://images-cdn.shimo.im/TPyXUxTUDnEYzbhy/image.png!thumbnail" alt="图片"></p>
+<h2 id="java-WebSocket实现"><a href="#java-WebSocket实现" class="headerlink" title="java WebSocket实现"></a>java WebSocket实现</h2><ul>
+<li>可参考：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d79bf8174196">https://www.jianshu.com/p/d79bf8174196</a></li>
+</ul>
+<p>在maven中添加websocket库的代码如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt; </span><br><span class="line">  &lt;groupId&gt;javax.websocket&lt;&#x2F;groupId&gt; </span><br><span class="line">  &lt;artifactId&gt;javax.websocket-api&lt;&#x2F;artifactId&gt; </span><br><span class="line">  &lt;version&gt;1.1&lt;&#x2F;version&gt;</span><br><span class="line">  &lt;scope&gt;provided&lt;&#x2F;scope&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="注解、成员数据介绍"><a href="#注解、成员数据介绍" class="headerlink" title="注解、成员数据介绍"></a><strong>注解、成员数据介绍</strong></h3><p><strong>@ServerEndpoint</strong></p>
+<p><strong>声明websocket地址</strong>类似Spring MVC中的@controller注解类似，websocket使用@ServerEndpoint来进行声明接口：@ServerEndpoint(value=”/websocket/{paraName}”) ; 其中 “ { } ”用来表示带参数的连接，如果需要获取{}中的参数在参数列表中增加：@PathParam(“paraName”) Integer userId 。</p>
+<p><strong>1.@OnOpen</strong></p>
+<p>public void onOpen(Session session) throws IOException{ }——-有连接时的触发函数。 我们可以在用户连接时记录用户的连接带的参数，只需在参数列表中增加参数：@PathParam(“paraName”) String paraName。</p>
+<p><strong>2.@OnClose</strong></p>
+<p>public void onClose(){ }——连接关闭时的调用方法。</p>
+<p><strong>3.@OnMessage</strong></p>
+<p>public void onMessage(String message, Session session) { }——-收到消息时调用的函数，其中Session是每个websocket特有的数据成员</p>
+<p><strong>4.Session</strong>—-每个Session代表了两个web socket断点的会话；当websocket握手成功后，websocket就会提供一个打开的Session，可以通过这个Session来对另一个端点发送数据；如果Session关闭后发送数据将会报错。</p>
+<p><strong>5.Session.getBasicRemote().sendText(“message”)</strong>——-向该Session连接的用户发送字符串数据。</p>
+<p><strong>6.@OnError</strong></p>
+<p>public void onError(Session session, Throwable error) { }——–发生意外错误时调用的函数。</p>
+<p><strong><em>websocket demo git：</em></strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://gitee.com/lv-success/git-second/tree/master/course-17-websocket/websocketDemo">https://gitee.com/lv-success/git-second/tree/master/course-17-websocket/websocketDemo</a><h2 id="springboot-websocket项目实现"><a href="#springboot-websocket项目实现" class="headerlink" title="springboot + websocket项目实现"></a>springboot + websocket项目实现</h2></li>
+</ul>
+<p>Websocket 是通过一个socket来实现双工异步通讯的能力。但是直接使用WebSocket协议开发程序显得特别烦琐，我门会使用它的子协议STOMP，它是一个更高级级别的协议，STOMP协议使用一个基于帧（frame）的格式来定义信息。</p>
+<h3 id="SockJS"><a href="#SockJS" class="headerlink" title="SockJS"></a>SockJS</h3><p>正如我们所知,websocket协议虽然已经被制定，当时还有很多版本的浏览器或浏览器厂商还没有支持的很好。</p>
+<p>所以,SockJS,可以理解为是websocket的一个备选方案。</p>
+<p>那它如何规定备选方案的呢？</p>
+<p>它大概支持这样几个方案:</p>
+<ul>
+<li>Websockets</li>
+<li>Streaming</li>
+<li>Polling</li>
+</ul>
+<p>当然，开启并使用SockJS后，它会优先选用websocket协议作为传输协议，如果浏览器不支持websocket协议，则会在其他方案中，选择一个较好的协议进行通讯。</p>
+<p><img src="https://images-cdn.shimo.im/vYQCjSEgLIw3JdmP/image.png!thumbnail" alt="图片"></p>
+<p>此图来源于 github: sockjs-client</p>
+<p>所以，如果使用SockJS进行通讯，它将在使用上保持一致，底层由它自己去选择相应的协议。</p>
+<p>可以认为SockJS是websocket通讯层上的上层协议。底层对于开发者来说是透明的。</p>
+<h3 id="STOMP"><a href="#STOMP" class="headerlink" title="STOMP"></a>STOMP</h3><p>STOMP 中文为: 面向消息的简单文本协议</p>
+<p>websocket定义了两种传输信息类型:**文本信息 和 二进制信息 ( text and binary )**。类型虽然被确定，但是他们的传输体是没有规定的。</p>
+<p>当然你可以自己来写传输体，来规定传输内容。(当然，这样的复杂度是很高的)</p>
+<p>所以,需要用一种简单的文本传输类型来规定传输内容，它可以作为通讯中的文本传输协议,即交互中的高级协议来定义交互信息。</p>
+<p>STOMP本身可以支持流类型的网络传输协议: websocket协议和tcp协议。</p>
+<p>stomp是一个用于client之间进行异步消息传输的简单文gg本协议, 全称是Simple Text Oriented Messaging Protocol.</p>
+<p>对于stomp协议来说, client分为消费者client与生产者client两种. server是指broker, 也就是消息队列的管理者.</p>
+<p>stomp协议并不是为websocket设计的, 它是属于消息队列的一种协议, 和amqp, jms平级.</p>
+<p>只不过由于它的简单性恰巧可以用于定义websocket的消息体格式.</p>
+<p>stomp协议很多mq都已支持, 比如rabbitmq, activemq. 很多语言也都有stomp协议的解析client库.</p>
+<p>可以这么理解, websocket结合stomp相当于一个面向公网对用户比较友好的一种消息队列.</p>
+<p>stomp协议中的client分为两角色:</p>
+<ul>
+<li>生产者: 通过SEND命令给某个目的地址(destination)发送消息.</li>
+<li>消费者: 通过SUBSCRIBE命令订阅某个目的地址(destination), 当生产者发送消息到目的地址后, 订阅此目的地址的消费者会即时收到消息.</li>
+</ul>
+<p>它的格式为:</p>
+<p><img src="https://images-cdn.shimo.im/QQQlY39xE0ob0Hlv/image.png!thumbnail" alt="图片"></p>
+<h2 id="springboot-基于子协议STOMP开发的websocket"><a href="#springboot-基于子协议STOMP开发的websocket" class="headerlink" title="springboot 基于子协议STOMP开发的websocket"></a>springboot 基于子协议STOMP开发的websocket</h2><h3 id="后端技术方案选型"><a href="#后端技术方案选型" class="headerlink" title="后端技术方案选型"></a>后端技术方案选型</h3><p>websocket服务端选型:spring websocket</p>
+<p>支持SockJS,开启SockJS后，可应对不同浏览器的通讯支持</p>
+<p>支持STOMP传输协议，可无缝对接STOMP协议下的消息代理器(如:RabbitMQ, ActiveMQ)</p>
+<h3 id="前端技术方案选型"><a href="#前端技术方案选型" class="headerlink" title="前端技术方案选型"></a>前端技术方案选型</h3><p>前端选型: stomp.js,sockjs.js</p>
+<p>后端开启SOMP和SockJS支持后，前对应有对应的js库进行支持.</p>
+<p>所以选用此两个库.</p>
+<h3 id="技术选型总结"><a href="#技术选型总结" class="headerlink" title="技术选型总结"></a>技术选型总结</h3><p>上述所用技术，是这样的逻辑:</p>
+<ul>
+<li><strong>开启socktJS:</strong></li>
+</ul>
+<p>如果有浏览器不支持websocket协议，可以在其他两种协议中进行选择，但是对于应用层来讲，使用起来是一样的。</p>
+<p>这是为了支持浏览器不支持websocket协议的一种备选方案</p>
+<ul>
+<li><strong>使用STOMP:</strong></li>
+</ul>
+<p>使用STOMP进行交互，前端可以使用stomp.js类库进行交互，消息一STOMP协议格式进行传输，这样就规定了消息传输格式。</p>
+<p>消息进入后端以后，可以将消息与实现STOMP格式的代理器进行整合。</p>
+<p>这是为了消息统一管理，进行机器扩容时，可进行负载均衡部署</p>
+<ul>
+<li><strong>使用spring websocket:</strong></li>
+</ul>
+<p>使用spring websocket,是因为他提供了STOMP的传输自协议的同时，还提供了StockJS的支持。</p>
+<p>当然，除此之外，spring websocket还提供了权限整合的功能，还有自带天生与spring家族等相关框架进行无缝整合。</p>
+<h3 id="websocket信息流"><a href="#websocket信息流" class="headerlink" title="websocket信息流"></a>websocket信息流</h3><p><img src="https://images-cdn.shimo.im/NQJtZrlKtNsAbrlc/image.png!thumbnail" alt="图片"></p>
+<ul>
+<li>Message在应用中的流动是这样一个流程，如上图。若destination是以/app开始则会通过request channel交给注解方法来处理，处理完毕根据默认的路径转发给SimpleBroker处理（若不使用默认路径可以用@SendTo来指定路径），处理完毕后交由response channel返回连接的客户端。</li>
+<li>若destination是以/topic开头则直接交给SimpleBroker处理。</li>
+</ul>
+<p><strong>第一步</strong>：导入spirngboot与websocket集成的pom坐标</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-web&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-websocket&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br><span class="line">&lt;!--添加jsp支持--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-tomcat&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;scope&gt;provided&lt;&#x2F;scope&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.apache.tomcat.embed&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;tomcat-embed-jasper&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;scope&gt;provided&lt;&#x2F;scope&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>第二步</strong>：自定义websocket配置，配置内容包括开启子协议STOMP，配置服务端点，前缀，等信息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">@EnableWebSocketMessageBroker&#x2F;&#x2F;注解表示开启使用STOMP协议来传输基于代理的消息，Broker就是代理的意思。</span><br><span class="line">public class WebSocketConfig implements WebSocketMessageBrokerConfigurer &#123;</span><br><span class="line">    &#x2F;***</span><br><span class="line">     * 注册 Stomp的端点</span><br><span class="line">     * addEndpoint：添加STOMP协议的端点。提供WebSocket或SockJS客户端访问的地址</span><br><span class="line">     * withSockJS：使用SockJS协议</span><br><span class="line">     * @param registry</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public void registerStompEndpoints(StompEndpointRegistry registry) &#123;</span><br><span class="line">        registry.addEndpoint(&quot;&#x2F;endpointWisely&quot;)</span><br><span class="line">                .withSockJS() ;</span><br><span class="line">        registry.addEndpoint(&quot;&#x2F;websocket&quot;)</span><br><span class="line">                .setAllowedOrigins(&quot;*&quot;)&#x2F;&#x2F;添加允许跨域访问</span><br><span class="line">                .withSockJS() ;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 配置消息代理</span><br><span class="line">     * 启动Broker，消息的发送的地址符合配置的前缀来的消息才发送到这个broker</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public void configureMessageBroker(MessageBrokerRegistry registry) &#123;</span><br><span class="line">        registry.enableSimpleBroker(&quot;&#x2F;api&#x2F;v1&#x2F;socket&#x2F;send&quot;,&quot;&#x2F;user&#x2F;&quot;, &quot;&#x2F;topic&quot;);&#x2F;&#x2F;推送消息前缀</span><br><span class="line">        registry.setApplicationDestinationPrefixes(&quot;&#x2F;api&#x2F;v1&#x2F;socket&#x2F;req&quot;);&#x2F;&#x2F;应用请求前缀</span><br><span class="line">        registry.setUserDestinationPrefix(&quot;&#x2F;user&quot;);&#x2F;&#x2F;推送用户前缀</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Spring框架提供基于websocket的STOMP支持，需要使用spring-messaging和spring-websocket模块。<br>下面的配置中，注册了一个前缀为/endpointWisely的stomp终端，客户端可以使用该url来建立websocket连接。</p>
+<p>Message的destination如果是以/app开头，则会转发给响应的消息处理方法（如使用@MessageMapping注解的方法）,</p>
+<p>如果是以/topic,/queue开头则会被转发给消息代理（broker），由broker广播给连接的客户端。</p>
+<p><img src="https://images-cdn.shimo.im/Rukwp3E7ZyY522wT/image.png!thumbnail" alt="图片"></p>
+<p><strong>第三步</strong>：上面配置完了之后，就可以开始编写内容了。这里表示服务器发送地址映射到/welcomeTopic，然后所有订阅了/topic/getResponse路径的都可以收到广播消息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@MessageMapping(&quot;&#x2F;welcomeTopic&quot;)&#x2F;&#x2F;浏览器发送请求通过@messageMapping 映射&#x2F;welcome 这个地址。</span><br><span class="line">@SendTo(&quot;&#x2F;topic&#x2F;getResponse&quot;)&#x2F;&#x2F;服务器端有消息时,会订阅@SendTo 中的路径的浏览器发送消息。</span><br><span class="line">public ResponseMessage say(RequestMessage message) throws Exception &#123;</span><br><span class="line">    System.out.println(&quot;发送信息-----------------------&quot; + message.getMessage());</span><br><span class="line">    return new ResponseMessage(&quot;Welcome, &quot; + message.getMessage() + &quot;!&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第四步：由于使用了sockjs，因此前端需要导入相关的js文件。</p>
+<p><a target="_blank" rel="noopener" href="https://attachments-cdn.shimo.im/m26ikyinB4Qfo3JO/sockjs.js">sockjs.js</a><a target="_blank" rel="noopener" href="https://attachments-cdn.shimo.im/AqgaaeZQ6ngHLnwb/stomp.js">stomp.js</a><a target="_blank" rel="noopener" href="https://attachments-cdn.shimo.im/Y82sNuyzzas97dXb/jquery.js">jquery.js</a></p>
+<p>页面如下：</p>
+<p><a target="_blank" rel="noopener" href="https://attachments-cdn.shimo.im/ngtor3hDy6UNvDsI/topic.jsp">topic.jsp</a></p>
+<h3 id="常用注解"><a href="#常用注解" class="headerlink" title="常用注解"></a>常用注解</h3><ul>
+<li>@EnableWebSocketMessageBroker</li>
+</ul>
+<p>通过EnableWebSocketMessageBroker 开启使用STOMP协议来传输基于代理(message broker)的消息,此时浏览器支持使用@MessageMapping 就像支持@RequestMapping一样。</p>
+<ul>
+<li>@MessageMapping</li>
+</ul>
+<p>配置中定义的config.setApplicationDestinationPrefixes(“/app”);表示如果链接以/app开头，则会转发给对应具有@MessageMapping对应链接的注解方法处理。如链接是/app/welcome则会找到@MessageMapping(“/welcome”)注解对应的方法。</p>
+<ul>
+<li>@SendTo</li>
+</ul>
+<p>可以把消息广播到路径上去，例如上面可以把消息广播到”/topic/greetings”,如果客户端在这个路径订阅消息，则可以接收到消息。</p>
+<ul>
+<li>@SendToUser</li>
+</ul>
+<p>消息目的地有UserDestinationMessageHandler来处理，会将消息路由到发送者对应的目的地。默认该注解前缀为/user。如：用户订阅/user/hi ，在@SendToUser(‘/hi’)查找目的地时，会将目的地的转化为/user/{name}/hi, 这个name就是principal的name值，该操作是认为用户登录并且授权认证，使用principal的name作为目的地标识。发给消息来源的那个用户。（就是谁请求给谁，不会发给所有用户，区分就是依照principal-name来区分的)。</p>
+<p>spring websocket基于注解的@SendTo和@SendToUser虽然方便，但是有局限性，例如我这样子的需求，我想手动的把消息推送给某个人，或者特定一组人，怎么办，@SendTo只能推送给所有人，@SendToUser只能推送给请求消息的那个人，这时，我们可以利用SimpMessagingTemplate这个类。</p>
+<p>SimpMessagingTemplate有俩个推送的方法</p>
+<ol>
+<li>convertAndSend(destination, payload); //将消息广播到特定订阅路径中，类似@SendTo</li>
+<li>convertAndSendToUser(user, destination, payload);//将消息推送到固定的用户订阅路径中，类似@SendToUser</li>
+</ol>
+<ul>
+<li>@DestinationVariable</li>
+</ul>
+<p>这个注解用于动态监听路径，很想rest中的@PathVariable：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@MessageMapping(&quot;&#x2F;queue&#x2F;chat&#x2F;&#123;uid&#125;&quot;)</span><br><span class="line">public void chat(@Payload @Validated Message message, @DestinationVariable(&quot;uid&quot;) String uid, Principal principal) &#123;</span><br><span class="line">    String msg &#x3D; &quot;发送人: &quot; + principal.getName() + &quot; chat &quot;;</span><br><span class="line">    simpMessagingTemplate.convertAndSendToUser(uid,&quot;&#x2F;queue&#x2F;chat&quot;,msg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="通讯层设计-–-1-1-amp-amp-1-n"><a href="#通讯层设计-–-1-1-amp-amp-1-n" class="headerlink" title="通讯层设计 – 1-1 &amp;&amp; 1-n"></a>通讯层设计 – 1-1 &amp;&amp; 1-n</h3><p><strong>1-n topic:</strong></p>
+<p>此方式，上述消息模型章节已经讲过，此处不再赘述</p>
+<p><strong>1-1 queue:</strong></p>
+<p>客服-用户沟通为1-1用户交互的案例</p>
+<p>前端:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">stompClient.subscribe(&#39;&#x2F;user&#x2F;queue&#x2F;chat&#39;,function(greeting)&#123;</span><br><span class="line">    showGreeting(greeting.body);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>后端:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@MessageMapping(&quot;&#x2F;queue&#x2F;chat&#x2F;&#123;uid&#125;&quot;)</span><br><span class="line">public void chat(@Payload @Validated Message message, @DestinationVariable(&quot;uid&quot;) String uid, Principal principal) &#123;</span><br><span class="line">    String msg &#x3D; &quot;发送人: &quot; + principal.getName() + &quot; chat &quot;;</span><br><span class="line">    simpMessagingTemplate.convertAndSendToUser(uid,&quot;&#x2F;queue&#x2F;chat&quot;,msg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>发送端:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function chat(uid) &#123;</span><br><span class="line">    stompClient.send(&quot;&#x2F;app&#x2F;queue&#x2F;chat&#x2F;&quot;+uid,&#123;&#125;,JSON.stringify(&#123;&#39;title&#39;:&#39;hello&#39;,&#39;content&#39;:&#39;message content&#39;&#125;));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述的转化，看上去没有topic那样1-n的广播要流畅，因为代码中采用约定的方式进行开发，当然这是由spring约定的。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/09/14/%E8%BD%AC%E8%BD%BD%2016%E3%80%81%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E6%A1%86%E6%9E%B6t-io/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          网络编程框架t-io
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/09/14/%E8%BD%AC%E8%BD%BD%2014%E3%80%81%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%B7%A5%E5%85%B7nginx/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">负载均衡工具nginx</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="转载 15、全双工通信协议Websocket" data-title="全双工通信协议Websocket" data-url="http://www.2333nmsl.ml/2020/09/14/%E8%BD%AC%E8%BD%BD%2015%E3%80%81%E5%85%A8%E5%8F%8C%E5%B7%A5%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AEWebsocket/"  data-images="/img/1.gif" data-content="全双工通信协议Websocket">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2020 yht
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"rect":"opacity:0.8","log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>springboot集成与运用 | Hexo</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="转载4、springboot集成与运用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="springboot集成与运用">
+<meta property="og:url" content="http://www.2333nmsl.ml/2020/09/14/%E8%BD%AC%E8%BD%BD%204%E3%80%81springboot%E7%9A%84%E9%9B%86%E6%88%90%E4%B8%8E%E8%BF%90%E7%94%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="转载4、springboot集成与运用">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://uploader.shimo.im/f/RIOmknd05gQcFop2.png!thumbnail">
+<meta property="og:image" content="https://uploader.shimo.im/f/9R14OPtI0oslKnzF.png!thumbnail">
+<meta property="og:image" content="https://uploader.shimo.im/f/KyULgscyq2YrgeHr.png!thumbnail">
+<meta property="og:image" content="https://uploader.shimo.im/f/DhSBW3JrWMAPgEAK.png!thumbnail">
+<meta property="og:image" content="https://uploader.shimo.im/f/Tn1yE1fEkZQRjKd5.png!thumbnail">
+<meta property="og:image" content="https://static.oschina.net/uploads/space/2016/0816/150118_JDoO_1258171.png">
+<meta property="og:image" content="https://images-cdn.shimo.im/AmEM6jqp5w45PraA/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/0G1kxTZzC3McF69t/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/SgnevpHrDM4Wijf4/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/RxRGlP1vJGo5iCBe/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/IUJLSK06iFA7ZdRe/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/eiFQtj01pKYONaBC/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/pKe8UW7fLmEBtO0w/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/6OvUkazkmQsXMDMR/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/wVwD7D4865Yac743/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/gMAiX78TONkJJJWi/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/wwCAOSGA5vknTG51/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/7F9C0PRb4pYZ0I1S/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/ouRhGJJdm9IOZ8Az/image.png!thumbnail">
+<meta property="article:published_time" content="2020-09-14T14:52:04.000Z">
+<meta property="article:modified_time" content="2020-09-14T07:07:17.956Z">
+<meta property="article:author" content="yht">
+<meta property="article:tag" content="springboot框架">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://uploader.shimo.im/f/RIOmknd05gQcFop2.png!thumbnail">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 5.0.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/1.gif" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/"></a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Yht-7683/" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="#" title="mail">mail</a>
+					        
+								<a class="qq" target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=434807683&site=qq&menu=yes" title="qq">qq</a>
+					        
+								<a class="weibo" target="_blank" href="https://weibo.com/" title="weibo">weibo</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ASCII%E7%A0%81%E5%9B%BE/" style="font-size: 10px;">ASCII码图</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 20px;">Java基础</a> <a href="/tags/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 10px;">Java多线程</a> <a href="/tags/Redis/" style="font-size: 20px;">Redis</a> <a href="/tags/Websocket/" style="font-size: 10px;">Websocket</a> <a href="/tags/io/" style="font-size: 10px;">io</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/mybatis%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">mybatis框架</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/renren-fast/" style="font-size: 15px;">renren-fast</a> <a href="/tags/spring-data/" style="font-size: 10px;">spring data</a> <a href="/tags/spring-security/" style="font-size: 10px;">spring security</a> <a href="/tags/springboot%E6%A1%86%E6%9E%B6/" style="font-size: 15px;">springboot框架</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 10px;">消息队列</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">计算机网络</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://a-cai.gitee.io/blog/">前端资料</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/1.gif" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Yht-7683/" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="#" title="mail">mail</a>
+			        
+						<a class="qq" target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=434807683&site=qq&menu=yes" title="qq">qq</a>
+			        
+						<a class="weibo" target="_blank" href="https://weibo.com/" title="weibo">weibo</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-转载 4、springboot的集成与运用" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/09/14/%E8%BD%AC%E8%BD%BD%204%E3%80%81springboot%E7%9A%84%E9%9B%86%E6%88%90%E4%B8%8E%E8%BF%90%E7%94%A8/" class="article-date">
+  	<time datetime="2020-09-14T14:52:04.000Z" itemprop="datePublished">2020-09-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      springboot集成与运用
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/springboot%E6%A1%86%E6%9E%B6/" rel="tag">springboot框架</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="课程4-springboot的集成与运用-预习-xmind【课程4】springboot的集成与运用（预习）-xmind1-Spring事件-xmind2-hibernate-validatior-xmind3-异常处理-xmind4-多数据源-xmind自定义banner"><a href="#课程4-springboot的集成与运用-预习-xmind【课程4】springboot的集成与运用（预习）-xmind1-Spring事件-xmind2-hibernate-validatior-xmind3-异常处理-xmind4-多数据源-xmind自定义banner" class="headerlink" title="课程4_springboot的集成与运用_预习.xmind【课程4】springboot的集成与运用（预习）.xmind1_Spring事件.xmind2_hibernate_validatior.xmind3_异常处理.xmind4_多数据源.xmind自定义banner"></a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/HN6cedVfwcc0BmdD.xmind"><em>课程4_springboot的集成与运用_预习</em>.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/P5pgcNh8j3ELenwI.xmind">【课程4】springboot的集成与运用（预习）.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/z6w5CzyPHDMe8EMs.xmind">1_Spring事件.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/bYNLMJBJJrQ2Yq6c.xmind">2_hibernate_validatior.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/h7ANfjJNVuQuy84z.xmind">3_异常处理.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/rU5U6Sx0dao014fG.xmind">4_多数据源.xmind</a>自定义banner</h2><p>我们只需要在Spring Boot工程的/src/main/resources目录下创建一个banner.txt文件，然后将ASCII字符画复制进去，就能替换默认的banner了。</p>
+<ul>
+<li>属性设置</li>
+</ul>
+<p>在banner.txt中，我们可以设置一些属性。比如：</p>
+<ul>
+<li><p>${AnsiColor.BRIGHT_RED}：设置控制台中输出内容的颜色</p>
+</li>
+<li><p>${application.version}：用来获取MANIFEST.MF文件中的版本号</p>
+</li>
+<li><p>${application.formatted-version}：格式化后的${application.version}版本信息</p>
+</li>
+<li><p>${spring-boot.version}：Spring Boot的版本号</p>
+</li>
+<li><p>${spring-boot.formatted-version}：格式化后的${spring-boot.version}版本信息</p>
+</li>
+<li><p>生成工具</p>
+</li>
+</ul>
+<p>如果让我们手工的来编辑这些字符画，显然是一件非常困难的差事。所以，我们可以借助下面这些工具，轻松地根据文字或图片来生成用于Banner输出的字符画。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://patorjk.com/software/taag">http://patorjk.com/software/taag</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.network-science.de/ascii/">http://www.network-science.de/ascii/</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.degraeve.com/img2txt.php">http://www.degraeve.com/img2txt.php</a><h2 id="freemarker集成"><a href="#freemarker集成" class="headerlink" title="freemarker集成"></a>freemarker集成</h2></li>
+</ul>
+<h3 id="语法大全"><a href="#语法大全" class="headerlink" title="语法大全"></a>语法大全</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/JealousGirl/p/6914122.html">https://www.cnblogs.com/JealousGirl/p/6914122.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/7efc095dba57">https://www.jianshu.com/p/7efc095dba57</a><h3 id="集成"><a href="#集成" class="headerlink" title="集成"></a>集成</h3></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-freemarker&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  freemarker:</span><br><span class="line">  template-loader-path:</span><br><span class="line">  - classpath:&#x2F;templates</span><br><span class="line">  cache: false</span><br><span class="line">  check-template-location: true</span><br><span class="line">  charset: utf-8</span><br><span class="line">  settings:</span><br><span class="line">    classic_compatible: true #处理空值</span><br><span class="line">    template_exception_handler: rethrow</span><br><span class="line">    template_update_delay: 0</span><br><span class="line">    datetime_format: yyyy-MM-dd HH:mm</span><br><span class="line">    number_format: 0.##</span><br></pre></td></tr></table></figure>
+<h2 id="Spring事件"><a href="#Spring事件" class="headerlink" title="Spring事件"></a><strong>Spring事件</strong></h2><p>ApplicationEvent以及Listener是Spring为我们提供的一个事件监听、订阅的实现，内部实现原理是观察者设计模式，设计初衷也是为了系统业务逻辑之间的解耦，提高可扩展性以及可维护性。</p>
+<p>通过 ApplicationEvent 类和 ApplicationListener 接口来提供在 ApplicationContext 中处理事件。如果一个 bean 实现 ApplicationListener，那么每次 ApplicationEvent 被发布到 ApplicationContext 上，那个 bean 会被通知。</p>
+<p>注意：因为ApplicationEvent是基于Spring容器完成的监听，所以在与常用的MQ之间的区别你可以这样认为，但是也不能作为使用标准：</p>
+<ul>
+<li>ApplicationEvent用于Bean与Bean之间的业务解耦</li>
+<li>MQ（Rabbitmq等）用于应用之间的业务解耦<h3 id="遵循流程"><a href="#遵循流程" class="headerlink" title="遵循流程"></a>遵循流程</h3></li>
+</ul>
+<ul>
+<li>自定义事件，继承ApplicationEvent（org.springframework.context.ApplicationEvent）</li>
+<li>定义监听事件，实现ApplicationListener（org.springframework.context.ApplicationListener）</li>
+<li>使用容器触发事件。</li>
+<li>发布事件，使用applicationContext发布事件。</li>
+</ul>
+<p>ApplicationEvent中，在自定义事件的构造方法中除了第一个source参数，其他参数都可以去自定义，可以根据项目实际情况进行监听传参，这里就只定义个简单的String字符串的透传。</p>
+<h3 id="逻辑整理"><a href="#逻辑整理" class="headerlink" title="逻辑整理"></a><strong>逻辑整理</strong></h3><p>这里使用一种简单的单机实现Spring的事件模型ApplicationEvent。</p>
+<p>第一步、分别自定义订阅和通知事件，继承ApplicationEvent</p>
+<p>第二步、分别定义事件监听器，实现ApplicationListener</p>
+<p>第三步、使用容器发布事件（订阅事件、通知事件）</p>
+<h3 id="项目运用"><a href="#项目运用" class="headerlink" title="项目运用"></a>项目运用</h3><ul>
+<li><p>定义通知事件MessageEvent 。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@Data</span><br><span class="line">public class MessageEvent extends ApplicationEvent &#123;</span><br><span class="line">    private long fromUserId;</span><br><span class="line">    private long toUserId;</span><br><span class="line">    private long postId;</span><br><span class="line">    private int event;</span><br><span class="line">    public MessageEvent(Object source, int event) &#123;</span><br><span class="line">        super(source);</span><br><span class="line">        this.event &#x3D; event;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>MessageEventHandler，关注事件监听处理类，做相关业务处理。</p>
+</li>
+</ul>
+<p>注意ApplicationListener是带泛型的，这样MessageEventHandler 只会监听MessageEvent事件。另外可以用@Component来注册组件，这样就不需要在spring的配置文件中指定了。</p>
+<p>另外要注意的一点是，发布事件的方法与事件处理是同步的，在service中有注册 @Transactional的情况下，listener中的do something和service中的是在同一个tansaction下。</p>
+<p>解决方法也简单，可以吧事件处理以异步调用的方式来处理。在事件处理上加上@Async注解，表示异步调用，同时为了让注解起作用，需要开启@EnableAsync注解。可以加在application启动器上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@Slf4j</span><br><span class="line">@Component</span><br><span class="line">public class MessageEventHandler implements ApplicationListener&lt;MessageEvent&gt; &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * @Async 表示异步调用</span><br><span class="line">     * @param event</span><br><span class="line">     *&#x2F;</span><br><span class="line">    @Async</span><br><span class="line">    @Override</span><br><span class="line">    public void onApplicationEvent(MessageEvent event) &#123;</span><br><span class="line">        &#x2F;&#x2F;TODO 业务处理</span><br><span class="line">        log.info(&quot;---------------&gt; &quot; + event.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>FollowController.sendNotify()–&gt;发送关注通知。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@GetMapping(&quot;&#x2F;test&quot;)</span><br><span class="line">public User test() &#123;</span><br><span class="line">    MessageEvent event &#x3D; new MessageEvent(&quot;MessagaEvent&quot;, Consts.MESSAGE_EVENT_FAVOR_POST);</span><br><span class="line">    event.setPostId(1L);</span><br><span class="line">    event.setFromUserId(2L);</span><br><span class="line">    event.setToUserId(3L);</span><br><span class="line">    applicationContext.publishEvent(event);</span><br><span class="line">    User user &#x3D; userService.getById(1L);</span><br><span class="line">    log.info(&quot;---------&gt; &quot; + user.toString());</span><br><span class="line">    return user;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="知识拓展–-EventListener"><a href="#知识拓展–-EventListener" class="headerlink" title="知识拓展–@EventListener"></a>知识拓展–@EventListener</h3></li>
+</ul>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/chszs/article/details/49097919">https://blog.csdn.net/chszs/article/details/49097919</a></li>
+</ul>
+<p><strong>有条件的事件处理</strong></p>
+<p>为了使注释@EventListener的功能更强大，Spring 4.2支持用SpEL表达式表达事件类型的方式</p>
+<p><strong>定义事件</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class TestEvent extends ApplicationEvent &#123;</span><br><span class="line">    public boolean isImport;</span><br><span class="line">    public TestEvent(Object source, boolean isImport) &#123;</span><br><span class="line">        super(source);</span><br><span class="line">        this.isImport &#x3D; isImport;</span><br><span class="line">    &#125;</span><br><span class="line">    public boolean isImport() &#123;</span><br><span class="line">        return isImport;</span><br><span class="line">    &#125;</span><br><span class="line">    public void setImport(boolean anImport) &#123;</span><br><span class="line">        isImport &#x3D; anImport;</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        return &quot;TestEvent&#123;&quot; +</span><br><span class="line">                &quot;isImport&#x3D;&quot; + isImport +</span><br><span class="line">                &#39;&#125;&#39;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>定义监听</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">public class EventHandler &#123;</span><br><span class="line">    @EventListener(condition&#x3D;&quot;#testEvent.isImport&quot;)</span><br><span class="line">    public void TestEventTest(TestEvent testEvent) &#123;</span><br><span class="line">        System.out.println(&quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;TestEvent&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot; + testEvent.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="实体验证hibernate-validatior"><a href="#实体验证hibernate-validatior" class="headerlink" title="实体验证hibernate validatior"></a>实体验证hibernate validatior</h2><h3 id="参数校验"><a href="#参数校验" class="headerlink" title="参数校验"></a>参数校验</h3><p>在开发中经常需要写一些字段校验的代码，比如字段非空，字段长度限制，邮箱格式验证等等，写这些与业务逻辑关系不大的代码个人感觉有两个麻烦：</p>
+<ul>
+<li>验证代码繁琐，重复劳动</li>
+<li>方法内代码显得冗长</li>
+<li>每次要看哪些参数验证是否完整，需要去翻阅验证逻辑代码</li>
+</ul>
+<p>hibernate validator（<a target="_blank" rel="noopener" href="http://hibernate.org/validator/documentation/">官方文档</a>）提供了一套比较完善、便捷的验证实现方式。</p>
+<p>spring-boot-starter-web包里面有hibernate-validator包，不需要引用hibernate validator依赖。</p>
+<h3 id="校验模式"><a href="#校验模式" class="headerlink" title="校验模式"></a>校验模式</h3><p>1、普通模式（默认是这个模式）</p>
+<p>普通模式(会校验完所有的属性，然后返回所有的验证失败信息)</p>
+<p>2、快速失败返回模式</p>
+<p>快速失败返回模式(只要有一个验证失败，则返回)</p>
+<p>两种验证模式配置方式：（<a target="_blank" rel="noopener" href="https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#section-provider-specific-settings">参考官方文档</a>）</p>
+<ul>
+<li>failFast：true  快速失败返回模式    false 普通模式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ValidatorFactory validatorFactory &#x3D; Validation.byProvider( HibernateValidator.class )</span><br><span class="line">        .configure()</span><br><span class="line">        .failFast( true )</span><br><span class="line">        .buildValidatorFactory();</span><br><span class="line">Validator validator &#x3D; validatorFactory.getValidator();</span><br></pre></td></tr></table></figure></li>
+<li>和 （hibernate.validator.fail_fast：true  快速失败返回模式    false 普通模式）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ValidatorFactory validatorFactory &#x3D; Validation.byProvider( HibernateValidator.class )</span><br><span class="line">        .configure()</span><br><span class="line">        .addProperty( &quot;hibernate.validator.fail_fast&quot;, &quot;true&quot; )</span><br><span class="line">        .buildValidatorFactory();</span><br><span class="line">Validator validator &#x3D; validatorFactory.getValidator();</span><br></pre></td></tr></table></figure>
+springboot配置hibernate Validator为快速失败返回模式：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">public class ValidatorConfig &#123;</span><br><span class="line">    @Bean</span><br><span class="line">    public Validator validator()&#123;</span><br><span class="line">        ValidatorFactory validatorFactory &#x3D; Validation.byProvider( HibernateValidator.class )</span><br><span class="line">                .configure()</span><br><span class="line">                .failFast( true )</span><br><span class="line">                .buildValidatorFactory();</span><br><span class="line">        Validator validator &#x3D; validatorFactory.getValidator();</span><br><span class="line">        return validator;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="实例demo"><a href="#实例demo" class="headerlink" title="实例demo"></a>实例demo</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@Data</span><br><span class="line">@EqualsAndHashCode(callSuper &#x3D; true)</span><br><span class="line">@Accessors(chain &#x3D; true)</span><br><span class="line">public class User extends BaseEntity &#123;</span><br><span class="line">    private static final long serialVersionUID &#x3D; 1L;</span><br><span class="line">    </span><br><span class="line">    @NotBlank(message&#x3D;&quot;用户名不能为空&quot;)</span><br><span class="line">    private String username;</span><br><span class="line">    @NotBlank(message&#x3D;&quot;密码不能为空&quot;)</span><br><span class="line">    private String password;</span><br><span class="line">    @Email</span><br><span class="line">    private String email;</span><br><span class="line">    </span><br><span class="line">    ...</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>controller中校验，@Valid表示需要验证的实体，BindingResult是校验结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@PostMapping(&quot;&#x2F;add&quot;)</span><br><span class="line">public Result addUser(@Valid User user, BindingResult result) &#123;</span><br><span class="line">    if(result.hasErrors()) &#123;</span><br><span class="line">        List&lt;ObjectError&gt; allErrors &#x3D; result.getAllErrors();</span><br><span class="line">        for (ObjectError error : allErrors) &#123;</span><br><span class="line">            log.error(&quot;here is error ----------&gt; &#123;&#125;&quot;, error.getDefaultMessage());</span><br><span class="line">        &#125;</span><br><span class="line">        return Result.failure(allErrors.get(0).getDefaultMessage());</span><br><span class="line">    &#125;</span><br><span class="line">    userService.save(user);</span><br><span class="line">    return Result.success();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="springboot的异常处理"><a href="#springboot的异常处理" class="headerlink" title="springboot的异常处理"></a>springboot的异常处理</h2><p>在日常web开发中发生了异常，往往是需要通过一个统一的异常处理来保证客户端能够收到友好的提示。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/7c94d1ac2092">https://www.jianshu.com/p/7c94d1ac2092</a><h3 id="jar包中自定义错误页面（内嵌tomcat）"><a href="#jar包中自定义错误页面（内嵌tomcat）" class="headerlink" title="jar包中自定义错误页面（内嵌tomcat）"></a>jar包中自定义错误页面（内嵌tomcat）</h3></li>
+</ul>
+<p>创建Spring Boot项目，默认打包方式是jar，内部使用内嵌tomcat等servlet容器</p>
+<p>最简单的方式是直接在resources/templates目录下创建error.html页面，此时如果访问不存在的画面就会直接进入此画面。</p>
+<p>所有的错误都会返回这个页面：</p>
+<p>我使用的是freemaker模板引擎，所以：</p>
+<p><img src="https://uploader.shimo.im/f/RIOmknd05gQcFop2.png!thumbnail" alt="图片"></p>
+<p>如何区分404,500等？简单方法是在static先新建路径/error/404.html，注意这是静态页面！！！4xx表示4开头的其他错误码。</p>
+<p><img src="https://uploader.shimo.im/f/9R14OPtI0oslKnzF.png!thumbnail" alt="图片"></p>
+<p>随便搞个链接得到：</p>
+<p><img src="https://uploader.shimo.im/f/KyULgscyq2YrgeHr.png!thumbnail" alt="图片"></p>
+<h3 id="war包中自定义错误页面（内置或外置tomcat）"><a href="#war包中自定义错误页面（内置或外置tomcat）" class="headerlink" title="war包中自定义错误页面（内置或外置tomcat）"></a>war包中自定义错误页面（内置或外置tomcat）</h3><p>当服务器外置的时候，上面jar包形式的配置是不起作用的，这时候可以通过实现ErrorController来定义自定义错误。getErrorPath()表示当发现错误时候重定向的链接。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">@Controller</span><br><span class="line">public class IErrorController implements ErrorController &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public String getErrorPath() &#123;</span><br><span class="line">        return &quot;&#x2F;error&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    @RequestMapping(&quot;&#x2F;error&quot;)</span><br><span class="line">    public String handleError(HttpServletRequest request) &#123;</span><br><span class="line">        Object status &#x3D; request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);</span><br><span class="line">        if (status !&#x3D; null) &#123;</span><br><span class="line">            Integer statusCode &#x3D; Integer.valueOf(status.toString());</span><br><span class="line">            if (statusCode &#x3D;&#x3D; HttpStatus.NOT_FOUND.value()) &#123;</span><br><span class="line">                return &quot;commons&#x2F;404&quot;;</span><br><span class="line">            &#125; else if (statusCode &#x3D;&#x3D; HttpStatus.INTERNAL_SERVER_ERROR.value()) &#123;</span><br><span class="line">                return &quot;commons&#x2F;500&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return &quot;commons&#x2F;error&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注入BasicErrorController（org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration#basicErrorController），默认errorViewResolver是DefaultErrorViewResolver</p>
+<p><img src="https://uploader.shimo.im/f/DhSBW3JrWMAPgEAK.png!thumbnail" alt="图片"></p>
+<p>DefaultErrorViewResolver中处理页面（org.springframework.boot.autoconfigure.web.servlet.error.DefaultErrorViewResolver#resolve）</p>
+<p><img src="https://uploader.shimo.im/f/Tn1yE1fEkZQRjKd5.png!thumbnail" alt="图片"></p>
+<h3 id="单个控制器异常"><a href="#单个控制器异常" class="headerlink" title="单个控制器异常"></a>单个控制器异常</h3><p>@ExceptionHandler可用于控制器中，表示处理当前类的异常。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@ExceptionHandler(Exception.class)</span><br><span class="line">public String exceptionHandler(Exception e) &#123;</span><br><span class="line">    log.error(&quot;----------------&gt;捕获到局部异常&quot;, e);</span><br><span class="line">    return &quot;index&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="全局异常"><a href="#全局异常" class="headerlink" title="全局异常"></a>全局异常</h3><p>如果单使用@ExceptionHandler，只能在当前Controller中处理异常。但当配合@ControllerAdvice一起使用的时候，就可以摆脱那个限制了。</p>
+<p>可通过@ExceptionHandler的参数进行异常分类处理。</p>
+<p><strong>步骤：</strong></p>
+<p>第一步、自定义异常</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class MyException extends Exception &#123;</span><br><span class="line">    public MyException(String message) &#123;</span><br><span class="line">        super(message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第二步、定义全局处理器，主要是@ControllerAdvice和@ExceptionHandler注解的运用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@Slf4j</span><br><span class="line">@ControllerAdvice</span><br><span class="line">public class GlobalExceptionHandler &#123;</span><br><span class="line">    @ExceptionHandler(value &#x3D; Exception.class)</span><br><span class="line">    public ModelAndView defaultErrorHandler(HttpServletRequest req, Exception e) throws Exception &#123;</span><br><span class="line">        log.error(&quot;------------------&gt;捕捉到全局异常&quot;, e);</span><br><span class="line">        ModelAndView mav &#x3D; new ModelAndView();</span><br><span class="line">        mav.addObject(&quot;exception&quot;, e);</span><br><span class="line">        mav.addObject(&quot;url&quot;, req.getRequestURL());</span><br><span class="line">        mav.setViewName(&quot;error&quot;);</span><br><span class="line">        return mav;</span><br><span class="line">    &#125;</span><br><span class="line">    @ExceptionHandler(value &#x3D; MyException.class)</span><br><span class="line">    @ResponseBody</span><br><span class="line">    public R jsonErrorHandler(HttpServletRequest req, MyException e) throws Exception &#123;</span><br><span class="line">        &#x2F;&#x2F;TODO 错误日志处理</span><br><span class="line">        return R.fail(e.getMessage(), &quot;some data&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="异常处理机制原理"><a href="#异常处理机制原理" class="headerlink" title="异常处理机制原理"></a>异常处理机制原理</h3><ul>
+<li><strong>关键类-HandlerExceptionResolver</strong></li>
+</ul>
+<p><img src="https://static.oschina.net/uploads/space/2016/0816/150118_JDoO_1258171.png" alt="图片"></p>
+<p>Spring MVC通过HandlerExceptionResolver处理程序的异常，包括Handler的映射、数据绑定以及目标方法的执行。HandlerExceptionResolver时一个接口，该接口的实现类都有处理异常的功能。HandlerExceptionResolver是该接口应用广泛的一个实现类，并且DispatcherServlet默认装配了HandlerExceptionResolver 的Bean。</p>
+<p>SpringMVC 提供的异常处理主要有两种方式：</p>
+<ul>
+<li>一种是直接实现自己的HandlerExceptionResolver</li>
+<li>一种是使用注解</li>
+</ul>
+<p>通过注解的方式实现处理异常主要有以下两种方式：</p>
+<ul>
+<li>1 @ControllerAdvice+@ExceptionHandler：配置对全局异常进行处理</li>
+<li>2 @Controller + @ExceptionHandler：配置对当前所在Controller的异常进行处理</li>
+</ul>
+<p>在SpringMVC中，处理异常类实际上是HandlerExceptionResolver子类。HandlerExceptionResolver处理所有controller类在执行过程中抛出的未被处理的异常。</p>
+<p>本文演示如何使用以上多种处理异常的方式，最后演示以不同的方式将异常结果返回给调用者</p>
+<ul>
+<li>返回 modelAndView</li>
+<li>返回一个页面的地址</li>
+<li>返回 JSON</li>
+<li>返回 http 错误码<h2 id="多数据源模块"><a href="#多数据源模块" class="headerlink" title="多数据源模块"></a>多数据源模块</h2></li>
+</ul>
+<h3 id="预备知识-ThreadLocal"><a href="#预备知识-ThreadLocal" class="headerlink" title="预备知识-ThreadLocal"></a>预备知识-ThreadLocal</h3><p>ThreadLocal是线程局部变量，所谓的线程局部变量，就是仅仅只能被本线程访问，不能在线程之间进行共享访问的变量。</p>
+<h3 id="关键抽象类-AbstractRoutingDataSource"><a href="#关键抽象类-AbstractRoutingDataSource" class="headerlink" title="关键抽象类-AbstractRoutingDataSource"></a>关键抽象类-AbstractRoutingDataSource</h3><p>官方注释如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* Abstract &#123;@link javax.sql.DataSource&#125; implementation that routes &#123;@link #getConnection()&#125;</span><br><span class="line">* calls to one of various target DataSources based on a lookup key. The latter is usually</span><br><span class="line">* (but not necessarily) determined through some thread-bound transaction context.</span><br></pre></td></tr></table></figure>
+<p>大概意思是：<br>就是getConnection()根据查找lookup key键对不同目标数据源的调用，通常是通过(但不一定)某些线程绑定的事物上下文来实现。</p>
+<p><strong>通过这我们知道可以实现：</strong></p>
+<ul>
+<li><ul>
+<li>多数据源的动态切换，在程序运行时，把数据源数据源动态织入到程序中，灵活的进行数据源切换。</li>
+</ul>
+</li>
+<li><ul>
+<li>基于多数据源的动态切换，我们可以实现读写分离，这么做缺点也很明显，无法动态的增加数据源。<h3 id="逻辑思路"><a href="#逻辑思路" class="headerlink" title="逻辑思路"></a>逻辑思路</h3></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>DynamicDataSource继承AbstractRoutingDataSource类，并实现了determineCurrentLookupKey()方法。</li>
+<li>我们配置的多个数据源会放在AbstractRoutingDataSource的 targetDataSources和defaultTargetDataSource中，然后通过afterPropertiesSet()方法将数据源分别进行复制到resolvedDataSources和resolvedDefaultDataSource中。</li>
+<li>AbstractRoutingDataSource的getConnection()的方法的时候，先调用determineTargetDataSource()方法返回DataSource在进行getConnection()。<h3 id="实现多数据源"><a href="#实现多数据源" class="headerlink" title="实现多数据源"></a><strong>实现多数据源</strong></h3></li>
+</ul>
+<p>步骤1，在spring boot中，增加多数据源的配置</p>
+<p>步骤2，扩展Spring的AbstractRoutingDataSource抽象类，AbstractRoutingDataSource中的抽象方法determineCurrentLookupKey是实现多数据源的核心，并对该方法进行Override</p>
+<p>步骤3，配置DataSource，指定数据源的信息</p>
+<p>步骤4，通过注解，实现多数据源</p>
+<p>步骤5、配置加上(exclude={DataSourceAutoConfiguration.<strong>class</strong>})</p>
+<p><img src="https://images-cdn.shimo.im/AmEM6jqp5w45PraA/image.png!thumbnail" alt="图片"></p>
+<h3 id="关于事务"><a href="#关于事务" class="headerlink" title="关于事务"></a>关于事务</h3><p>只支持单库事务，也就是说切换数据源要在开启事务之前执行。  spring DataSourceTransactionManager进行事务管理，开启事务，会将数据源缓存到DataSourceTransactionObject对象中进行后续的commit rollback等事务操作。</p>
+<p><img src="https://images-cdn.shimo.im/0G1kxTZzC3McF69t/image.png!thumbnail" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/SgnevpHrDM4Wijf4/image.png!thumbnail" alt="图片"></p>
+<h3 id="使用经验"><a href="#使用经验" class="headerlink" title="使用经验"></a>使用经验</h3><p>出现多数据源动态切换失败的原因是因为在事务开启后，数据源就不能再进行随意切换了，也就是说，一个事务对应一个数据源。那么传统的Spring管理事务是放在Service业务层操作的，所以更换数据源的操作要放在这个操作之前进行。也就是切换数据源操作放在Controller层，可是这样操作会造成Controller层代码混乱的结果。故而想到的解决方案是将事务管理在数据持久 (Dao层) 开启，切换数据源的操作放在业务层进行操作，就可在事务开启之前顺利进行数据源切换，不会再出现切换失败了。</p>
+<h2 id="一个动态数据源DEMO"><a href="#一个动态数据源DEMO" class="headerlink" title="一个动态数据源DEMO"></a>一个动态数据源DEMO</h2><h3 id="第一步：做增删改查"><a href="#第一步：做增删改查" class="headerlink" title="第一步：做增删改查"></a>第一步：做增删改查</h3><p>新建：</p>
+<p><img src="https://images-cdn.shimo.im/RxRGlP1vJGo5iCBe/image.png!thumbnail" alt="图片"></p>
+<p>暂时先导入两个包</p>
+<p><img src="https://images-cdn.shimo.im/IUJLSK06iFA7ZdRe/image.png!thumbnail" alt="图片"></p>
+<p>因为项目还需要用到aop、mybatis plus、druid，所以先把maven包导入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--aop--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-aop&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br><span class="line">&lt;!--mybatis plus--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.baomidou&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mybatis-plus-boot-starter&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;version&gt;3.0.1&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;mysql&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mysql-connector-java&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;scope&gt;runtime&lt;&#x2F;scope&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br><span class="line">&lt;!--druid--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.alibaba&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;druid-spring-boot-starter&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.1.10&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>注意，这里使用的数据库就是renren-fast项目的数据库，所以sql文件在renren-fast项目中找哈。<br>运行MyGenerator的main方法，然后会自动生成sys_user表的一些基本service等~，然后复制到项目中，效果如下：</p>
+<p><img src="https://images-cdn.shimo.im/eiFQtj01pKYONaBC/image.png!thumbnail" alt="图片"></p>
+<p>因为是springboot项目，所以还要手动添加扫描mapper的注解，加到springboot的启动类上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@MapperScan(&quot;com.example.mapper&quot;)</span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class DatasourceDemoApplication &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(DatasourceDemoApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>把配置文件修改成yml格式application.yml。然后添加数据库的信息。我们测试一下生成的代码是否有用！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># DataSource Config</span><br><span class="line">spring:</span><br><span class="line">  datasource:</span><br><span class="line">    driver-class-name: com.mysql.jdbc.Driver</span><br><span class="line">    url: jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;renren_fast</span><br><span class="line">    username: root</span><br><span class="line">    password: admin</span><br></pre></td></tr></table></figure>
+<p>编写测试类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(SpringRunner.class)</span><br><span class="line">@SpringBootTest</span><br><span class="line">public class DatasourceDemoApplicationTests &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    SysUserService userService;</span><br><span class="line">    @Test</span><br><span class="line">    public void contextLoads() &#123;</span><br><span class="line">        SysUser user &#x3D; userService.getById(1);</span><br><span class="line">        System.out.println(user.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试contextLoads（）方法，这时候可以看到测试结果啦~~<br><img src="https://images-cdn.shimo.im/pKe8UW7fLmEBtO0w/image.png!thumbnail" alt="图片"></p>
+<p>以上表明：生成的代码没毛病，可以查数据库了！</p>
+<h3 id="第二步：集成动态数据源模块"><a href="#第二步：集成动态数据源模块" class="headerlink" title="第二步：集成动态数据源模块"></a>第二步：集成动态数据源模块</h3><p>首先我们先梳理一下集成逻辑。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">步骤1，在spring boot中，增加多数据源的配置</span><br><span class="line">步骤2，扩展Spring的AbstractRoutingDataSource抽象类，</span><br><span class="line">AbstractRoutingDataSource中的抽象方法determineCurrentLookupKey是实现多数据</span><br><span class="line">源的核心，并对该方法进行Override</span><br><span class="line">步骤3，配置DataSource，指定数据源的信息</span><br><span class="line">步骤4，通过注解，实现多数据源</span><br><span class="line">步骤5、配置加上(exclude&#x3D;&#123;DataSourceAutoConfiguration.class&#125;)</span><br></pre></td></tr></table></figure>
+<p>下面我们按照上面的步骤一步步集成代码！</p>
+<p>步骤一、配置多数据源的信息</p>
+<p>首先在yml配置文件中添加数据源的信息，这里我新建了一个renren_fast2的数据库，然后把sys_user表的id为1的记录的名称改为了admin222。因为我们用到的druid的连接池，所以按照格式编写链接信息：如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  datasource:</span><br><span class="line">    type: com.alibaba.druid.pool.DruidDataSource</span><br><span class="line">    driverClassName: com.mysql.jdbc.Driver</span><br><span class="line">    druid:</span><br><span class="line">      first:</span><br><span class="line">        url: jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;renren_fast?allowMultiQueries&#x3D;true&amp;useUnicode&#x3D;true&amp;characterEncoding&#x3D;UTF-8</span><br><span class="line">        username: root</span><br><span class="line">        password: admin</span><br><span class="line">      second:</span><br><span class="line">        url: jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;renren_fast2?allowMultiQueries&#x3D;true&amp;useUnicode&#x3D;true&amp;characterEncoding&#x3D;UTF-8</span><br><span class="line">        username: root</span><br><span class="line">        password: admin</span><br></pre></td></tr></table></figure>
+<p>新建一个datasource包。用于放数据源模块的代码。</p>
+<p>然后写一个配置类DynamicDataSourceConfig ，配置多数据源的信息，生成两个数据源：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 配置多数据源</span><br><span class="line"> * @author chenshun</span><br><span class="line"> * @email sunlightcs@gmail.com</span><br><span class="line"> * @date 2017&#x2F;8&#x2F;19 0:41</span><br><span class="line"> *&#x2F;</span><br><span class="line">@Configuration</span><br><span class="line">public class DynamicDataSourceConfig &#123;</span><br><span class="line">    @Bean</span><br><span class="line">    @ConfigurationProperties(&quot;spring.datasource.druid.first&quot;)</span><br><span class="line">    public DataSource firstDataSource()&#123;</span><br><span class="line">        return DruidDataSourceBuilder.create().build();</span><br><span class="line">    &#125;</span><br><span class="line">    @Bean</span><br><span class="line">    @ConfigurationProperties(&quot;spring.datasource.druid.second&quot;)</span><br><span class="line">    public DataSource secondDataSource()&#123;</span><br><span class="line">        return DruidDataSourceBuilder.create().build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>另外，第五步骤中，其实现在就可以去做了，因为我们数据源是自己生成的，所以要去掉原先springboot启动时候自动装配的数据源配置。为了方便记忆，我们这里也导入自己写的配置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication(exclude&#x3D;&#123;DataSourceAutoConfiguration.class&#125;)</span><br><span class="line">@Import(&#123;DynamicDataSourceConfig.class&#125;)</span><br></pre></td></tr></table></figure>
+<p>致此，第一步完成！效果：<br><img src="https://images-cdn.shimo.im/6OvUkazkmQsXMDMR/image.png!thumbnail" alt="图片"></p>
+<p>步骤二、扩展Spring的AbstractRoutingDataSource抽象类，重写lookupkey方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 动态数据源</span><br><span class="line"> * determineCurrentLookupKey()决定使用哪个数据源</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class DynamicDataSource extends AbstractRoutingDataSource &#123;</span><br><span class="line">    @Override</span><br><span class="line">    protected Object determineCurrentLookupKey() &#123;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>为了方便我们使用aop注解时候的得到的lookupkey参数能传递到这里。所以需要建一个线程安全的ThreadLocal变量，用于传参，避免复杂的参数传递过程。那么，我们获取这个lookupkey就从这个ThreadLocal里面去获取，所以determineCurrentLookupKey()直接返回getDataSource()。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 动态数据源</span><br><span class="line"> * determineCurrentLookupKey()决定使用哪个数据源</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class DynamicDataSource extends AbstractRoutingDataSource &#123;</span><br><span class="line">    @Override</span><br><span class="line">    protected Object determineCurrentLookupKey() &#123;</span><br><span class="line">        return getDataSource();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    &#x2F;*</span><br><span class="line">     *ThreadLocal 用于提供线程局部变量，在多线程环境可以保证各个线程里的变量独立于其它线程里的变量。</span><br><span class="line">     * 也就是说 ThreadLocal 可以为每个线程创建一个【单独的变量副本】</span><br><span class="line">     * 相当于线程的 private static 类型变量。</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private static final ThreadLocal&lt;String&gt; contextHolder &#x3D; new ThreadLocal&lt;&gt;();</span><br><span class="line">    </span><br><span class="line">    public static void setDataSource(String dataSource) &#123;</span><br><span class="line">        contextHolder.set(dataSource);</span><br><span class="line">    &#125;</span><br><span class="line">    public static String getDataSource() &#123;</span><br><span class="line">        return contextHolder.get();</span><br><span class="line">    &#125;</span><br><span class="line">    public static void clearDataSource() &#123;</span><br><span class="line">        contextHolder.remove();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是上面步骤还不够，因为自动装载数据源的这个过程我们在前面已经去掉了，所以需要我们自己手动去装配数据源的信息。调用determineCurrentLookupKey()方法的determineTargetDataSource()方法可以看到，里面有用到一些变量，比如resolvedDataSources，它是一个map，查看调用地方可以看到，它的初始化实在afterPropertiesSet()方法中，这初始化方法会用到一些变量，比如：targetDataSources、defaultTargetDataSource，然后你回发现，这个两个参数，都是一个set方法初始化的，setTargetDataSources(Map&lt;Object, Object&gt; targetDataSources)、setDefaultTargetDataSource(Object defaultTargetDataSource)，这两个就是所有数据源信息，和默认数据源信息，所以我们需要手动把我们配置的数据源信息set进去。<br><img src="https://images-cdn.shimo.im/wVwD7D4865Yac743/image.png!thumbnail" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/gMAiX78TONkJJJWi/image.png!thumbnail" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/wwCAOSGA5vknTG51/image.png!thumbnail" alt="图片"></p>
+<p>方法很多，因为涉及到一个顺序问题，调用determineCurrentLookupKey()前一定要把数据源的信息初始化化好，所以我们可以写一个DynamicDataSource的构造方法。两个参数，一个默认数据源，一个所有数据源。然后调用afterPropertiesSet()，初始化必要的参数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 决定使用哪个数据源之前需要把多个数据源的信息以及默认数据源信息配置好</span><br><span class="line"> * @param defaultTargetDataSource</span><br><span class="line"> * @param targetDataSources</span><br><span class="line"> *&#x2F;</span><br><span class="line">public DynamicDataSource(DataSource defaultTargetDataSource, Map&lt;Object, Object&gt; targetDataSources) &#123;</span><br><span class="line">    super.setDefaultTargetDataSource(defaultTargetDataSource);</span><br><span class="line">    super.setTargetDataSources(targetDataSources);</span><br><span class="line">    super.afterPropertiesSet();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因为这数据源的信息启动时候就需要初始化，因为后面事务等类的初始化都需要依赖数据源bean，所以在DynamicDataSourceConfig配置中，我们生成一个DynamicDataSource的bean。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Bean</span><br><span class="line">@Primary</span><br><span class="line">public DynamicDataSource dataSource(DataSource firstDataSource, DataSource secondDataSource) &#123;</span><br><span class="line">    Map&lt;Object, Object&gt; targetDataSources &#x3D; new HashMap&lt;&gt;();</span><br><span class="line">    targetDataSources.put(DataSourceNames.FIRST, firstDataSource);</span><br><span class="line">    targetDataSources.put(DataSourceNames.SECOND, secondDataSource);</span><br><span class="line">    return new DynamicDataSource(firstDataSource, targetDataSources);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Primary 优先考虑，优先考虑被注解的对象注入。</span><br></pre></td></tr></table></figure>
+<p>因为数据源的名称在我们后面注解的时候经常会用到，所以我们作为一个enum常亮来用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 增加多数据源，在此配置</span><br><span class="line"> *</span><br><span class="line"> * @author chenshun</span><br><span class="line"> * @email sunlightcs@gmail.com</span><br><span class="line"> * @date 2017&#x2F;8&#x2F;18 23:46</span><br><span class="line"> *&#x2F;</span><br><span class="line">public interface DataSourceNames &#123;</span><br><span class="line">    String FIRST &#x3D; &quot;first&quot;;</span><br><span class="line">    String SECOND &#x3D; &quot;second&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过上面的配置，我们可以说已经完成了手动装配我们自定义的多数据源的过程了。接下来的工作就是我们自己去指定ThreadLocal里面的值就行。<br>我们采用aop的方式，在需要修改数据源的地方使用注解方式去切换，然后切面修改ThreadLocal的内容。这里比较简单，我就直接贴代码：</p>
+<p><strong>注解：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 多数据源注解</span><br><span class="line"> * @author chenshun</span><br><span class="line"> * @email sunlightcs@gmail.com</span><br><span class="line"> * @date 2017&#x2F;9&#x2F;16 22:16</span><br><span class="line"> *&#x2F;</span><br><span class="line">@Target(ElementType.METHOD)</span><br><span class="line">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="line">@Documented</span><br><span class="line">public @interface DataSource &#123;</span><br><span class="line">    String name() default &quot;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>切面处理逻辑：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 多数据源，切面处理类</span><br><span class="line"> * @author chenshun</span><br><span class="line"> * @email sunlightcs@gmail.com</span><br><span class="line"> * @date 2017&#x2F;9&#x2F;16 22:20</span><br><span class="line"> *&#x2F;</span><br><span class="line">@Aspect</span><br><span class="line">@Component</span><br><span class="line">public class DataSourceAspect implements Ordered &#123;</span><br><span class="line">    protected Logger logger &#x3D; LoggerFactory.getLogger(getClass());</span><br><span class="line">    @Pointcut(&quot;@annotation(com.example.datasource.DataSource)&quot;)</span><br><span class="line">    public void dataSourcePointCut() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    @Around(&quot;dataSourcePointCut()&quot;)</span><br><span class="line">    public Object around(ProceedingJoinPoint point) throws Throwable &#123;</span><br><span class="line">        MethodSignature signature &#x3D; (MethodSignature) point.getSignature();</span><br><span class="line">        Method method &#x3D; signature.getMethod();</span><br><span class="line">        DataSource ds &#x3D; method.getAnnotation(DataSource.class);</span><br><span class="line">        if(ds &#x3D;&#x3D; null)&#123;</span><br><span class="line">            DynamicDataSource.setDataSource(DataSourceNames.FIRST);</span><br><span class="line">            logger.debug(&quot;set datasource is &quot; + DataSourceNames.FIRST);</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            DynamicDataSource.setDataSource(ds.name());</span><br><span class="line">            logger.debug(&quot;set datasource is &quot; + ds.name());</span><br><span class="line">        &#125;</span><br><span class="line">        try &#123;</span><br><span class="line">            return point.proceed();</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            DynamicDataSource.clearDataSource();</span><br><span class="line">            logger.debug(&quot;clean datasource&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public int getOrder() &#123;</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://images-cdn.shimo.im/7F9C0PRb4pYZ0I1S/image.png!thumbnail" alt="图片"></p>
+<p>致此，完成了我们需要的所有准备工作，接下来我们只需要测试一下即可~</p>
+<p>测试：</p>
+<p>service中定义两个查询，分别查两个数据库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public interface SysUserService extends IService&lt;SysUser&gt; &#123;</span><br><span class="line">    SysUser findUserByFirstDb(long id);</span><br><span class="line">    SysUser findUserBySecondDb(long id);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实现类：因为默认是一，所以不用注解，数据库二需要添加注解@DataSource(name = DataSourceNames.SECOND)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@Service</span><br><span class="line">public class SysUserServiceImpl extends ServiceImpl&lt;SysUserMapper, SysUser&gt; implements SysUserService &#123;</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    public SysUser findUserByFirstDb(long id) &#123;</span><br><span class="line">        return this.baseMapper.selectById(id);</span><br><span class="line">    &#125;</span><br><span class="line">    @DataSource(name &#x3D; DataSourceNames.SECOND)</span><br><span class="line">    @Override</span><br><span class="line">    public SysUser findUserBySecondDb(long id) &#123;</span><br><span class="line">        return this.baseMapper.selectById(id);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试方法：test()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(SpringRunner.class)</span><br><span class="line">@SpringBootTest</span><br><span class="line">public class DatasourceDemoApplicationTests &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    SysUserService userService;</span><br><span class="line">    @Test</span><br><span class="line">    public void contextLoads() &#123;</span><br><span class="line">        SysUser user &#x3D; userService.getById(1);</span><br><span class="line">        System.out.println(user.toString());</span><br><span class="line">    &#125;</span><br><span class="line">    @Test</span><br><span class="line">    public void test() &#123;</span><br><span class="line">        SysUser user &#x3D; userService.findUserByFirstDb(1);</span><br><span class="line">        System.out.println(&quot;第one个数据库---------》&quot; + user.toString());</span><br><span class="line"></span><br><span class="line">        SysUser user2 &#x3D; userService.findUserBySecondDb(1);</span><br><span class="line">        System.out.println(&quot;第二个数据库---------》&quot; + user2.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果：<br><img src="https://images-cdn.shimo.im/ouRhGJJdm9IOZ8Az/image.png!thumbnail" alt="图片"></p>
+<p>ok，大功告成<del>~</del></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/09/14/%E8%BD%AC%E8%BD%BD%205%E3%80%81redis%E7%9A%84%E9%AB%98%E5%8F%AF%E7%94%A8%E3%80%81%E4%B8%BB%E4%BB%8E%E3%80%81%E4%B8%8E%E7%BC%93%E5%AD%98%E4%BD%BF%E7%94%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          redis的高可用、主从与缓存的使用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/09/14/%E8%BD%AC%E8%BD%BD%203%E3%80%81springboot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E4%B8%8E%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">springboot自动装配与运行原理</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="转载 4、springboot的集成与运用" data-title="springboot集成与运用" data-url="http://www.2333nmsl.ml/2020/09/14/%E8%BD%AC%E8%BD%BD%204%E3%80%81springboot%E7%9A%84%E9%9B%86%E6%88%90%E4%B8%8E%E8%BF%90%E7%94%A8/"  data-images="/img/1.gif" data-content="springboot集成与运用">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2020 yht
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"rect":"opacity:0.8","log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

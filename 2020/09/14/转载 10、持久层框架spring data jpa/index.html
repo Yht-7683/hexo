@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>持久层框架spring data jpa | Hexo</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="转载 10、持久层框架spring data jpa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="持久层框架spring data jpa">
+<meta property="og:url" content="http://www.2333nmsl.ml/2020/09/14/%E8%BD%AC%E8%BD%BD%2010%E3%80%81%E6%8C%81%E4%B9%85%E5%B1%82%E6%A1%86%E6%9E%B6spring%20data%20jpa/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="转载 10、持久层框架spring data jpa">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://images-cdn.shimo.im/swtCLsfo0DAvDfP4/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/CECehs5P9okiMZGA/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/YfJaEndOTUwbQcd7/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20180924233204.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/1vctXLroWvcPTEhw/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20180924233232.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/bE1GjcUAwPgQATKl/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/RDTerS27NLURSOsD/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/F2td7SpAlDggIvdt/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/zKAgenm2Ay0kN6OI/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/AUGEctnTxV09qqxy/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/CDlbRxc3ToMZAN2P/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/fbx8iRj7mWgPzP5o/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/cPh4AsxFVqsegasa/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/DvzrxR0TUw4Oc4Ac/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/ivGbyWxmSrQElFaY/image.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/wrzwZpYqa508x2AD/image.png!thumbnail">
+<meta property="article:published_time" content="2020-09-14T14:55:04.000Z">
+<meta property="article:modified_time" content="2020-09-14T07:07:17.956Z">
+<meta property="article:author" content="yht">
+<meta property="article:tag" content="spring data">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images-cdn.shimo.im/swtCLsfo0DAvDfP4/image.png!thumbnail">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 5.0.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/1.gif" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/"></a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Yht-7683/" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="#" title="mail">mail</a>
+					        
+								<a class="qq" target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=434807683&site=qq&menu=yes" title="qq">qq</a>
+					        
+								<a class="weibo" target="_blank" href="https://weibo.com/" title="weibo">weibo</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ASCII%E7%A0%81%E5%9B%BE/" style="font-size: 10px;">ASCII码图</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 20px;">Java基础</a> <a href="/tags/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 10px;">Java多线程</a> <a href="/tags/Redis/" style="font-size: 20px;">Redis</a> <a href="/tags/Websocket/" style="font-size: 10px;">Websocket</a> <a href="/tags/io/" style="font-size: 10px;">io</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/mybatis%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">mybatis框架</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/renren-fast/" style="font-size: 15px;">renren-fast</a> <a href="/tags/spring-data/" style="font-size: 10px;">spring data</a> <a href="/tags/spring-security/" style="font-size: 10px;">spring security</a> <a href="/tags/springboot%E6%A1%86%E6%9E%B6/" style="font-size: 15px;">springboot框架</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 10px;">消息队列</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">计算机网络</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://a-cai.gitee.io/blog/">前端资料</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/1.gif" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Yht-7683/" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="#" title="mail">mail</a>
+			        
+						<a class="qq" target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=434807683&site=qq&menu=yes" title="qq">qq</a>
+			        
+						<a class="weibo" target="_blank" href="https://weibo.com/" title="weibo">weibo</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-转载 10、持久层框架spring data jpa" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/09/14/%E8%BD%AC%E8%BD%BD%2010%E3%80%81%E6%8C%81%E4%B9%85%E5%B1%82%E6%A1%86%E6%9E%B6spring%20data%20jpa/" class="article-date">
+  	<time datetime="2020-09-14T14:55:04.000Z" itemprop="datePublished">2020-09-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      持久层框架spring data jpa
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-data/" rel="tag">spring data</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="课程10-spring-data-jpa学习预习-xmind1-spring-data-jpa介绍-xmind2-jpa-hibernate-与spring-data-jpa-xmind3-常用注解与接口-xmind4-jpa底层原理分析-xmind课程10、spring-data-jpa学习（预习）-xmind什么是jpa？"><a href="#课程10-spring-data-jpa学习预习-xmind1-spring-data-jpa介绍-xmind2-jpa-hibernate-与spring-data-jpa-xmind3-常用注解与接口-xmind4-jpa底层原理分析-xmind课程10、spring-data-jpa学习（预习）-xmind什么是jpa？" class="headerlink" title="课程10_spring_data_jpa学习预习.xmind1_spring_data_jpa介绍.xmind2_jpa_hibernate_与spring_data_jpa.xmind3_常用注解与接口.xmind4_jpa底层原理分析.xmind课程10、spring data jpa学习（预习）.xmind什么是jpa？"></a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/rkWgjMrtZV0ng3Tx.xmind">课程10_spring_data_jpa学习<em>预习</em>.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/MlJ4jiAcw3UItnTk.xmind">1_spring_data_jpa介绍.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/i8TwxPPrcx8IFeYl.xmind">2_jpa_hibernate_与spring_data_jpa.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/3XteZtegs680QfHU.xmind">3_常用注解与接口.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/4PUZIqR73dsnGgOR.xmind">4_jpa底层原理分析.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/7cO6lLnOFCIMxiOO.xmind">课程10、spring data jpa学习（预习）.xmind</a>什么是jpa？</h2><p>全称Java Persistence API，通过JDK 5.0注解或XML描述对象－关系表的映射关系，并将运行期的实体对象持久化到数据库中。</p>
+<h3 id="JPA的出现有两个原因："><a href="#JPA的出现有两个原因：" class="headerlink" title="JPA的出现有两个原因："></a>JPA的出现有两个原因：</h3><p>其一，简化现有Java EE和Java SE应用的对象持久化的开发工作；</p>
+<p>其二，Sun希望整合对ORM技术，实现持久化领域的统一。</p>
+<h3 id="JPA提供的技术："><a href="#JPA提供的技术：" class="headerlink" title="JPA提供的技术："></a>JPA提供的技术：</h3><p>1）ORM映射元数据：JPA支持XML和JDK 5.0注解两种元数据的形式，元数据描述对象和表之间的映射关系，框架据此将实体对象持久化到数据库表中；</p>
+<p>2）JPA 的API：用来操作实体对象，执行CRUD操作，框架在后台替我们完成所有的事情，开发者从繁琐的JDBC和SQL代码中解脱出来。</p>
+<p>3）查询语言：通过面向对象而非面向数据库的查询语言查询数据，避免程序的SQL语句紧密耦合。</p>
+<h3 id="JPA的规范提现在哪？"><a href="#JPA的规范提现在哪？" class="headerlink" title="JPA的规范提现在哪？"></a>JPA的规范提现在哪？</h3><p>元数据映射、CRUD操作、JPQL查询语言</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">javax.persistence.Entity</span><br><span class="line">javax.persistence.EntityManager</span><br><span class="line">javax.transaction.Transactional</span><br><span class="line">javax.persistence.criteria.CriteriaQuery</span><br><span class="line">#JPQL</span><br><span class="line">select o from Order o 或  select o from Order as o</span><br></pre></td></tr></table></figure>
+<p><img src="https://images-cdn.shimo.im/swtCLsfo0DAvDfP4/image.png!thumbnail" alt="图片"></p>
+<h3 id="JPQL查询能力"><a href="#JPQL查询能力" class="headerlink" title="JPQL查询能力"></a>JPQL查询能力</h3><p>JPA的查询语言是面向对象而非面向数据库的，它以面向对象的自然语法构造查询语句，可以看成是HibernateHQL的等价物。JPA定义了独特的JPQL（Java Persistence Query Language），JPQL是EJB QL的一种扩展，它是针对实体的一种查询语言，操作对象是实体，而不是关系数据库的表，而且能够支持批量更新和修改、JOIN、GROUP BY、HAVING 等通常只有 SQL 才能够提供的高级查询特性，甚至还能够支持子查询。</p>
+<h3 id="高级特性"><a href="#高级特性" class="headerlink" title="高级特性"></a>高级特性</h3><p>JPA中能够支持面向对象的高级特性，如类之间的继承、多态和类之间的复杂关系，这样的支持能够让开发者最大限度的使用面向对象的模型设计企业应用，而不需要自行处理这些特性在关系数据库的持久化。</p>
+<h2 id="什么是spring-data-jpa？"><a href="#什么是spring-data-jpa？" class="headerlink" title="什么是spring data jpa？"></a>什么是spring data jpa？</h2><p>Spring提供的一个用于简化JPA开发的框架。可以极大的简化JPA的写法，可以在几乎不用写实现的情况下，实现对数据的访问和操作。除了CRUD外，还包括如分页、排序等一些常用的功能。</p>
+<ul>
+<li>SpringData JPA只是SpringData中的一个子模块</li>
+<li>JPA是一套标准接口，而Hibernate是JPA的实现</li>
+<li>SpringData JPA 底层默认实现是使用Hibernate</li>
+<li>SpringDataJPA 的首个接口就是Repository，它是一个标记接口。只要我们的接口实现这个接口，那么我们就相当于在使用SpringDataJPA了。</li>
+<li>就是说，只要我们实现了这个接口，我们就可以使用”按照方法命名规则”来进行查询。<h3 id="SpringDataJPA的核心接口"><a href="#SpringDataJPA的核心接口" class="headerlink" title="SpringDataJPA的核心接口"></a>SpringDataJPA的核心接口</h3></li>
+</ul>
+<ul>
+<li><strong>Repository</strong>：最顶层的接口，是一个空的接口，目的是为了统一所有Repository的类型，且能让组件扫描的时候自动识别。</li>
+<li><strong>CrudRepository</strong>：是Repository的子接口，提供CRUD的功能</li>
+<li><strong>PagingAndSortingRepository</strong>：是CrudRepository的子接口，添加分页和排序的功能</li>
+<li><strong>JpaRepository</strong>：是PagingAndSortingRepository的子接口，增加了一些实用的功能，比如：批量操作等。</li>
+<li><strong>JpaSpecificationExecutor</strong>：用来做负责查询的接口,类似条件(QBC)查询</li>
+<li><strong>Specification</strong>：是Spring Data JPA提供的一个查询规范，要做复杂的查询，只需围绕这个规范来设置查询条件即可<h3 id="CrudRepository-查询方法与命名规则"><a href="#CrudRepository-查询方法与命名规则" class="headerlink" title="CrudRepository 查询方法与命名规则"></a>CrudRepository 查询方法与命名规则</h3></li>
+</ul>
+<p>SpringDataJPA默认情况下, 提供了查询的相关的方法, 基本上能满足我们80%左右的需要. 但是还有一些是没有满足的,我们可以遵循它的命名规范来定义方法名. 如果没有满足命名规范的, 可以在方法上加@Query注解来写语句。</p>
+<h3 id="JPA命令规范"><a href="#JPA命令规范" class="headerlink" title="JPA命令规范"></a>JPA命令规范</h3><p><img src="https://images-cdn.shimo.im/CECehs5P9okiMZGA/image.png!thumbnail" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/YfJaEndOTUwbQcd7/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20180924233204.png!thumbnail" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/1vctXLroWvcPTEhw/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20180924233232.png!thumbnail" alt="图片"></p>
+<p><img src="https://images-cdn.shimo.im/bE1GjcUAwPgQATKl/image.png!thumbnail" alt="图片"></p>
+<h3 id="条件查询的关键字"><a href="#条件查询的关键字" class="headerlink" title="条件查询的关键字"></a>条件查询的关键字</h3><ul>
+<li>And — 等价于 SQL 中的 and 关键字，比如 findByUsernameAndPassword(String user, Striang pwd)；</li>
+<li>Or — 等价于 SQL 中的 or 关键字，比如 findByUsernameOrAddress(String user, String addr)；</li>
+<li>Between — 等价于 SQL 中的 between 关键字，比如 findBySalaryBetween(int max, int min)；</li>
+<li>LessThan — 等价于 SQL 中的 “&lt;”，比如 findBySalaryLessThan(int max)；</li>
+<li>GreaterThan — 等价于 SQL 中的”&gt;”，比如 findBySalaryGreaterThan(int min)；</li>
+<li>IsNull — 等价于 SQL 中的 “is null”，比如 findByUsernameIsNull()；</li>
+<li>IsNotNull — 等价于 SQL 中的 “is not null”，比如 findByUsernameIsNotNull()；</li>
+<li>NotNull — 与 IsNotNull 等价；</li>
+<li>Like — 等价于 SQL 中的 “like”，比如 findByUsernameLike(String user)；</li>
+<li>NotLike — 等价于 SQL 中的 “not like”，比如 findByUsernameNotLike(String user)；</li>
+<li>OrderBy — 等价于 SQL 中的 “order by”，比如 findByUsernameOrderBySalaryAsc(String user)；</li>
+<li>Not — 等价于 SQL 中的 “！ =”，比如 findByUsernameNot(String user)；</li>
+<li>In — 等价于 SQL 中的 “in”，比如 findByUsernameIn(Collection<String> userList) ，方法的参数可以是 Collection 类型，也可以是数组或者不定长参数；</li>
+<li>NotIn — 等价于 SQL 中的 “not in”，比如 findByUsernameNotIn(Collection<String> userList) ，方法的参数可以是 Collection 类型，也可以是数组或者不定长参数；<h3 id="Query查询"><a href="#Query查询" class="headerlink" title="@Query查询"></a>@Query查询</h3></li>
+</ul>
+<h2 id="jpa、hibernate与spring-data-jpa三者关系"><a href="#jpa、hibernate与spring-data-jpa三者关系" class="headerlink" title="jpa、hibernate与spring data jpa三者关系"></a>jpa、hibernate与spring data jpa三者关系</h2><p>JPA作为一种规范——也就说JPA规范中提供的只是一些接口，显然接口不能直接拿来使用。虽然应用程序可以面向接口编程，但JPA底层一定需要某种JPA实现，否则JPA依然无法使用。</p>
+<p>Sun之所以提出JPA规范，其目的是以官方的身份来统一各种ORM框架的规范，包括著名的Hibernate、TopLink等。不过JPA规范给开发者带来了福音：开发者面向JPA规范的接口，但底层的JPA实现可以任意切换：觉得Hibernate好的，可以选择Hibernate JPA实现；觉得TopLink好的，可以选择TopLink JPA实现……这样开发者可以避免为使用Hibernate学习一套ORM框架，为使用TopLink又要再学习一套ORM框架。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">JPA是一套ORM规范，hibernate实现了JPA规范</span><br><span class="line">hibernate中有自己的独立ORM操作数据库方式，也有JPA规范实现的操作数据库方式。</span><br><span class="line">在数据库增删改查操作中，我们hibernate和JPA的操作都要会。</span><br></pre></td></tr></table></figure>
+<p><img src="https://images-cdn.shimo.im/RDTerS27NLURSOsD/image.png!thumbnail" alt="图片"></p>
+<p>虽然ORM框架都实现了JPA规范，但是在不同ORM框架之间切换是需要编写的代码有一些差异，而通过使用Spring Data Jpa能够方便大家在不同的ORM框架中间进行切换而不要更改代码。并且Spring Data Jpa对Repository层封装的很好，可以省去不少的麻烦。</p>
+<p>Spring Data JPA 可以理解为 JPA 规范的再次封装抽象，底层还是使用了 Hibernate 的 JPA 技术实现。</p>
+<p><img src="https://images-cdn.shimo.im/F2td7SpAlDggIvdt/image.png!thumbnail" alt="图片"></p>
+<h2 id="jpa实体相关注解"><a href="#jpa实体相关注解" class="headerlink" title="jpa实体相关注解"></a>jpa实体相关注解</h2><h3 id="Entity"><a href="#Entity" class="headerlink" title="@Entity"></a>@Entity</h3><p>标注位置：实体类声明语句之前；</p>
+<p>主要作用：标注该Java类为实体类，且将其映射到指定的数据库表。</p>
+<h3 id="Table"><a href="#Table" class="headerlink" title="@Table"></a>@Table</h3><p>标注位置：实体类声明语句之前，与@Entity注释并列使用；</p>
+<p>主要作用：标注当前实体类映射到数据库中的数据表名，当实体类与数据表名不同时使用。</p>
+<h3 id="Id"><a href="#Id" class="headerlink" title="@Id"></a>@Id</h3><p>标注位置：实体类的属性声明语句之前，或属性的getter()方法之前；</p>
+<p>主要作用：指定该实体类的当前属性映射到数据表的主键列。</p>
+<h3 id="GeneratedValue"><a href="#GeneratedValue" class="headerlink" title="@GeneratedValue"></a>@GeneratedValue</h3><p>标注位置：与@Id注释配合使用；</p>
+<p>主要作用：通过其strategy属性指定数据表主键的生成策略。默认情况下，JPA自动选择最适合底层数据库的主键生成策略，即SqlServer对应identity，而MySQL对应auto increment。</p>
+<p><img src="https://images-cdn.shimo.im/zKAgenm2Ay0kN6OI/image.png!thumbnail" alt="图片"></p>
+<h3 id="Column"><a href="#Column" class="headerlink" title="@Column"></a>@Column</h3><p>标注位置：实体类的属性声明语句之前，或属性的getter()方法之前；</p>
+<p>主要作用：标注实体类的当前属性映射到数据库表的字段名，当属性名与数据表字段名不一致时使用。</p>
+<p><img src="https://images-cdn.shimo.im/AUGEctnTxV09qqxy/image.png!thumbnail" alt="图片"></p>
+<h3 id="Transient"><a href="#Transient" class="headerlink" title="@Transient"></a>@Transient</h3><p>标注位置：实体类的属性声明语句之前，或属性的getter()方法之前；</p>
+<p>主要作用：标注实体类的当前属性不进行数据表字段的映射，ORM框架将忽略此映射，如实体类的getInfo()方法通常不需要映射到数据表的字段上。</p>
+<h3 id="Temporal"><a href="#Temporal" class="headerlink" title="@Temporal"></a>@Temporal</h3><p>标注位置：实体类的属性声明语句之前，或属性的getter()方法之前；</p>
+<p>主要作用：标注实体类中Date类型（Java核心API中未定义Date类型的精度）的属性映射到数据表字段的具体精度（数据库中Date类型的数据有DATE、TIME和TIMESTAMP三种精度）。</p>
+<h2 id="基本CRUD操作"><a href="#基本CRUD操作" class="headerlink" title="基本CRUD操作"></a>基本CRUD操作</h2><h3 id="Repository接口"><a href="#Repository接口" class="headerlink" title="Repository接口"></a>Repository接口</h3><p>仅仅是一个标识，表明任何继承它的均为仓库接口类，方便Spring自动扫描识别。</p>
+<h3 id="CRUDRespository接口"><a href="#CRUDRespository接口" class="headerlink" title="CRUDRespository接口"></a>CRUDRespository接口</h3><p>继承Repository，实现了一组CRUD相关的方法。</p>
+<p><img src="https://images-cdn.shimo.im/CDlbRxc3ToMZAN2P/image.png!thumbnail" alt="图片"></p>
+<h3 id="命名参数，索引参数"><a href="#命名参数，索引参数" class="headerlink" title="命名参数，索引参数"></a>命名参数，索引参数</h3><ul>
+<li><strong>索引参数</strong>如下所示，索引值从1开始，查询中 ”?X” 个数需要与方法定义的参数个数相一致，并且顺序也要一致<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@Modifying </span><br><span class="line">@Query(&quot;update User u set u.firstname &#x3D; ?1 where u.lastname &#x3D; ?2&quot;) </span><br><span class="line">int setFixedFirstnameFor(String firstname, String lastname); </span><br></pre></td></tr></table></figure></li>
+<li><strong>命名参数</strong>（推荐使用这种方式）<br>可以定义好参数名，赋值时采用@Param(“参数名”)，而不用管顺序。如下所示：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public interface UserRepository extends JpaRepository&lt;User, Long&gt; &#123; </span><br><span class="line">  @Query(&quot;select u from User u where u.firstname &#x3D; :firstname or u.lastname &#x3D; :lastname&quot;) </span><br><span class="line">  User findByLastnameOrFirstname(@Param(&quot;lastname&quot;) String lastname, </span><br><span class="line">                                 @Param(&quot;firstname&quot;) String firstname); </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<h3 id="PagingAndSortRespository接口查询"><a href="#PagingAndSortRespository接口查询" class="headerlink" title="PagingAndSortRespository接口查询"></a>PagingAndSortRespository接口查询</h3></li>
+</ul>
+<p>该接口继承了CrudRepository接口，提供了两个方法，实现了分页和排序的功能了</p>
+<p><img src="https://images-cdn.shimo.im/fbx8iRj7mWgPzP5o/image.png!thumbnail" alt="图片"></p>
+<h3 id="JpaRepository接口"><a href="#JpaRepository接口" class="headerlink" title="JpaRepository接口"></a>JpaRepository接口</h3><p>该接口继承了PagingAndSortingRepository接口。同时也继承QueryByExampleExecutor接口，这是个用“实例”进行查询的接口</p>
+<p><img src="https://images-cdn.shimo.im/cPh4AsxFVqsegasa/image.png!thumbnail" alt="图片"></p>
+<h3 id="事务在spring-data-jpa中的使用，-Modifying-Transactional的综合使用"><a href="#事务在spring-data-jpa中的使用，-Modifying-Transactional的综合使用" class="headerlink" title="事务在spring data jpa中的使用，@Modifying @Transactional的综合使用"></a>事务在spring data jpa中的使用，@Modifying @Transactional的综合使用</h3><p>@Modifying表示是更新执行</p>
+<p>@Transactional带事务</p>
+<h3 id="JpaSpecificationExecutor接口"><a href="#JpaSpecificationExecutor接口" class="headerlink" title="JpaSpecificationExecutor接口"></a>JpaSpecificationExecutor接口</h3><p>该接口提供了对JPA Criteria查询（动态查询）的支持。</p>
+<p>spring data jpa 通过创建方法名来做查询，只能做简单的查询，那如果我们要做复杂一些的查询呢，多条件分页怎么办，这里，spring data jpa为我们提供了JpaSpecificationExecutor接口，只要简单实现toPredicate方法就可以实现复杂的查询</p>
+<p>1.首先让我们的接口继承于JpaSpecificationExecutor</p>
+<p>2.JpaSpecificationExecutor提供了以下接口</p>
+<p><img src="https://images-cdn.shimo.im/DvzrxR0TUw4Oc4Ac/image.png!thumbnail" alt="图片"></p>
+<p>其中Specification就是需要我们传进去的参数，它是一个接口</p>
+<p><img src="https://images-cdn.shimo.im/ivGbyWxmSrQElFaY/image.png!thumbnail" alt="图片"></p>
+<h2 id="spring集成spring-data-jpa"><a href="#spring集成spring-data-jpa" class="headerlink" title="spring集成spring data jpa"></a>spring集成spring data jpa</h2><p>第一步：pom导入坐标</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-data-jpa&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-web&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;mysql&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mysql-connector-java&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;scope&gt;runtime&lt;&#x2F;scope&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>第二步：配置文件中配置spring jpa和数据库相关信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">    http:</span><br><span class="line">        encoding:</span><br><span class="line">          charset: UTF-8</span><br><span class="line">          force: true</span><br><span class="line">          enabled: true</span><br><span class="line">    datasource:</span><br><span class="line">        driver-class-name: com.mysql.jdbc.Driver</span><br><span class="line">        url: jdbc:mysql:&#x2F;&#x2F;localhost&#x2F;jpademo?useSSL&#x3D;false&amp;characterEncoding&#x3D;utf8</span><br><span class="line">        username: root</span><br><span class="line">        password: admin</span><br><span class="line">    jpa:</span><br><span class="line">        database: mysql</span><br><span class="line">        show-sql: true</span><br><span class="line">        hibernate:</span><br><span class="line">            ddl-auto: update</span><br></pre></td></tr></table></figure>
+<p>第三步：根据需求，dao层文件继承Repository接口或者子集<br><img src="https://images-cdn.shimo.im/wrzwZpYqa508x2AD/image.png!thumbnail" alt="图片"></p>
+<h2 id="可参考项目"><a href="#可参考项目" class="headerlink" title="可参考项目"></a>可参考项目</h2><p>TIMO后台管理系统</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://gitee.com/aun/Timo">https://gitee.com/aun/Timo</a></li>
+</ul>
+<p>mblog开源免费的博客系统</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://gitee.com/mtons/mblog">https://gitee.com/mtons/mblog</a><h2 id="原理分析"><a href="#原理分析" class="headerlink" title="原理分析"></a>原理分析</h2></li>
+</ul>
+<p>Spring Data JPA启动,主要分为几步:</p>
+<ol>
+<li>通过注解和包扫描获得配置信息 ,对应类为AnnotationRepositoryConfigurationSource</li>
+<li>通过配置信息,向Spring注册Repository的FactoryBean的BeanDefinition,即JpaRepositoryFactoryBean的BeanDefinition</li>
+<li>Spring启动中,会根据BeanDefinition实例化FactoryBean,并调用它的getObject方法</li>
+<li>在getObject方法中,Spring Data JPA解析方法名并生成代理.</li>
+</ol>
+<p>接下来,我们从@EnableJpaRepositories开始,可以看到在它上边有@Import(JpaRepositoriesRegistrar.class)注解,其中JpaRepositoriesRegistrar是ImportBeanDefinitionRegistrar的子类.</p>
+<p>其中ImportBeanDefintionRegistrar是Spring提供的策略,spring会在加载BeanDefinition的时候调用它的方法:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public void registerBeanDefinitions(</span><br><span class="line">      AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry);</span><br></pre></td></tr></table></figure>
+<p>判断：</p>
+<p>org.springframework.data.repository.config.RepositoryComponentProvider#isCandidateComponent</p>
+<h3 id="SimpleJpaRepository"><a href="#SimpleJpaRepository" class="headerlink" title="SimpleJpaRepository"></a>SimpleJpaRepository</h3><p>我们操作的repository层通常只有一个接口，没有实现类，一般继承2个接口(JpaRepository,JpaSpecificationExecutor)，这样就可以操作持久层的数据。</p>
+<p>这其实是动态代理的运用，我们在调用repository层接口时候，会被代理成SimpleJpaRepository，SimpleJpaRepository其实也继承继承2个接口(JpaRepository,JpaSpecificationExecutor)，我们看看代码可以发现，其实SimpleJpaRepository的底层其实是运用了EntityManager来实现数据库的操作。</p>
+<p>SimpleJpaRepository代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public class SimpleJpaRepository&lt;T, ID&gt; implements JpaRepositoryImplementation&lt;T, ID&gt; &#123;</span><br><span class="line">    private final EntityManager em;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>JpaRepositoryImplementation代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface JpaRepositoryImplementation&lt;T, ID&gt; extends JpaRepository&lt;T, ID&gt;, JpaSpecificationExecutor&lt;T&gt; &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>总结如下：</strong><br>我们在 Dao 接口里边 就可以调用 JPARepository 接口的方法, JPARepository有一个默认实现类:SimpleJpaRepository,当我们 调用获得Dao接口对象时,得到的是接口的子类代理对象proxy,当我们调用这个代理对象proxy的方法时, 实际调用的是 SimpleJpaRepository的方法;这样实现一些既定的CRUD操作;</p>
+<h2 id="好参考文章"><a href="#好参考文章" class="headerlink" title="好参考文章"></a>好参考文章</h2><ul>
+<li>Spring Data JPA的启动过程</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ysdssb/article/details/58619340">https://blog.csdn.net/ysdssb/article/details/58619340</a></p>
+<ul>
+<li>spring-jpa 源码学习(1)—加载流程简介</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/63b186ededdf">https://www.jianshu.com/p/63b186ededdf</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/96cecc296d6f">https://www.jianshu.com/p/96cecc296d6f</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/09/14/%E8%BD%AC%E8%BD%BD%208%E3%80%81renren-fast%E8%84%9A%E6%89%8B%E6%9E%B6%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%8A%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          renren-fast脚手架学习（上）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/09/14/%E8%BD%AC%E8%BD%BD%205%E3%80%81redis%E7%9A%84%E9%AB%98%E5%8F%AF%E7%94%A8%E3%80%81%E4%B8%BB%E4%BB%8E%E3%80%81%E4%B8%8E%E7%BC%93%E5%AD%98%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">redis的高可用、主从与缓存的使用</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="转载 10、持久层框架spring data jpa" data-title="持久层框架spring data jpa" data-url="http://www.2333nmsl.ml/2020/09/14/%E8%BD%AC%E8%BD%BD%2010%E3%80%81%E6%8C%81%E4%B9%85%E5%B1%82%E6%A1%86%E6%9E%B6spring%20data%20jpa/"  data-images="/img/1.gif" data-content="持久层框架spring data jpa">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2020 yht
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"rect":"opacity:0.8","log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

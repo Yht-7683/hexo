@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>mybatis源码分析 | Hexo</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="转载2、mybatis源码分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mybatis源码分析">
+<meta property="og:url" content="http://www.2333nmsl.ml/2020/09/14/%E8%BD%AC%E8%BD%BD%202%E3%80%81mybatis%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E3%80%81mybatis%20plus%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="转载2、mybatis源码分析">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://images-cdn.shimo.im/ie6Sqa3g4L0iRScB/image.png!thumbnail">
+<meta property="og:image" content="https://uploader.shimo.im/f/VI4rxV5Ub9wToOW3.png!thumbnail">
+<meta property="og:image" content="https://images-cdn.shimo.im/9KHDIgsUyq4c8T8w/image.png!thumbnail">
+<meta property="og:image" content="https://uploader.shimo.im/f/PMTBnkVXJ84Hmivq.png!thumbnail">
+<meta property="article:published_time" content="2020-09-14T14:49:46.000Z">
+<meta property="article:modified_time" content="2020-09-14T07:07:17.956Z">
+<meta property="article:author" content="yht">
+<meta property="article:tag" content="mybatis框架">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images-cdn.shimo.im/ie6Sqa3g4L0iRScB/image.png!thumbnail">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 5.0.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/1.gif" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/"></a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Yht-7683/" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="#" title="mail">mail</a>
+					        
+								<a class="qq" target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=434807683&site=qq&menu=yes" title="qq">qq</a>
+					        
+								<a class="weibo" target="_blank" href="https://weibo.com/" title="weibo">weibo</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ASCII%E7%A0%81%E5%9B%BE/" style="font-size: 10px;">ASCII码图</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 20px;">Java基础</a> <a href="/tags/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 10px;">Java多线程</a> <a href="/tags/Redis/" style="font-size: 20px;">Redis</a> <a href="/tags/Websocket/" style="font-size: 10px;">Websocket</a> <a href="/tags/io/" style="font-size: 10px;">io</a> <a href="/tags/jenkins/" style="font-size: 10px;">jenkins</a> <a href="/tags/mybatis%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">mybatis框架</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/renren-fast/" style="font-size: 15px;">renren-fast</a> <a href="/tags/spring-data/" style="font-size: 10px;">spring data</a> <a href="/tags/spring-security/" style="font-size: 10px;">spring security</a> <a href="/tags/springboot%E6%A1%86%E6%9E%B6/" style="font-size: 15px;">springboot框架</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 10px;">消息队列</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">计算机网络</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://a-cai.gitee.io/blog/">前端资料</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/1.gif" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Yht-7683/" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="#" title="mail">mail</a>
+			        
+						<a class="qq" target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=434807683&site=qq&menu=yes" title="qq">qq</a>
+			        
+						<a class="weibo" target="_blank" href="https://weibo.com/" title="weibo">weibo</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-转载 2、mybatis源码分析、mybatis plus使用" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/09/14/%E8%BD%AC%E8%BD%BD%202%E3%80%81mybatis%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E3%80%81mybatis%20plus%E4%BD%BF%E7%94%A8/" class="article-date">
+  	<time datetime="2020-09-14T14:49:46.000Z" itemprop="datePublished">2020-09-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      mybatis源码分析
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mybatis%E6%A1%86%E6%9E%B6/" rel="tag">mybatis框架</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="4-mybatis-plus简单运用-xmind0-mybatis简介-xmind1-mybatis源码分析-xmind2-mybatis处理流程图-xmind3-Configuration配置路线-xmindmybatis简介"><a href="#4-mybatis-plus简单运用-xmind0-mybatis简介-xmind1-mybatis源码分析-xmind2-mybatis处理流程图-xmind3-Configuration配置路线-xmindmybatis简介" class="headerlink" title="4_mybatis_plus简单运用.xmind0_mybatis简介.xmind1_mybatis源码分析.xmind2_mybatis处理流程图.xmind3_Configuration配置路线.xmindmybatis简介"></a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/ecvqhafTbFc9AjmX.xmind">4_mybatis_plus简单运用.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/DJkOQCDA4TgiRuMB.xmind">0_mybatis简介.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/r7cGLLC5U6khPlwN.xmind">1_mybatis源码分析.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/WSwiSa1aXXggODvc.xmind">2_mybatis处理流程图.xmind</a><a target="_blank" rel="noopener" href="https://uploader.shimo.im/f/x1f02pzL2PEkBJFM.xmind">3_Configuration配置路线.xmind</a>mybatis简介</h2><p>mybatis官网系统学习：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://www.mybatis.org/mybatis-3/zh/index.html">http://www.mybatis.org/mybatis-3/zh/index.html</a></li>
+</ul>
+<p>MyBatis 是一款优秀的持久层框架，它支持定制化 SQL、存储过程以及高级映射。MyBatis 避免了几乎所有的 JDBC 代码和手动设置参数以及获取结果集。MyBatis 可以使用简单的 XML 或注解来配置和映射原生信息，将接口和 Java 的 POJOs(Plain Old Java Objects,普通的 Java对象)映射成数据库中的记录。</p>
+<h2 id="jdbc与mybatis"><a href="#jdbc与mybatis" class="headerlink" title="jdbc与mybatis"></a>jdbc与mybatis</h2><p>需要先注册驱动和数据库信息、操作Connection、通过statement对象执行SQL，将结果返回给resultSet，然后从resultSet中读取数据并转换为pojo对象，最后需要关闭数据库相关资源。而且还需要自己对JDBC过程的异常进行捕捉和处理</p>
+<p>MyBatis对JDBC的封装很好，几乎可以取代Jdbc。</p>
+<p>MyBatis使用SqlSessionFactoryBuilder来连接完成JDBC需要代码完成的数据库获取和连接，减少了代码的重复。JDBC将SQL语句写到代码里，属于硬编码，非常不易维护，MyBatis可以将SQL代码写入xml中，易于修改和维护。JDBC的resultSet需要用户自己去读取并生成对应的POJO，MyBatis的mapper会自动将执行后的结果映射到对应的Java对象中。</p>
+<h2 id="mybatis重要组件"><a href="#mybatis重要组件" class="headerlink" title="mybatis重要组件"></a>mybatis重要组件</h2><ul>
+<li><strong>Configuration</strong></li>
+</ul>
+<p>MyBatis所有的配置信息都维持在Configuration对象之中。</p>
+<ul>
+<li><strong>SqlSession</strong></li>
+</ul>
+<p>作为MyBatis工作的主要顶层API，表示和数据库交互的会话，完成必要数据库增删改查功能</p>
+<ul>
+<li><strong>Executor</strong></li>
+</ul>
+<p>MyBatis执行器，是MyBatis 调度的核心，负责SQL语句的生成和查询缓存的维护</p>
+<ul>
+<li><strong>StatementHandler</strong></li>
+</ul>
+<p>封装了JDBC Statement操作，负责对JDBC statement 的操作，如设置参数、将Statement结果集转换成List集合。</p>
+<ul>
+<li><strong>ParameterHandler</strong></li>
+</ul>
+<p>负责对用户传递的参数转换成JDBC Statement 所需要的参数，</p>
+<ul>
+<li><strong>ResultSetHandler</strong></li>
+</ul>
+<p>负责将JDBC返回的ResultSet结果集对象转换成List类型的集合；</p>
+<ul>
+<li><strong>TypeHandler</strong></li>
+</ul>
+<p>负责java数据类型和jdbc数据类型之间的映射和转换</p>
+<ul>
+<li><strong>MappedStatement</strong></li>
+</ul>
+<p>MappedStatement维护了一条&lt;select|update|delete|insert&gt;节点的封装，</p>
+<ul>
+<li><strong>SqlSource</strong></li>
+</ul>
+<p>负责根据用户传递的parameterObject，动态地生成SQL语句，将信息封装到BoundSql对象中，并返回</p>
+<ul>
+<li><strong>BoundSql</strong></li>
+</ul>
+<p>表示动态生成的SQL语句以及相应的参数信息</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p><img src="https://images-cdn.shimo.im/ie6Sqa3g4L0iRScB/image.png!thumbnail" alt="图片"></p>
+<p><img src="https://uploader.shimo.im/f/VI4rxV5Ub9wToOW3.png!thumbnail" alt="图片"></p>
+<h2 id="mybatis如何获取数据库中的字段"><a href="#mybatis如何获取数据库中的字段" class="headerlink" title="﻿mybatis如何获取数据库中的字段"></a>﻿mybatis如何获取数据库中的字段</h2><h3 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h3><p>information_schema数据库是MySQL自带的，它提供了访问数据库元数据的方式。什么是元数据呢？元数据是关于数据的数据，如数据库名或表名，列的数据类型，或访问权限等。有些时候用于表述该信息的其他术语包括“数据词典”和“系统目录”。</p>
+<p>在MySQL中，把 information_schema 看作是一个数据库，确切说是信息数据库。其中保存着关于MySQL服务器所维护的所有其他数据库的信息。如数据库名，数据库的表，表栏的数据类型与访问权 限等。在INFORMATION_SCHEMA中，有数个只读表。它们实际上是视图，而不是基本表，因此，你将无法看到与之相关的任何文件。</p>
+<h3 id="information-schema表说明"><a href="#information-schema表说明" class="headerlink" title="information_schema表说明"></a><strong>information_schema表说明</strong></h3><p>SCHEMATA表：提供了当前mysql实例中所有数据库的信息。是show databases的结果取之此表。</p>
+<p>TABLES表：提供了关于数据库中的表的信息（包括视图）。详细表述了某个表属于哪个schema，表类型，表引擎，创建时间等信息。是show tables from schemaname的结果取之此表。</p>
+<p>COLUMNS表：提供了表中的列信息。详细表述了某张表的所有列以及每个列的信息。是show columns from schemaname.tablename的结果取之此表。</p>
+<p>STATISTICS表：提供了关于表索引的信息。是show index from schemaname.tablename的结果取之此表。</p>
+<p>USER_PRIVILEGES（用户权限）表：给出了关于全程权限的信息。该信息源自mysql.user授权表。是非标准表。</p>
+<p>SCHEMA_PRIVILEGES（方案权限）表：给出了关于方案（数据库）权限的信息。该信息来自mysql.db授权表。是非标准表。</p>
+<p>TABLE_PRIVILEGES（表权限）表：给出了关于表权限的信息。该信息源自mysql.tables_priv授权表。是非标准表。</p>
+<p>COLUMN_PRIVILEGES（列权限）表：给出了关于列权限的信息。该信息源自mysql.columns_priv授权表。是非标准表。</p>
+<p>CHARACTER_SETS（字符集）表：提供了mysql实例可用字符集的信息。是SHOW CHARACTER SET结果集取之此表。</p>
+<p>COLLATIONS表：提供了关于各字符集的对照信息。</p>
+<p>COLLATION_CHARACTER_SET_APPLICABILITY表：指明了可用于校对的字符集。这些列等效于SHOW COLLATION的前两个显示字段。</p>
+<p>TABLE_CONSTRAINTS表：描述了存在约束的表。以及表的约束类型。</p>
+<p>KEY_COLUMN_USAGE表：描述了具有约束的键列。</p>
+<p>ROUTINES表：提供了关于存储子程序（存储程序和函数）的信息。此时，ROUTINES表不包含自定义函数（UDF）。名为“mysql.proc name”的列指明了对应于INFORMATION_SCHEMA.ROUTINES表的mysql.proc表列。</p>
+<p>VIEWS表：给出了关于数据库中的视图的信息。需要有show views权限，否则无法查看视图信息。</p>
+<p>TRIGGERS表：提供了关于触发程序的信息。必须有super权限才能查看该表</p>
+<p><img src="https://images-cdn.shimo.im/9KHDIgsUyq4c8T8w/image.png!thumbnail" alt="图片"></p>
+<p>查找当前数据库的表信息：</p>
+<p><strong>第一种方法：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from information_schema.TABLES where TABLE_SCHEMA&#x3D;(select database())</span><br></pre></td></tr></table></figure>
+<p><strong>第二种方法：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#获取表信息</span><br><span class="line">show table status </span><br></pre></td></tr></table></figure>
+<p>查找当前表的所有字段信息：</p>
+<p><strong>第一种方法：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from information_schema.COLUMNS where TABLE_SCHEMA &#x3D; (select database()) and TABLE_NAME&#x3D;#&#123;tableName&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>第二种方法：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show full fields from &#96;student&#96;;</span><br></pre></td></tr></table></figure>
+<h3 id="集成spring的多数据源处理"><a href="#集成spring的多数据源处理" class="headerlink" title="集成spring的多数据源处理"></a>集成spring的多数据源处理</h3><p>1、通过扫描包区分</p>
+<p>git demo:<a target="_blank" rel="noopener" href="https://gitee.com/lv-success/git-second/tree/master/course-3-mybatis/springBootMybatisMulidatasource">https://gitee.com/lv-success/git-second/tree/master/course-3-mybatis/springBootMybatisMulidatasource</a></p>
+<p>2、通过动态数据源区分</p>
+<p>一般使用注解的形式，这里先留着，后面的renren-fast项目</p>
+<h2 id="mybatis的读写分离"><a href="#mybatis的读写分离" class="headerlink" title="mybatis的读写分离"></a>mybatis的读写分离</h2><p>原理：</p>
+<p>和多数据源处理差不多，mybatis做读写分离也有多种方法。通过拦截发起请求的方法或执行的sql来自动判断需要的数据源！</p>
+<p>1、拦截发起操作的方法名</p>
+<p>需要自己约定增删改查的前缀，然后根据前缀选择数据源！</p>
+<p>git demo：<a target="_blank" rel="noopener" href="https://gitee.com/lv-success/git-second/tree/master/course-3-mybatis/bounterMybatis">https://gitee.com/lv-success/git-second/tree/master/course-3-mybatis/bounterMybatis</a></p>
+<p>2、拦截发起操作的sql</p>
+<p>git demo:<a target="_blank" rel="noopener" href="https://github.com/shawntime/shawn-rwdb">https://github.com/shawntime/shawn-rwdb</a></p>
+<h2 id="mybatis源码分析"><a href="#mybatis源码分析" class="headerlink" title="mybatis源码分析"></a>mybatis源码分析</h2><p><img src="https://uploader.shimo.im/f/PMTBnkVXJ84Hmivq.png!thumbnail" alt="图片"></p>
+<p><strong>课程mybatis源码注释git分支</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/lv-success/mybatis-3">https://github.com/lv-success/mybatis-3</a></li>
+</ul>
+<p>源码分析部分因为内容比较多，我就不一一写下来的，大家去看看别人的博文</p>
+<ul>
+<li>大闲人柴毛毛</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/7bc6d3b7fb45">MyBatis源码解析(一)——MyBatis初始化过程解析</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/46c6e56d9774">MyBatis源码解析(二)——动态代理实现函数调用</a></p>
+<ul>
+<li>zhjh256</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhjh256/p/8512392.html">mybatis 3.x源码深度解析与最佳实践</a></p>
+<ul>
+<li>南轲梦</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/dongying/category/620960.html">随笔分类 - mybatis</a></p>
+<h2 id="mybatis-plus的简单运用"><a href="#mybatis-plus的简单运用" class="headerlink" title="mybatis plus的简单运用"></a>mybatis plus的简单运用</h2><p>文章：<a target="_blank" rel="noopener" href="https://www.java-mindmap.com/view/21">https://www.java-mindmap.com/view/21</a></p>
+<p>官网：<a target="_blank" rel="noopener" href="https://mp.baomidou.com/guide">https://mp.baomidou.com/guide</a></p>
+<p>官网实例：<a target="_blank" rel="noopener" href="https://gitee.com/baomidou/mybatis-plus-samples">https://gitee.com/baomidou/mybatis-plus-samples</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/09/14/%E8%BD%AC%E8%BD%BD%203%E3%80%81springboot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E4%B8%8E%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          springboot自动装配与运行原理
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/08/25/map/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">map</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="转载 2、mybatis源码分析、mybatis plus使用" data-title="mybatis源码分析" data-url="http://www.2333nmsl.ml/2020/09/14/%E8%BD%AC%E8%BD%BD%202%E3%80%81mybatis%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E3%80%81mybatis%20plus%E4%BD%BF%E7%94%A8/"  data-images="/img/1.gif" data-content="mybatis源码分析">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2020 yht
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"rect":"opacity:0.8","log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
